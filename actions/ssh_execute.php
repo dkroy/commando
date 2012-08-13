@@ -64,16 +64,16 @@
 				$command = $recipe->content;
 				break;
 			case "bash":
-				$command = "bash -c $'" . str_replace("'", "\'", $recipe->content) . "'";
+				$command = "echo $'" . str_replace("'", "\'", $recipe->content) . "' | bash";
 				break;
 			case "perl":
-				$command = "perl -e $'" . str_replace("'", "\'", $recipe->content) . "'";
+				$command = "echo $'" . str_replace("'", "\'", $recipe->content) . "' | perl";
 				break;
 			case "python":
-				$command = "python -c $'" . str_replace("'", "\'", $recipe->content) . "'";
+				$command = "echo $'" . str_replace("'", "\'", $recipe->content) . "' | python";
 				break;
 			case "node.js":
-				$command = "node -e $'" . str_replace("'", "\'", $recipe->content) . "'";
+				$command = "echo $'" . str_replace("'", "\'", $recipe->content) . "' | node";
 				break;
 		}
 		
