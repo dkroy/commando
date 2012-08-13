@@ -160,8 +160,10 @@ Contact
 + http://twitter.com/commando_io
 
 Sponsored By
--------
-[NetDNA](http://netdna.com) - [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper)
+------------
+
+[ ![NetDNA](http://netdna.commando.io/images/netdna.png) ] (http://netdna.com)
+[@NetDNADeveloper](http://www.twitter.com/netdnadeveloper)
 
 License & Legal
 ---------------
