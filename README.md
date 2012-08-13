@@ -163,7 +163,8 @@ Sponsored By
 ------------
 
 [ ![NetDNA](http://netdna.commando.io/images/netdna.png) ] (http://netdna.com)
-[@NetDNADeveloper](http://www.twitter.com/netdnadeveloper)
+
+Twitter: [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper)
 
 License & Legal
 ---------------
