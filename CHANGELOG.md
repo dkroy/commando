@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+### Version 0.2.6 (open source) - *08/13/2012*
+- Piping commands to each interpreter instead of running with `-e`, or `-c` flags.
+
 ### Version 0.2.5 (open source) - *08/10/2012*	
 - Short PHP echo tags `<?=` replaced with full definitions `<?php echo` in the entire application for maximum compatibility with different `php.ini` configurations.
 
