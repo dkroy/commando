@@ -65,6 +65,11 @@
 			return mysqli_query(MySQLConnection::$db_connection, $sql);
 		}
 		
+		public static function multi_query($sql) {
+			++MySQLConnection::$numb_queries;
+			return mysqli_multi_query(MySQLConnection::$db_connection, $sql);
+		}
+		
 		public static function get_previous_query_affected_rows() {
 			return mysqli_affected_rows(MySQLConnection::$db_connection);
 		}

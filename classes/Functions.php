@@ -188,5 +188,16 @@
 			$suffixes = array('bytes', 'kb', 'MB', 'GB', 'TB');
     		return round(pow(1024, $base - floor($base)), $precision) . ' ' . $suffixes[floor($base)];
 		}
+		
+		public static function get_db_version() {
+			$result = MySQLQueries::get_db_version();
+			
+			if($result !== false) {
+				$row = MySQLConnection::fetch_object($result);
+				return $row->current;
+			}
+			
+			return null;
+		}
 	}
 ?>

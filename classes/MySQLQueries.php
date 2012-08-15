@@ -537,5 +537,15 @@
 			             
 			MySQLConnection::query($SQL) or Error::db_halt(500, 'internal server error', 'Unable to execute request, SQL query error.', __FUNCTION__, MySQLConnection::error(), $SQL);         
 		}
+		
+		////
+		// Special case query, does not require the error condition check
+		////
+		public static function get_db_version() {
+			$SQL = "SELECT `current`
+			          FROM db_version";
+			
+			return MySQLConnection::query($SQL); 	
+		}
 	}
 ?>

@@ -24,7 +24,7 @@
         		  	    <br >All rights reserved.
         		  	</p>
         		  	<p style="float: right;">
-        		  	    v' . Version::current . '
+        		  	    v' . Version::app . '
         		  	    <br />View on <a href="https://github.com/nodesocket/commando">GitHub</a>.
         		    </p>
       			  </footer>

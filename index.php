@@ -16,14 +16,21 @@
 	*/
 	
 	($_SERVER['SCRIPT_NAME'] !== "/controller.php") ? require_once(__DIR__ . "/classes/Requires.php") : Links::$pretty = true;
-
+	
 	Header::set_title("Commando.io");
 	Header::render();
 	
 	Navigation::render();
 ?>
  	
- 	<a href="https://github.com/nodesocket/commando"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 99999;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+ 	<?php if(Functions::get_db_version() !== Version::db): ?>
+		<div class="alert alert-error fade in" style="position: fixed; top: 0px; right: 0px; left: 0px; z-index: 99999;">
+			<a class="close" data-dismiss="alert">&times;</a>
+			<h3>Warning! The MySQL schema version you are running is <u>out of date</u>. Please run <a href="/db_upgrade.php">db_upgrade.php</a> to merge in the latest changes.</h3>
+		</div>
+	<?php endif; ?>
+ 	
+ 	<a href="https://github.com/nodesocket/commando"><img style="position: fixed; top: 0px; right: 0px; border: 0px; margin: 0px; z-index: 88888;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
  
     <div class="container">
 
