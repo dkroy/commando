@@ -57,28 +57,30 @@ Right now installation is a bit involved and brutal, but once we iron out Comman
 
 **2.)** Execute `$ php -f install.php`, or view `/install.php` via a browser. *The install script requires write access to the filesystem to copy and update configuration files.*
 
-**3.)** Add the public and private SSH keys you wish to connect with into the `/keys` directory. It is **highly recommended** to set the permission on both keys to `0400`; read only. Also, make sure the keys are user-owned by the user that executes PHP.
+**3.)** Delete the installer script `/install.php`. *It should not present a security risk, but it is still recommended to delete it.*
 
-**4.)** Edit `/app.config.php` and provide the correct paths for:
+**4.)** Add the public and private SSH keys you wish to connect with into the `/keys` directory. It is **highly recommended** to set the permission on both keys to `0400`; read only. Also, make sure the keys are user-owned by the user that executes PHP.
+
+**5.)** Edit `/app.config.php` and provide the correct paths for:
 
      SSH_PUBLIC_KEY_PATH
      SSH_PRIVATE_KEY_PATH
 
-**5.)** Create a user in MySQL to connect with.
+**6.)** Create a user in MySQL to connect with.
 
-**6.)** Edit `/classes/MySQLConfiguration.php` and provide the connection details to MySQL.
+**7.)** Edit `/classes/MySQLConfiguration.php` and provide the connection details to MySQL.
 
-**7.)** Import the MySQL schema located in `/schema/latest.sql` into MySQL.
+**8.)** Import the MySQL schema located in `/schema/latest.sql` into MySQL.
 
 ```` bash
 	$ mysql --user=USERNAME --pass=PASSWORD --host=SERVERHOST < /schema/latest.sql
 ````
 
-**8.)**	Assign the MySQL user created above to the newly imported database `commando`.    
+**9.)**	Assign the MySQL user created above to the newly imported database `commando`.    
 
-**9.)** Create a database `commando` and a collection `executions` in MongoDB. *If you need MongoDB hosting check out https://mongohq.com or https://mongolab.com.*
+**10.)** Create a database `commando` and a collection `executions` in MongoDB. *If you need MongoDB hosting check out https://mongohq.com or https://mongolab.com.*
 
-**10.)** Create the following standard indexes on the `executions` collection in MongoDB:   
+**11.)** Create the following standard indexes on the `executions` collection in MongoDB:   
 
 ```` json
     { "executed" : 1 }
@@ -88,11 +90,11 @@ Right now installation is a bit involved and brutal, but once we iron out Comman
     { "recipes.interpreter" : 1 }
 ````
 
-**11.)** Create a user in MongoDB to connect with.
+**12.)** Create a user in MongoDB to connect with.
 
-**12.)** Edit `/classes/MongoConfiguration.php` and provide the connection details to MongoDB.
+**13.)** Edit `/classes/MongoConfiguration.php` and provide the connection details to MongoDB.
 
-**13.)** *(OPTIONAL)* This step is not required, but if you want to enable *pretty links* you must setup rewrite rules on the web-server:
+**14.)** *(OPTIONAL)* This step is not required, but if you want to enable *pretty links* you must setup rewrite rules on the web-server:
 
 ````
 Pretty links enabled: /view-recipe/rec_c4Bb4E01Q0d8a37N4bU37
