@@ -1,7 +1,7 @@
 ## CHANGELOG
 
 ### v0.3.0 (open source) - *08/14/2012*
-- `markdown.php` now escapes tags and entities to prevent XSS attacks.
+- `/markdown/markdown.php` now escapes tags and entities to prevent XSS attacks.
 - Added new MySQL schema `/schema/0.1.1.sql`.
 - Updated `/schema/latest.sql` to `/schema/0.1.1.sql`.
 - `MySQL Schema 0.1.1` - Small modification to the `settings` table; `id` is now UNSIGNED.
