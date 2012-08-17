@@ -166,7 +166,7 @@ Sponsored By
 
 [ ![NetDNA](http://netdna.commando.io/images/netdna.png) ] (http://netdna.com)
 
-Twitter: [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper)
++ [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper)
 
 License & Legal
 ---------------
