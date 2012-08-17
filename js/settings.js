@@ -32,7 +32,13 @@ $(document).ready(function() {
 	Request.ajax("/actions/get_public_ssh_key.php", {}, function(response) {
 		if(typeof response !== "undefined") {
 			$("#settings-public-ssh-key").html("");
-			$("#settings-public-ssh-key").append('<pre class="prettyprint lang-html linenums" style="display: none;">' + response.public_ssh_key + '</pre>');
+			
+			if(typeof response.error !== "undefined") {
+				$("#settings-public-ssh-key").append('<pre class="prettyprint lang-html linenums" style="display: none;">' + response.error.message + '</pre>');
+			} else {
+				$("#settings-public-ssh-key").append('<pre class="prettyprint lang-html linenums" style="display: none;">' + response.public_ssh_key + '</pre>');
+			}
+			
 			prettyPrint();
 			$("#settings-public-ssh-key").children("pre").slideDown(200);
 		}

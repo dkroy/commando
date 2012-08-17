@@ -161,7 +161,7 @@
 		}
 		
 		public static function get_public_ssh_key() {
-			$public_ssh_key = file_get_contents(SSH_PUBLIC_KEY_PATH);
+			$public_ssh_key = @file_get_contents(SSH_PUBLIC_KEY_PATH);
 			return ($public_ssh_key) ? $public_ssh_key : null;
 		}
 		

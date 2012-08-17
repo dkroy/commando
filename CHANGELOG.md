@@ -1,5 +1,12 @@
 ## CHANGELOG
 
+### v0.3.1 (open source) - *08/16/2012*
+- Renamed `db_upgrade.php` to `db-upgrade.php` to keep with standards.
+- Fix to `/actions/get_public_ssh_key.php` if the public key file can't be opened now returns an error message.
+- `/classes/Prerequisites.php` is now actually called in `/classes/Requires.php`.
+- `/classes/Prerequisites.php` checks for the blowfish cryptography library.
+- Added `/classes/Bcrypt.php` bcrypt cryptography library.
+
 ### v0.3.0 (open source) - *08/14/2012*
 - `/markdown/markdown.php` now escapes tags and entities to prevent XSS attacks.
 - Added new MySQL schema `/schema/0.1.1.sql`.

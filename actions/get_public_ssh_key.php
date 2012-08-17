@@ -16,5 +16,12 @@
 	*/
 	
 	require_once(dirname(__DIR__) . "/classes/Requires.php");
-	echo json_encode(array("public_ssh_key" => Functions::get_public_ssh_key()));
+	
+	$public_key = Functions::get_public_ssh_key();
+	
+	if($public_key === null) {
+		Error::halt(404, 'not found', 'The public SSH key file \'' . SSH_PUBLIC_KEY_PATH . '\' does not exist.');
+	}
+	
+	echo json_encode(array("public_ssh_key" => $public_key));
 ?>

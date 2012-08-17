@@ -27,6 +27,12 @@
 				trigger_error("<h1>Failed to load required PHP extension " . $extension . "</h1>", E_USER_ERROR);
 			}
 		}
+		
+		public static function crypt_blowfish() {
+			if(CRYPT_BLOWFISH != 1) {
+				trigger_error("<h1>Failed to load the required cryptography library blowfish.</h1>", E_USER_ERROR);	
+			}
+		}
 	}
 	
 	Prerequisites::php_version();
@@ -34,4 +40,5 @@
 	Prerequisites::extension("mongo");
 	Prerequisites::extension("json");
 	Prerequisites::extension("ssh2");
+	Prerequisites::crypt_blowfish();
 ?>

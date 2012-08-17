@@ -26,7 +26,7 @@
  	<?php if(Functions::get_db_version() !== Version::db): ?>
 		<div class="alert alert-error fade in" style="position: fixed; top: 0px; right: 0px; left: 0px; z-index: 99999;">
 			<a class="close" data-dismiss="alert">&times;</a>
-			<h3>Warning! The MySQL schema version you are running is <u>out of date</u>. Please run <a href="/db_upgrade.php">db_upgrade.php</a> to merge in the latest changes.</h3>
+			<h3>Warning! The MySQL schema version you are running is <u>out of date</u>. Please run <a href="/db-upgrade.php">db-upgrade.php</a> to merge in the latest changes.</h3>
 		</div>
 	<?php endif; ?>
  	
