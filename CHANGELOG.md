@@ -4,7 +4,7 @@
 - Upgraded Bootstrap to `2.1.0`.
 - A bunch of CSS cleanup and fixes in styling and HTML markup.
 - Added `/classes/CSRF.php' which combats CSRF attacks.
-- Added `/classes/Sessions.php' which provides session support for `/classes/CSRF.php` and future login and users.
+- Added `/classes/Sessions.php` which provides session support for `/classes/CSRF.php` and future login and users.
 - `/actions/ssh_execute.php` and `/actions/delete_recipe.php` implement CSRF protection.
 - Added `/defines.php` which stores common boolean flags. The result is code that is easier to read. For example, instead of passing `true` into a function, can pass flags like `MONGO_REPLICA_SET`.
 - `/classes/Footer.php` added GitHub buttons *(stars and forks)*.
