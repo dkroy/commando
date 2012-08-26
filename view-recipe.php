@@ -71,71 +71,77 @@
 ?> 
     <div class="container">
            
-      <div>
-      	 <h1 class="header" style="float: left;"><?php echo $recipe->name ?></h1> 
+      <div class="row">
+      	<div class="span12">
+      		<h1 class="header" style="float: left;"><?php echo $recipe->name ?></h1> 
      	 
-     	 <div style="float: right;">
-     	 	 <a class="btn btn-large disabled"><?php echo substr($recipe->version, 0, 10) ?><?php if($recipe->recipe_version === $head->recipe_version): ?> (HEAD)<?php endif; ?></a>
+     	 	<div style="float: right;">
+     	 		 <a class="btn btn-large disabled"><?php echo substr($recipe->version, 0, 10) ?><?php if($recipe->recipe_version === $head->recipe_version): ?> (HEAD)<?php endif; ?></a>
+     	 	</div>
      	 </div>
       </div>
       
       <div class="row">
-   	  	<div class="span12 well">
-      		<?php if($recipe->recipe_version === $head->recipe_version): ?>
-      			<a href="<?php echo Links::render("edit-recipe", array($recipe->id)) ?>" class="btn btn-primary btn-large"><i class="icon-edit icon-white"></i> Edit Recipe</a>
-      			<a id="delete-recipe" href="/actions/delete_recipe.php?id=<?php echo $recipe->id ?>" class="btn btn-large"><i class="icon-remove"></i> Delete Recipe</a>
-      		<?php else: ?>
-      			<div class="alert alert-info no-bottom-margin">
-					<h4>Notice!</h4>
-					You are viewing an <strong><u>old version</u></strong> of this recipe. Only the <strong><u>head</u></strong> version of recipes may be edited. If you would like to make modifications to this recipe, navigate to the <a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>">head</a>.
-	  			</div>
-	  		<?php endif; ?>
+   	  	<div class="span12">
+   	  		<div class="well">
+	   	  		<?php if($recipe->recipe_version === $head->recipe_version): ?>
+	      			<a href="<?php echo Links::render("edit-recipe", array($recipe->id)) ?>" class="btn btn-primary btn-large"><i class="icon-edit icon-white"></i> Edit Recipe</a>
+	      			<a id="delete-recipe" href="/actions/delete_recipe.php?id=<?php echo $recipe->id ?>&security_token=<?php echo CSRF::generate_token() ?>" class="btn btn-large"><i class="icon-remove"></i> Delete Recipe</a>
+	      		<?php else: ?>
+	      			<div class="alert alert-info no-bottom-margin">
+						<h4>Notice!</h4>
+						You are viewing an <strong><u>old version</u></strong> of this recipe. Only the <strong><u>head</u></strong> version of recipes may be edited. If you would like to make modifications to this recipe, navigate to the <a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>">head</a>.
+		  			</div>
+		  		<?php endif; ?>
+   	  		</div>
       	</div>
       </div>
       
 	  <div class="row">
-    	<div class="span12 well">
-			<div id="recipe-notes" class="alert alert-grey fade in" <?php if(empty($recipe->notes)): ?>style="display: none;"<?php endif; ?>>
-				 <a class="close" data-dismiss="alert">&times;</a>
-				 <?php echo Markdown($recipe->notes) ?>
-			</div>
-			<div class="navbar navbar-static">
-            	<div class="navbar-inner">
-              		<div class="container" style="width: auto;">
-                		<a class="brand"><?php echo ucfirst($recipe->interpreter) ?></a>
-               			<ul class="nav">
-		                	<li class="divider-vertical"></li>
-		                	<li>
-		                		<a><?php echo $recipe->lines ?> <?php echo $recipe->lines == 1 ? 'line' : 'lines'; ?> / <?php echo $recipe->length ?></a>
-		                	</li>
-		                	<li class="divider-vertical"></li>
-		                	<li>
-		                		<a>Added: <?php echo $recipe->added ?></a>
-		                	</li>
-                		</ul>
-                		<ul class="navbar-form nav pull-right">
-                			<li>
-                				<select name="versions" id="recipe-versions" class="span2" data-placeholder="">
-									<?php foreach($recipe_versions as $recipe_version): ?>
-										<option value="
-										
-											<?php
-												if($recipe_version->id !== $head->recipe_version) {
-													echo Links::render("view-recipe", array($recipe->id, $recipe_version->id));
-												} else {
-													echo Links::render("view-recipe", array($recipe->id));
-												}
-											?>
-
-										" <?php if($recipe_version->id === $recipe->recipe_version) { echo 'selected="selected"'; } ?>><?php echo substr($recipe_version->version, 0, 10) ?><?php if($recipe_version->id === $head->recipe_version): ?> (HEAD)<?php endif; ?></option>
-									<?php endforeach; ?>
-								</select>
-                			</li>
-                		</ul>
-              		</div>
-            	</div>
-          	</div>
-			<pre class="prettyprint <?php echo $code_pretty_lang ?> linenums"><?php echo $recipe->content ?></pre>
+    	<div class="span12">
+    		<div class="well">
+    			<div id="recipe-notes" class="alert alert-grey fade in" <?php if(empty($recipe->notes)): ?>style="display: none;"<?php endif; ?>>
+				 	<a class="close" data-dismiss="alert">&times;</a>
+				 	<?php echo Markdown($recipe->notes) ?>
+				</div>
+				<div class="navbar">
+	            	<div class="navbar-inner">
+	              		<div class="container">
+	                		<a class="brand" style="cursor: default;"><?php echo ucfirst($recipe->interpreter) ?></a>
+	               			<ul class="nav">
+			                	<li class="divider-vertical"></li>
+			                	<li>
+			                		<a style="cursor: default;"><?php echo $recipe->lines ?> <?php echo $recipe->lines == 1 ? 'line' : 'lines'; ?> / <?php echo $recipe->length ?></a>
+			                	</li>
+			                	<li class="divider-vertical"></li>
+			                	<li>
+			                		<a style="cursor: default;">Added: <?php echo $recipe->added ?></a>
+			                	</li>
+	                		</ul>
+	                		<ul class="navbar-form nav pull-right">
+	                			<li>
+	                				<select name="versions" id="recipe-versions" class="span2" data-placeholder="">
+										<?php foreach($recipe_versions as $recipe_version): ?>
+											<option value="
+											
+												<?php
+													if($recipe_version->id !== $head->recipe_version) {
+														echo Links::render("view-recipe", array($recipe->id, $recipe_version->id));
+													} else {
+														echo Links::render("view-recipe", array($recipe->id));
+													}
+												?>
+	
+											" <?php if($recipe_version->id === $recipe->recipe_version) { echo 'selected="selected"'; } ?>><?php echo substr($recipe_version->version, 0, 10) ?><?php if($recipe_version->id === $head->recipe_version): ?> (HEAD)<?php endif; ?></option>
+										<?php endforeach; ?>
+									</select>
+	                			</li>
+	                		</ul>
+	              		</div>
+            		</div>
+          		</div>
+				<pre class="prettyprint <?php echo $code_pretty_lang ?> linenums"><?php echo $recipe->content ?></pre>
+    		</div>
 		</div>
 	  </div>   
 <?php

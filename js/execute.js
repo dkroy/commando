@@ -61,6 +61,7 @@ function execute() {
 	$("#execute-results-container").html("");
 	
 	Request.ajax("/actions/ssh_execute.php", {
+		security_token: $("#security_token").val(),
 		groups: $("#execute-groups").val(),
 		recipe: $("#execute-recipe").val(),
 		notes: $("#execute-notes").val()
@@ -72,18 +73,18 @@ function execute() {
 				var error_message = this.ajaxError;
 			}
 			
-			$("#execute-results-container").append('<div class="span12 well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">ERROR</a><span class="label label-important" style="position: relative; top: 6px; float: right;">error</span></div><pre class="alert alert-error red-back no-bottom-margin">' + error_message + '</pre></div>');
+			$("#execute-results-container").append('<div class="span12"><div class="well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">ERROR</a><span class="label label-important" style="position: relative; top: 6px; float: right;">error</span></div><pre class="alert alert-error red-back no-bottom-margin">' + error_message + '</pre></div></div>');
 		}
 		else if(typeof response.error !== "undefined") {
-			$("#execute-results-container").append('<div class="span12 well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">ERROR</a><span class="label label-important" style="position: relative; top: 6px; float: right;">error</span></div><pre class="alert alert-error red-back no-bottom-margin">' + response.error.message + '</pre></div>');
+			$("#execute-results-container").append('<div class="span12"><div class="well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">ERROR</a><span class="label label-important" style="position: relative; top: 6px; float: right;">error</span></div><pre class="alert alert-error red-back no-bottom-margin">' + response.error.message + '</pre></div></div>');
 		} else {
 			$("#execute-results-jump").find("ul.dropdown-menu").append('<li class="nav-header">Servers</li>');
 			
 			for(var i = 0; i < response.length; i++) {
 				if(response[i].stream == "stderr" || response[i].stream == "error") {
-					$("#execute-results-container").append('<div id="' + response[i].server + '" class="span12 well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">' + response[i].server_label + '</a><span class="label label-important" style="position: relative; top: 6px; float: right;">' + response[i].stream + '</span></div><pre class="alert alert-error red-back no-bottom-margin">' + response[i].result + '</pre></div>');
+					$("#execute-results-container").append('<div id="' + response[i].server + '" class="span12"><div class="well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">' + response[i].server_label + '</a><span class="label label-important" style="position: relative; top: 6px; float: right;">' + response[i].stream + '</span></div><pre class="alert alert-error red-back no-bottom-margin">' + response[i].result + '</pre></div></div>');
 				} else {
-					$("#execute-results-container").append('<div id="' + response[i].server + '" class="span12 well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-primary disabled">' + response[i].server_label + '</a><span class="label" style="position: relative; top: 6px; float: right;">' + response[i].stream + '</span></div><pre class="execute-results">' + response[i].result + '</pre></div>');
+					$("#execute-results-container").append('<div id="' + response[i].server + '" class="span12"><div class="well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-primary disabled">' + response[i].server_label + '</a><span class="label" style="position: relative; top: 6px; float: right;">' + response[i].stream + '</span></div><pre class="execute-results">' + response[i].result + '</pre></div></div>');
 				}
 				
 				$("#execute-results-jump").find("ul.dropdown-menu").append('<li><a onclick="$(\'#' + response[i].server + '\').scrollTo()">' + response[i].server_label + '</a></li>');
@@ -113,8 +114,6 @@ $(document).ready(function() {
 		matchBrackets: false,
 		undoDepth: 250
 	});
-	
-	$(".CodeMirror").addClass("span9");
 	
 	$("#execute-groups").chosen();	
 	$("#execute-recipe").chosen();

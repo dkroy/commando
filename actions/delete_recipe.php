@@ -19,6 +19,10 @@
 	
 	Functions::check_required_parameters(array($_GET['id']));
 	
+	if(!CSRF::is_valid(METHOD_GET)) {
+		Error::halt(400, 'bad request', 'Missing required security token.');
+	}
+	
 	MySQLQueries::delete_recipes(array($_GET['id']));
 	
 	Functions::redirect(Links::render("recipes"));

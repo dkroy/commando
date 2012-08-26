@@ -27,8 +27,7 @@
 	color: #999999;
 }
 
-div.server, div.group {
-	width: 330px;
+div.box {
 	word-wrap: break-word;
 	background-color: #efefef;
 	background:-moz-linear-gradient(top, #d0d0d0 0%, #efefef 20%);
@@ -40,7 +39,7 @@ div.server, div.group {
 	border-bottom: 1px solid #e0e0e0;
 }
 
-div.server:hover, div.group:hover {
+div.box:hover {
 	background-color: #e6e6e6;
 	background:-moz-linear-gradient(top, #bbbbbb 0%, #e6e6e6 20%);
 	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%, #bbbbbb),color-stop(20%, #e6e6e6));
@@ -52,7 +51,7 @@ div.server:hover, div.group:hover {
 	border-bottom: 1px solid #d0d0d0;
 }
 
-div.server.not-connected {
+div.box.box-red {
 	background-color: #F0DBD9;
 	background:-moz-linear-gradient(top, #F0B6B4 0%, #F0DBD9 20%);
 	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%, #F0B6B4),color-stop(20%, #F0DBD9));
@@ -63,7 +62,7 @@ div.server.not-connected {
 	border-bottom: 1px solid #F0DBD9;
 }
 
-div.server.not-connected:hover {
+div.box.box-red:hover {
 	background-color: #F0D3D5;
 	background:-moz-linear-gradient(top, #F09A9A 0%, #F0D3D5 20%);
 	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%, #F09A9A),color-stop(20%, #F0D3D5));
@@ -81,10 +80,6 @@ a.delete-server {
 
 form.form-horizontal {
 	background-color: #fbfbfb;
-}
-
-div.group {
-	width: 330px;
 }
 
 .no-bottom-margin {
@@ -184,7 +179,7 @@ footer p {
 
 div.container-server-add-ssh-key-instructions {
 	display: none;
-	margin-top: 10px;
+	margin-top: 8px;
 }
 
 div.alert-grey {

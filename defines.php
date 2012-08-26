@@ -15,19 +15,10 @@
 	# limitations under the License.
 	*/
 	
- 	class Version {	
-		////
-		// Application version
-		//
-		// major.minor.revision
-		////
-		const app = "0.3.2 (open source)";
-		
-		////
-		// MySQL schema version
-		//
-		// major.minor.revision
-		////
-		const db = "0.1.1";
- 	}
+	define("METHOD_GET", 1);
+	define("THROW_ERROR", 1);
+	define("NO_SESSION_INI_TWEAKS", 0);
+	define("NO_DATE_MODIFIED", 0);
+	define("MONGO_REPLICA_SET", 1);
+	define("MONGO_ALLOW_SLAVE_QUERY", 1);
 ?>

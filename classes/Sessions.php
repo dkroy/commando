@@ -15,19 +15,30 @@
 	# limitations under the License.
 	*/
 	
- 	class Version {	
-		////
-		// Application version
-		//
-		// major.minor.revision
-		////
-		const app = "0.3.2 (open source)";
-		
-		////
-		// MySQL schema version
-		//
-		// major.minor.revision
-		////
-		const db = "0.1.1";
- 	}
+	class Sessions {
+		public static function init($ini_tweaks = true) {
+			////
+			// Execute ini tweaks for sessions
+			////
+			if($ini_tweaks) {
+				ini_set('session.cookie_lifetime', 0);
+				ini_set('session.gc_probability', 1);
+				ini_set('session.gc_divisor', 100);
+				
+				////
+				// Use SHA-1
+				////
+				ini_set('hash_function', 1);
+				
+				////
+				// 1 Hour
+				////
+				ini_set('session.gc_maxlifetime', 3600);
+			}
+			
+			session_start();
+		}	
+	}
+	
+	Sessions::init();
 ?>

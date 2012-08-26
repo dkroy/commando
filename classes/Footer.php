@@ -19,14 +19,14 @@
 		public static function render(array $additional_js_files = array()) {
 			echo '<hr>
 				  <footer>
-        		  	<p style="float: left;">
+        		  	<div style="float: left;">
         		  	    Copyright &copy; ' . date("Y") . ' <a href="http://www.nodesocket.com">NodeSocket</a>, LLC.
         		  	    <br >All rights reserved.
-        		  	</p>
-        		  	<p style="float: right;">
-        		  	    v' . Version::app . '
-        		  	    <br />View on <a href="https://github.com/nodesocket/commando">GitHub</a>.
-        		    </p>
+        		  	</div>
+        		  	<div style="float: right;">
+        		  	    <div style="margin-bottom: 2px;"><iframe src="http://ghbtns.com/github-btn.html?user=nodesocket&repo=commando&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe><iframe src="http://ghbtns.com/github-btn.html?user=nodesocket&repo=commando&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe></div>
+        		    	v' . Version::app . '
+        		    </div>
       			  </footer>
       		     </div>';
         

@@ -75,23 +75,29 @@
 	        	</div>
 	        </div>
 	       	<div class="control-group">
-	        	<label class="control-label" for="add-server-address"><i class="icon-lock"></i> Server Address</label>
+	        	<label class="control-label" for="add-server-address">Server Address</label>
 	        	<div class="controls">
-	          		<input type="text" class="input-large" id="add-server-address" name="address" placeholder="hostname.domain.com" maxlength="100" />
+	        		<div class="input-prepend">
+    					<span class="add-on"><i class="icon-lock"></i></span><input type="text" class="input-large" id="add-server-address" name="address" placeholder="hostname.domain.com" maxlength="100" />
+	          		</div>
 	          		<p class="help-block">A fully qualified hostname or an ip address.</p>
 	        	</div>
 	        </div>
 	        <div class="control-group">
-	        	<label class="control-label" for="add-ssh-username"><i class="icon-lock"></i> SSH Username</label>
+	        	<label class="control-label" for="add-ssh-username">SSH Username</label>
 	        	<div class="controls">
-	          		<input type="text" class="input-medium" id="add-ssh-username" name="ssh_username" placeholder="root" maxlength="100" />
+	          		<div class="input-prepend">
+    					<span class="add-on"><i class="icon-lock"></i></span><input type="text" class="input-medium" id="add-ssh-username" name="ssh_username" placeholder="root" maxlength="100" />
+	          		</div>
 	          		<p class="help-block">The username that SSH connects with.</p>
 	        	</div>
 	        </div>
 	        <div class="control-group">
-	        	<label class="control-label" for="add-ssh-port"><i class="icon-lock"></i> SSH Port</label>
+	        	<label class="control-label" for="add-ssh-port">SSH Port</label>
 	        	<div class="controls">
-	          		<input type="text" class="input-small" id="add-ssh-port" name="ssh_port" placeholder="22" maxlength="5" />
+	          		<div class="input-prepend">
+    					<span class="add-on"><i class="icon-lock"></i></span><input type="text" class="input-small" id="add-ssh-port" name="ssh_port" placeholder="22" maxlength="5" />
+	          		</div>
 	          		<p class="help-block">The port that SSH connects on.</p>
 	        	</div>
 	        </div>
@@ -143,23 +149,32 @@
 	        	</div>
 	        </div>
 	       	<div class="control-group">
-	        	<label class="control-label" for="edit-server-address"><i class="icon-lock"></i> Server Address</label>
+	        	<label class="control-label" for="edit-server-address">Server Address</label>
 	        	<div class="controls">
-	          		<input type="text" class="input-large" id="edit-server-address" name="address" placeholder="hostname.domain.com" maxlength="100" />
+	          		<div class="input-prepend">
+    					<span class="add-on"><i class="icon-lock"></i></span>
+	          			<input type="text" class="input-large" id="edit-server-address" name="address" placeholder="hostname.domain.com" maxlength="100" />
+	          		</div>
 	          		<p class="help-block">A fully qualified hostname or an ip address.</p>
 	        	</div>
 	        </div>
 	        <div class="control-group">
-	        	<label class="control-label" for="edit-ssh-username"><i class="icon-lock"></i> SSH Username</label>
+	        	<label class="control-label" for="edit-ssh-username">SSH Username</label>
 	        	<div class="controls">
-	          		<input type="text" class="input-medium" id="edit-ssh-username" name="ssh_username" placeholder="root" maxlength="100" />
+	          		<div class="input-prepend">
+    					<span class="add-on"><i class="icon-lock"></i></span>
+	          			<input type="text" class="input-medium" id="edit-ssh-username" name="ssh_username" placeholder="root" maxlength="100" />
+	          		</div>
 	          		<p class="help-block">The username that SSH connects with.</p>
 	        	</div>
 	        </div>
 	        <div class="control-group">
-	        	<label class="control-label" for="edit-ssh-port"><i class="icon-lock"></i> SSH Port</label>
+	        	<label class="control-label" for="edit-ssh-port">SSH Port</label>
 	        	<div class="controls">
-	          		<input type="text" class="input-small" id="edit-ssh-port" name="ssh_port" placeholder="22" maxlength="5" />
+	          		<div class="input-prepend">
+    					<span class="add-on"><i class="icon-lock"></i></span>
+	          			<input type="text" class="input-small" id="edit-ssh-port" name="ssh_port" placeholder="22" maxlength="5" />
+	          		</div>
 	          		<p class="help-block">The port that SSH connects on.</p>
 	        	</div>
 	        </div>
@@ -194,7 +209,7 @@
 	    <h3>Add Public SSH Key Instructions</h3>
 	  </div>
 	  <div class="modal-body">
-	  	<div class="alert alert-info">Execute the following command <u><strong>locally</strong></u> to add our public SSH key to the server.</div>
+	  	<div class="alert alert-info">Execute the following command <u><strong>locally</strong></u> to add the public SSH key to the server.</div>
 	  	<pre class="prettyprint lang-sh linenums">echo "<span id="server-add-ssh-key-public-key"></span>" | ssh -p <span id="server-add-ssh-key-port"></span> <span id="server-add-ssh-key-username"></span>@<span id="server-add-ssh-key-address"></span> "mkdir ~/.ssh 2> /dev/null; cat >> ~/.ssh/authorized_keys2"</pre>
 	  </div>
 	  <div class="modal-footer">
@@ -207,55 +222,70 @@
    	  <h1 class="header">Servers</h1>
    	  
    	  <div class="row">
-   	  	<div class="span12 well">
-   	 		<a class="btn btn-primary btn-large action-add-server"><i class="icon-plus-sign icon-white"></i> Add Server</a>
-   	 		<a id="refresh-server-status" class="btn btn-large disabled"><i class="icon-refresh"></i> Refresh SSH Status</a>  
+   	  	<div class="span12">
+   	  		<div class="well">
+   	  			<a class="btn btn-primary btn-large action-add-server"><i class="icon-plus-sign icon-white"></i> Add Server</a>
+   	 			<a id="refresh-server-status" class="btn btn-large disabled"><i class="icon-refresh"></i> Refresh SSH Status</a> 
+   	  		</div> 
       	</div>
       </div>
       
 	  <div class="row">
-		<div class="span12 well">
-			<div id="no-servers" class="alert alert-grey no-bottom-margin" <?php if(count($servers) > 0): ?>style="display: none;"<?php endif; ?>>
-				 No servers added. <a class="action-add-server">Add</a> a server now.
-			</div>
-			<?php foreach($servers as $group => $group_servers): ?>
-				<ul class="breadcrumb">
-				  <li>
-				  	<h3 class="grey"><?php echo empty($group) ? 'DEFAULT' : $group; ?></h3>
-				  </li>
-				</ul>
-				<div class="row">
-				<?php foreach($group_servers as $server): ?>
-		    		<div class="span4 well server" id="<?php echo $server->id; ?>" data-address="<?php echo $server->address ?>" data-port="<?php echo $server->ssh_port ?>" data-username="<?php echo $server->ssh_username ?>">						
-						<div class="ssh-progress progress progress-striped active">
-			         		<div class="bar" style="width: 100%;"></div>
-						</div>
-						
-						<a class="close delete-server">&times;</a>
-		         		<h2><a><?php echo strtoupper($server->label) ?></a></h2>
-						
-		         		<h4 class="grey"><?php echo $server->ssh_username ?>@<?php echo $server->address ?>:<?php echo $server->ssh_port ?></h4>
-		         		
-		         		
-		         		<?php if(!empty($server->tags)): ?>
-			         		<div class="tags">
-								<?php
-									foreach(explode(",", $server->tags) as $tag) {
-										echo '<span class="label">' . $tag . '</span> ';
-									}
-								?>
+		<div class="span12">
+			<div class="well">
+				<div id="no-servers" class="alert alert-grey no-bottom-margin" <?php if(count($servers) > 0): ?>style="display: none;"<?php endif; ?>>
+					No servers added. <a class="action-add-server">Add</a> a server now.
+				</div>
+				<?php foreach($servers as $group => $group_servers): ?>
+					<div class="navbar">
+		            	<div class="navbar-inner">
+		              		<a class="brand" style="cursor: default;"><?php echo empty($group) ? 'DEFAULT' : $group; ?></a>
+		                </div>
+		            </div>
+					<?php
+						$count = 0;	
+						foreach($group_servers as $server):
+					?>
+						<?php if($count % 3 === 0): ?>
+							<div class="row-fluid">
+						<?php endif; ?>
+			    		<div class="span4 server" id="<?php echo $server->id; ?>" data-address="<?php echo $server->address ?>" data-port="<?php echo $server->ssh_port ?>" data-username="<?php echo $server->ssh_username ?>">						
+							<div class="well box">
+								<div class="ssh-progress progress progress-striped active">
+					         		<div class="bar" style="width: 100%;"></div>
+								</div>
+								
+								<a class="close delete-server">&times;</a>
+				         		<h2><a><?php echo strtoupper($server->label) ?></a></h2>
+								
+				         		<h4 class="grey"><?php echo $server->ssh_username ?>@<?php echo $server->address ?>:<?php echo $server->ssh_port ?></h4>
+				         		
+				         		
+				         		<?php if(!empty($server->tags)): ?>
+					         		<div class="tags">
+										<?php
+											foreach(explode(",", $server->tags) as $tag) {
+												echo '<span class="label">' . $tag . '</span> ';
+											}
+										?>
+									</div>
+								<?php endif; ?>
+				
+								<a class="ssh-status btn btn-mini disabled"></a>
+								
+								<div class="container-server-add-ssh-key-instructions">
+									<a class="btn btn-danger btn-mini btn-server-add-ssh-key-instructions" style="float: right;">Add Public SSH Key</a>
+								</div>
+								<div class="clear"></div>
+							</div>
+			       		</div>
+			       		<?php if($count % 3 === 2 || $count === (count($group_servers) - 1)): ?>
 							</div>
 						<?php endif; ?>
-		
-						<a class="ssh-status btn btn-mini disabled"></a>
-						
-						<div class="container-server-add-ssh-key-instructions">
-							<a class="btn btn-danger btn-mini btn-server-add-ssh-key-instructions" style="float: right;">Add Public SSH Key</a>
-						</div>
-		       		</div>
+			       		<?php $count++; ?>
+					<?php endforeach; ?>
 				<?php endforeach; ?>
-				</div>
-			<?php endforeach; ?>
+			</div>
 		</div>
 	  </div>
 <?php

@@ -253,8 +253,8 @@
 			MySQLConnection::query($SQL) or Error::db_halt(500, 'internal server error', 'Unable to execute request, SQL query error.', __FUNCTION__, MySQLConnection::error(), $SQL);
 		}
 		
-		public static function get_settings($include_modified = true) {
-			if($include_modified) {
+		public static function get_settings($include_date_modified = true) {
+			if($include_date_modified) {
 				$SQL = "SELECT AES_DECRYPT(data, " . MySQLConnection::smart_quote(CRYPTO_SEED) . ") AS data,
 	               			   CONVERT_TZ(modified, '+00:00', " . MySQLConnection::smart_quote(Functions::get_timezone_offset()) . ") AS modified
 	                      FROM settings

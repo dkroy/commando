@@ -99,6 +99,7 @@ $(document).ready(function() {
 		if($(this).attr("data-content").length > 0) {
 			$(this).popover({
 				placement: 'top',
+				trigger: 'hover',
 				delay: { show: 0, hide: 0 }
 			});
 		}
@@ -136,7 +137,7 @@ $(document).ready(function() {
 	});
 	
 	$(".delete-group").click(function() {
-		var id = $(this).parent("div").attr("id");
+		var id = $(this).parents("div.group").attr("id");
 		
 		$(".popover").fadeOut("fast");
 		
@@ -144,7 +145,7 @@ $(document).ready(function() {
 			"CONFIRM" : "icon-ok-sign icon-white"
         });
 		
-		bootbox.confirm("Are you sure you wish to delete this group? Any servers currently assigned to this group will be moved to the <strong>default</strong> group.", function(confirmed) {
+		bootbox.confirm("Are you sure you wish to delete this group? All servers currently assigned to this group will be moved to the <strong>default</strong> group.", function(confirmed) {
 			if(confirmed) {
 				Request.ajax("/actions/delete_group.php", {  
 					id: id
