@@ -93,29 +93,43 @@
       <h1 class="header">Groups</h1>
     
    	  <div class="row">
-   	  	<div class="span12 well">
-   	 		<a class="btn btn-primary btn-large action-add-group"><i class="icon-plus-sign icon-white"></i> Add Group</a>   
+   	  	<div class="span12">
+   	  		<div class="well">
+   	  			<a class="btn btn-primary btn-large action-add-group"><i class="icon-plus-sign icon-white"></i> Add Group</a>   
+   	  		</div>
       	</div>
       </div>
             
 	  <div class="row">
-    	<div class="span12 well">
-			<div id="no-groups" class="alert alert-grey no-bottom-margin" <?php if(count($groups) > 0): ?>style="display: none;"<?php endif; ?>>
-				 No groups added. <a class="action-add-group">Add</a> a group now.
-			</div>
-			<div class="row">
-				<?php foreach($groups as $group): ?>
-		    		<div class="span4 well group" id="<?php echo $group->id; ?>" data-content="<?php echo $group->servers; ?>" data-title="Servers In Group">
-						<a class="close delete-group">&times;</a>
-		         		<h3>
-		         			<?php if($group->servers_count > 0): ?>
-		         				<a class="btn btn-primary btn-mini disabled" style="margin-right: 10px;"><?php echo $group->servers_count ?></a>
-		         			<?php endif; ?>
-		         			<a><?php echo strtoupper($group->name) ?></a>
-		         		</h3>
-		       		</div>
+    	<div class="span12">
+    		<div class="well">
+    			<div id="no-groups" class="alert alert-grey no-bottom-margin" <?php if(count($groups) > 0): ?>style="display: none;"<?php endif; ?>>
+				 	No groups added. <a class="action-add-group">Add</a> a group now.
+				</div>
+				<?php
+					$count = 0;
+					foreach($groups as $group):
+				?>
+					<?php if($count % 3 === 0): ?>
+						<div class="row-fluid">
+					<?php endif; ?>
+	    				<div class="span4 group" id="<?php echo $group->id; ?>" data-content="<?php echo $group->servers; ?>" data-title="<?php if(!empty($group->servers)): ?>Servers In Group<?php endif; ?>">
+							<div class="well box">
+								<a class="close delete-group">&times;</a>
+	         					<h3>
+	         						<?php if($group->servers_count > 0): ?>
+	         							<a class="btn btn-primary btn-mini disabled" style="margin-right: 10px;"><?php echo $group->servers_count ?></a>
+	         						<?php endif; ?>
+	         						<a><?php echo strtoupper($group->name) ?></a>
+	         					</h3>
+							</div>
+	       				</div>
+	       			<?php if($count % 3 === 2 || $count === (count($groups) - 1)): ?>
+						</div>
+					<?php endif; ?>
+		       		<?php $count++; ?>
 				<?php endforeach; ?>
-			</div>
+    		</div>
 		</div>
 	  </div>
 <?php

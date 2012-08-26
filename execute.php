@@ -64,63 +64,69 @@
       <h1 class="header">Execute</h1> 
       
       <div class="row">
-   	  	<div class="span12 well">
-   	  		<!-- Not implemented yet -->
-   	 		<!-- <a href="/execution-history" class="btn btn-primary btn-large"><i class="icon-time icon-white"></i> Execution History</a> -->
-			<div style="float: right">	
-				<div class="input-prepend" style="float: right">
-					<span class="add-on">
-						<i class="icon-search"></i>
-					</span><input id="search-results" type="text" class="span2" maxlength="100" placeholder="Search Results…" disabled="disabled" />
+   	  	<div class="span12">
+   	  		<div class="well">
+   	  			<!-- Not implemented yet -->
+   	 			<!-- <a href="/execution-history" class="btn btn-primary btn-large"><i class="icon-time icon-white"></i> Execution History</a> -->
+				<div style="float: right">	
+					<div class="input-prepend" style="float: right">
+						<span class="add-on">
+							<i class="icon-search"></i>
+						</span><input id="search-results" type="text" class="span2" maxlength="100" placeholder="Search Results…" disabled="disabled" />
+					</div>
 				</div>
-			</div>
+				<div class="clear"></div>
+   	  		</div>
       	</div>
       </div>
       
 	  <div class="row">
-    	<div class="span12 well">
-			<form id="form-settings" class="well form-horizontal">
-		    	<div class="control-group">
-		        	<label class="control-label" for="execute-groups">Groups</label>
-		        	<div class="controls">
-		          		<select id="execute-groups" name="groups" multiple="multiple" class="span4" data-placeholder="Select groups…">
-		          			<?php if(count($servers_in_default_group) > 0): ?>
-		          				<option value="">- DEFAULT - (<?php echo count($servers_in_default_group) ?>)</option>
-		          			<?php endif; ?>
-		          			<?php foreach($groups as $group): ?>
-		          				<?php if($group->servers_count > 0): ?>
-		          					<option value="<?php echo $group->id ?>"><?php echo $group->name ?> (<?php echo $group->servers_count ?>)</option>
-		          				<?php endif; ?>
-		          			<?php endforeach; ?>	
-		          		</select>
-		          		<p class="help-block">The group of servers to execute the recipe on. You may select multiple groups.</p>
-		        	</div>
-		        </div>
-		    	<div class="control-group">
-		        	<label class="control-label" for="execute-recipe">Recipe</label>
-		        	<div class="controls">
-		          		<select class="span3" id="execute-recipe" name="recipe" data-placeholder="Select a recipe...">
-		          			<option value=""></option>
-		          			<?php foreach($recipes as $recipe): ?>
-		          				<option value="<?php echo $recipe->id ?>"><?php echo $recipe->name; ?></option>
-		          			<?php endforeach; ?>	
-		          		</select>
-		          		<p class="help-block">The recipe to execute.</p>
-		        	</div>
-		        </div>
-		        <div class="control-group">
-			    	<label class="control-label" for="execute-notes">Notes</label>
-			    	<div class="controls">
-			    		<textarea id="execute-notes" name="notes"></textarea>
-			    		<p class="help-block" style="clear: both;">Optional notes and comments you wish to attach to this execution. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is supported.</p>
-			    	</div>
-			    </div>
-		        <div class="control-group">
-					<div class="controls">
-						<a class="btn btn-primary" onclick="validate_execute();" id="execute-btn"><i class="icon-ok-sign icon-white"></i> Execute</a>
-					</div>
-			    </div>
-	        </form>
+    	<div class="span12">
+    		<div class="well">
+    			<form id="form-settings" class="well form-horizontal">
+			    	<?php echo CSRF::generate_hidden_field() ?>
+			    	<div class="control-group">
+			        	<label class="control-label" for="execute-groups">Groups</label>
+			        	<div class="controls">
+			          		<select id="execute-groups" name="groups" multiple="multiple" class="span5" data-placeholder="Select groups…">
+			          			<?php if(count($servers_in_default_group) > 0): ?>
+			          				<option value="">- DEFAULT - (<?php echo count($servers_in_default_group) ?>)</option>
+			          			<?php endif; ?>
+			          			<?php foreach($groups as $group): ?>
+			          				<?php if($group->servers_count > 0): ?>
+			          					<option value="<?php echo $group->id ?>"><?php echo $group->name ?> (<?php echo $group->servers_count ?>)</option>
+			          				<?php endif; ?>
+			          			<?php endforeach; ?>	
+			          		</select>
+			          		<p class="help-block">The group of servers to execute the recipe on. You may select multiple groups.</p>
+			        	</div>
+			        </div>
+			    	<div class="control-group">
+			        	<label class="control-label" for="execute-recipe">Recipe</label>
+			        	<div class="controls">
+			          		<select class="span3" id="execute-recipe" name="recipe" data-placeholder="Select a recipe...">
+			          			<option value=""></option>
+			          			<?php foreach($recipes as $recipe): ?>
+			          				<option value="<?php echo $recipe->id ?>"><?php echo $recipe->name; ?></option>
+			          			<?php endforeach; ?>	
+			          		</select>
+			          		<p class="help-block">The recipe to execute.</p>
+			        	</div>
+			        </div>
+			        <div class="control-group">
+				    	<label class="control-label" for="execute-notes">Notes</label>
+				    	<div class="controls">
+				    		<textarea id="execute-notes" name="notes"></textarea>
+				    		<p class="help-block" style="clear: both;">Optional notes and comments you wish to attach to this execution. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is supported.</p>
+				    	</div>
+				    </div>
+			        <div class="control-group">
+						<div class="controls">
+							<a class="btn btn-primary" onclick="validate_execute();" id="execute-btn"><i class="icon-ok-sign icon-white"></i> Execute</a>
+						</div>
+				    </div>
+		        </form>
+    		</div>
 		</div>
 	  </div>
 	  

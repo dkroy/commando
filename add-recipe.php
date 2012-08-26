@@ -40,49 +40,51 @@
       <h1 class="header">Add Recipe</h1> 
       
 	  <div class="row">
-    	<div class="span12 well">
-			<form id="form-add-recipe" class="well form-horizontal" method="post" action="/actions/add_recipe.php">
-		    	<fieldset>
-			    	<div class="control-group">
-			        	<label class="control-label" for="recipe-name">Name</label>
-			        	<div class="controls">
-			          		<input type="text" class="input-large" id="recipe-name" name="name" placeholder="RECIPE NAME" maxlength="30" />
-			          		<p class="help-block">The recipe name. Must be unique.</p>
-			        	</div>
-			        </div>
-			        <div class="control-group">
-			        	<label class="control-label" for="recipe-interpreter">Interpreter</label>
-			        	<div class="controls">
-			          		<select name="interpreter" id="recipe-interpreter" class="span2" data-placeholder="">
-								<?php foreach($interpreters as $interpreter): ?>
-									<option value="<?php echo $interpreter ?>" <?php if(isset($settings->data->default_interpreter) && $interpreter === $settings->data->default_interpreter): ?>selected="selected" <?php endif; ?>><?php echo ucfirst($interpreter) ?></option>	
-								<?php endforeach; ?>
-							</select>
-			          		<p class="help-block">The interpreter to execute the recipe with. If you wish to write scripts with control structures and functions select an interpreter other than shell.</p>
-			        	</div>
-			        </div>
-			        <div class="control-group">
-			    		<label class="control-label" for="recipe-notes">Notes</label>
-			    		<div class="controls">
-			    			<textarea id="recipe-notes" name="notes"></textarea>
-			    			<p class="help-block" style="clear: both;">Optional notes and comments you wish to attach to the recipe. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is supported.</p>
-			    		</div>
-			    	</div>
-			    	<div class="control-group">
-			    		<label class="control-label" for="recipe-editor">Recipe</label>
-			    		<div class="controls">
-			    			<textarea id="recipe-editor" name="content"></textarea>
-			    			<p class="help-block" style="clear: both;"></p>
-			    		</div>
-			    	</div>
-			    	<div class="control-group">
-						<div class="controls">
-							<a class="btn btn-primary" id="add-recipe-submit" onclick="validate_add_recipe();"><i class="icon-ok-sign icon-white"></i> Add Recipe</a>
-							<a class="btn" href="<?php echo Links::render("recipes") ?>">Cancel</a>
-						</div>
-			       </div>
-			    </fieldset>
-	        </form> 
+    	<div class="span12">
+    		<div class="well">
+    			<form id="form-add-recipe" class="well form-horizontal" method="post" action="/actions/add_recipe.php">
+			    	<fieldset>
+				    	<div class="control-group">
+				        	<label class="control-label" for="recipe-name">Name</label>
+				        	<div class="controls">
+				          		<input type="text" class="input-large" id="recipe-name" name="name" placeholder="RECIPE NAME" maxlength="30" />
+				          		<p class="help-block">The recipe name. Must be unique.</p>
+				        	</div>
+				        </div>
+				        <div class="control-group">
+				        	<label class="control-label" for="recipe-interpreter">Interpreter</label>
+				        	<div class="controls">
+				          		<select name="interpreter" id="recipe-interpreter" class="span2" data-placeholder="">
+									<?php foreach($interpreters as $interpreter): ?>
+										<option value="<?php echo $interpreter ?>" <?php if(isset($settings->data->default_interpreter) && $interpreter === $settings->data->default_interpreter): ?>selected="selected" <?php endif; ?>><?php echo ucfirst($interpreter) ?></option>	
+									<?php endforeach; ?>
+								</select>
+				          		<p class="help-block">The interpreter to execute the recipe with. If you wish to write scripts with control structures and functions select an interpreter other than shell.</p>
+				        	</div>
+				        </div>
+				        <div class="control-group">
+				    		<label class="control-label" for="recipe-notes">Notes</label>
+				    		<div class="controls">
+				    			<textarea id="recipe-notes" name="notes"></textarea>
+				    			<p class="help-block" style="clear: both;">Optional notes and comments you wish to attach to the recipe. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is supported.</p>
+				    		</div>
+				    	</div>
+				    	<div class="control-group">
+				    		<label class="control-label" for="recipe-editor">Recipe</label>
+				    		<div class="controls">
+				    			<textarea id="recipe-editor" name="content"></textarea>
+				    			<p class="help-block" style="clear: both;"></p>
+				    		</div>
+				    	</div>
+				    	<div class="control-group">
+							<div class="controls">
+								<a class="btn btn-primary" id="add-recipe-submit" onclick="validate_add_recipe();"><i class="icon-ok-sign icon-white"></i> Add Recipe</a>
+								<a class="btn" href="<?php echo Links::render("recipes") ?>">Cancel</a>
+							</div>
+				       </div>
+				    </fieldset>
+	        	</form>
+    		</div> 
 		</div>
 	  </div>   
 <?php

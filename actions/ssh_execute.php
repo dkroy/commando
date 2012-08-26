@@ -19,6 +19,10 @@
 	
 	Functions::check_required_parameters(array($_POST['groups'], $_POST['recipe']));
 	
+	if(!CSRF::is_valid()) {
+		Error::halt(400, 'bad request', 'Missing required security token.');
+	}
+	
 	$result = MySQLQueries::get_recipe($_POST['recipe']);
 	$recipe = MySQLConnection::fetch_object($result);
 	
@@ -41,7 +45,7 @@
 	$returned_results = array();
 	foreach($servers as $server) {
 		try {
-			$ssh = new SSH($server->address, $server->ssh_port, true);
+			$ssh = new SSH($server->address, $server->ssh_port, THROW_ERROR);
 		} catch(Exception $ex) {
 			$ex = json_decode($ex->getMessage());
 			$returned_results[] = array("server" => $server->id, "server_label" => $server->label, "stream" => "error", "result" => $ex->error->message);
@@ -49,7 +53,7 @@
 		}
 		
 		try {
-			$ssh_auth = $ssh->auth($server->ssh_username, SSH_PUBLIC_KEY_PATH, SSH_PRIVATE_KEY_PATH, true);
+			$ssh_auth = $ssh->auth($server->ssh_username, SSH_PUBLIC_KEY_PATH, SSH_PRIVATE_KEY_PATH, THROW_ERROR);
 		} catch(Exception $ex) {
 			$ex = json_decode($ex->getMessage());
 			$returned_results[] = array("server" => $server->id, "server_label" => $server->label, "stream" => "error", "result" => $ex->error->message);

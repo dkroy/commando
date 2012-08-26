@@ -67,15 +67,6 @@ function get_checked_values(p_elements) {
 /***********************************************/
 var Request = {
 	////
-	// Test if an object is empty
-	////
-	isEmptyObject: function(obj) {
-		for(var i in obj) {
-			return false;
-		}
-		return true;
-	},
-	////
 	// AJAX request wrapper
 	//   p_server_side_page: Ajax page to call
 	//   p_parameters: Arguments to pass to the server side page
@@ -91,7 +82,7 @@ var Request = {
 		//Set defaults
 		var data_type = "json";
 		var type = "post";
-		var timeout = 15000;
+		var timeout = 60000;
 		var cache = false;
 		var async = true;
 
@@ -115,15 +106,6 @@ var Request = {
 
 			if(typeof (p_options.async) !== "undefined") {
 				async = p_options.async;
-			}
-		}
-			
-		//Force a GET request, if the parameters is null, undefined, or empty.
-		if(typeof p_parameters === "undefined" || p_parameters === null) {
-			type = "get";					
-		} else {
-			if(this.isEmptyObject(p_parameters)) {
-				type = "get";
 			}
 		}
 

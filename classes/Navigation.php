@@ -17,8 +17,8 @@
 	
  	class Navigation {		
 		private static $pages = array("execute",
-				                      "servers",
 				                      "recipes",
+				                      "servers",
 				                       "groups",
 				                     "settings");
 		

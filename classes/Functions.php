@@ -109,7 +109,7 @@
 			
 			//Get settings
 			$settings = null;
-			$result = MySQLQueries::get_settings(false);
+			$result = MySQLQueries::get_settings(NO_DATE_MODIFIED);
 			$row = MySQLConnection::fetch_object($result);
 			
 			if(isset($row->data)) { 

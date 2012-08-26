@@ -113,19 +113,19 @@ function validate_server() {
 }
 
 var ssh_connect = function(index) {
-	$(this).children("a.delete-server").hide();
-	$(this).children("div.container-server-add-ssh-key-instructions").hide();
+	$(this).find("a.delete-server").hide();
+	$(this).find("div.container-server-add-ssh-key-instructions").hide();
 	
-	if($(this).hasClass("not-connected")) {
-		$(this).removeClass("not-connected");
+	if($(this).children(".box").hasClass("box-red")) {
+		$(this).children(".box").removeClass("box-red");
 	}
 	
-	if($(this).children("div.ssh-progress:hidden")) {
-		if($(this).children("a.ssh-status:visible")) {
-			$(this).children("a.ssh-status").hide();
-			$(this).children("div.ssh-progress").slideDown(200);
+	if($(this).find("div.ssh-progress:hidden")) {
+		if($(this).find("a.ssh-status:visible")) {
+			$(this).find("a.ssh-status").hide();
+			$(this).find("div.ssh-progress").slideDown(200);
 		} else {
-			$(this).children("div.ssh-progress").slideDown(200);
+			$(this).find("div.ssh-progress").slideDown(200);
 		}
 	}
 	
@@ -135,31 +135,31 @@ var ssh_connect = function(index) {
 		username: $(this).attr("data-username")
 	}, function(response) {
 		if(typeof response === "undefined" || response.error) {
-			$(this.server).children("div.ssh-progress").slideUp(200, function() {
-				$(this.server).addClass("not-connected");
+			$(this.server).find("div.ssh-progress").slideUp(200, function() {
+				$(this.server).children(".box").addClass("box-red");
 				
-				$(this.server).children("a.ssh-status")
+				$(this.server).find("a.ssh-status")
 				              .html("SSH Not Connected")
 				              .removeClass("btn-success")
 				              .addClass("btn-danger")
 				              .css("display", "inline-block"); 
 			
-				$(this.server).children("div.container-server-add-ssh-key-instructions")
+				$(this.server).find("div.container-server-add-ssh-key-instructions")
 							  .css("display", "block");
 			
-				$(this.server).children("a.delete-server").fadeIn(200);
+				$(this.server).find("a.delete-server").fadeIn(200);
 			}.bind({ server: $(this.server) }));
 		} else {
-			$(this.server).children("div.ssh-progress").slideUp(200, function() {
-				$(this.server).removeClass("not-connected");
+			$(this.server).find("div.ssh-progress").slideUp(200, function() {
+				$(this.server).children(".box").removeClass("box-red");
 			
-				$(this.server).children("a.ssh-status")
+				$(this.server).find("a.ssh-status")
 				              .html("SSH Connected")
 				              .removeClass("btn-danger")
 				              .addClass("btn-success")
 				              .css("display", "inline-block");
 			
-				$(this.server).children("a.delete-server").fadeIn(200);
+				$(this.server).find("a.delete-server").fadeIn(200);
 			}.bind({ server: $(this.server) }));
 		}
 				
@@ -211,9 +211,9 @@ $(document).ready(function() {
 		Request.ajax("/actions/get_public_ssh_key.php", {}, function(response) {
 			if(typeof response !== "undefined") {
 				$("#server-add-ssh-key-public-key").html(response.public_ssh_key);
-				$("#server-add-ssh-key-port").html($(element).parent("div").attr("data-port"));
-				$("#server-add-ssh-key-username").html($(element).parent("div").attr("data-username"));
-				$("#server-add-ssh-key-address").html($(element).parent("div").attr("data-address"));
+				$("#server-add-ssh-key-port").html($(element).closest("div.server").attr("data-port"));
+				$("#server-add-ssh-key-username").html($(element).closest("div.server").attr("data-username"));
+				$("#server-add-ssh-key-address").html($(element).closest("div.server").attr("data-address"));
 				$("#server-add-ssh-key-instructions").modal('show');
 			}
 			
@@ -307,7 +307,7 @@ $(document).ready(function() {
 	});
 	
 	$(".delete-server").click(function() {
-		var id = $(this).parent("div").attr("id");
+		var id = $(this).parents("div.server").attr("id");
 		
 		bootbox.setIcons({
 			"CONFIRM" : "icon-ok-sign icon-white"
@@ -328,9 +328,9 @@ $(document).ready(function() {
 							}
 						});
 
-						if($("#" + id).parent(".row").children(".server").length === 1) {
-							$("#" + id).parent(".row").prev(".breadcrumb").fadeOut("slow", function() {
-								$("#" + id).parent(".row").prev(".breadcrumb").remove();
+						if($("#" + id).parent(".row-fluid").children(".server").length === 1) {
+							$("#" + id).parent(".row-fluid").prev(".navbar").fadeOut("slow", function() {
+								$("#" + id).parent(".row-fluid").prev(".navbar").remove();
 							});
 						}	
 					}

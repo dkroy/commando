@@ -1,5 +1,16 @@
 ## CHANGELOG
 
+### v0.3.2 (open source) - *08/25/2012*
+- Upgraded Bootstrap to `2.1.0`.
+- A bunch of CSS cleanup and fixes in styling and HTML markup.
+- Added `/classes/CSRF.php' which combats CSRF attacks.
+- Added `/classes/Sessions.php' which provides session support for `/classes/CSRF.php` and future login and users.
+- `/actions/ssh_execute.php` and `/actions/delete_recipe.php` implement CSRF protection.
+- Added `/defines.php` which stores common boolean flags. The result is code that is easier to read. For example, instead of passing `true` into a function, can pass flags like `MONGO_REPLICA_SET`.
+- `/classes/Footer.php` added GitHub buttons *(stars and forks)*.
+- Navigation re-order, now it is `Execute | Recipes | Servers | Groups | Settings`.
+- `/js/common.js` AJAX request wrapper only executes `POST` requests. Removed the ability to execute `GET` requests.
+ 
 ### v0.3.1 (open source) - *08/16/2012*
 - Renamed `db_upgrade.php` to `db-upgrade.php` to keep with standards.
 - Fix to `/actions/get_public_ssh_key.php` if the public key file can't be opened now returns an error message.

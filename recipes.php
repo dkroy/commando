@@ -42,54 +42,58 @@
       <h1 class="header">Recipes</h1> 
       
 	  <div class="row">
-   	  	<div class="span12 well">
-      		<a href="<?php echo Links::render("add-recipe") ?>" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i> Add Recipe</a>
+   	  	<div class="span12">
+   	  		<div class="well">
+   	  			<a href="<?php echo Links::render("add-recipe") ?>" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i> Add Recipe</a>
+   	  		</div>
       	</div>
       </div>
       
       <div class="row">
-		<div class="span12 well">
-		      <div class="alert alert-info fade in" <?php if(count($recipes) > 0): ?>style="display: none;"<?php endif; ?>>
-	  	  		<a class="close" data-dismiss="alert">&times;</a>
-	  	  		<h4>Did You Know?</h4>
-	  	  		Recipes are containers of commands that are fully versioned. Recipes can be written in pure <i><strong>shell</strong></i>, <i><strong>bash</strong></i>, <i><strong>perl</strong></i>, <i><strong>python</strong></i>, or <i><strong>node.js</strong></i>.
-      		  </div>
-		      <div id="no-recipes" class="alert alert-grey no-bottom-margin" <?php if(count($recipes) > 0): ?>style="display: none;"<?php endif; ?>>
-		      	No recipes added. <a href="<?php echo Links::render("add-recipe") ?>">Add</a> a recipe now.
-			  </div>
-	      	  <?php if(count($recipes) > 0): ?>
-		      	  <div id="table-container">
-			      	  <div class="control-group">
-			      	  	<div class="controls">
-			      	 		<a id="delete-recipes" class="btn disabled"><i class="icon-remove"></i> Delete Selected</a>
-			      	  	</div>
+		<div class="span12">
+			<div class="well">
+				<div class="alert alert-info fade in" <?php if(count($recipes) > 0): ?>style="display: none;"<?php endif; ?>>
+		  	  		<a class="close" data-dismiss="alert">&times;</a>
+		  	  		<h4>Did You Know?</h4>
+		  	  		Recipes are containers of commands that are fully versioned. Recipes can be written in pure <i><strong>shell</strong></i>, <i><strong>bash</strong></i>, <i><strong>perl</strong></i>, <i><strong>python</strong></i>, or <i><strong>node.js</strong></i>.
+	      		  </div>
+			      <div id="no-recipes" class="alert alert-grey no-bottom-margin" <?php if(count($recipes) > 0): ?>style="display: none;"<?php endif; ?>>
+			      	No recipes added. <a href="<?php echo Links::render("add-recipe") ?>">Add</a> a recipe now.
+				  </div>
+		      	  <?php if(count($recipes) > 0): ?>
+			      	  <div id="table-container">
+				      	  <div class="control-group">
+				      	  	<div class="controls">
+				      	 		<a id="delete-recipes" class="btn disabled"><i class="icon-remove"></i> Delete Selected</a>
+				      	  	</div>
+				      	  </div>
+					      <table class="table table-striped table-hover table-bordered table-condensed">
+					      	<thead>
+					      		<tr>
+					      			<th><input type="checkbox" id="recipe-delete-all-check" /></th>
+					      			<th>Name</th>
+					      			<th>Interpreter</th>
+					      			<th>Number Of Versions</th>
+					      			<th>Added</th>
+					      			<th>Modified</th>
+					      		</tr>
+					      	</thead>
+					      	<tbody>
+				      			<?php foreach($recipes as $recipe): ?>	
+				      				<tr id="<?php echo $recipe->id ?>" class="recipe">
+					      				<td><input type="checkbox" class="recipe-delete-check" value="<?php echo $recipe->id ?>" /></td>
+					      				<td><a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>"><?php echo $recipe->name ?></a></td>
+					      				<td><?php echo ucfirst($recipe->interpreter) ?></td>
+					      				<td><span class="badge"><?php echo $recipe->number_of_versions ?></span></td>
+					      				<td><?php echo $recipe->added ?></td>
+					      				<td><?php echo $recipe->modified ?></td>
+				      				</tr>
+				      			<?php endforeach; ?>
+					      	</tbody>
+					      </table>
 			      	  </div>
-				      <table class="table table-striped table-bordered table-condensed">
-				      	<thead>
-				      		<tr>
-				      			<th><input type="checkbox" id="recipe-delete-all-check" /></th>
-				      			<th>Name</th>
-				      			<th>Interpreter</th>
-				      			<th>Number Of Versions</th>
-				      			<th>Added</th>
-				      			<th>Modified</th>
-				      		</tr>
-				      	</thead>
-				      	<tbody>
-			      			<?php foreach($recipes as $recipe): ?>	
-			      				<tr id="<?php echo $recipe->id ?>" class="recipe">
-				      				<td><input type="checkbox" class="recipe-delete-check" value="<?php echo $recipe->id ?>" /></td>
-				      				<td><a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>"><?php echo $recipe->name ?></a></td>
-				      				<td><?php echo ucfirst($recipe->interpreter) ?></td>
-				      				<td><span class="badge"><?php echo $recipe->number_of_versions ?></span></td>
-				      				<td><?php echo $recipe->added ?></td>
-				      				<td><?php echo $recipe->modified ?></td>
-			      				</tr>
-			      			<?php endforeach; ?>
-				      	</tbody>
-				      </table>
-		      	  </div>
-		      <?php endif; ?>
+			      <?php endif; ?>
+			</div>
 	    </div>
 	  </div>
 <?php

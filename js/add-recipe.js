@@ -102,8 +102,6 @@ $(document).ready(function() {
 		undoDepth: 250
 	});
 	
-	$(".CodeMirror").addClass("span9");
-	
 	$("#recipe-interpreter").chosen();
 	$("#recipe-interpreter").trigger("liszt:updated");
 	
