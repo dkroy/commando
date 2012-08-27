@@ -15,19 +15,15 @@
 	# limitations under the License.
 	*/
 	
- 	class Version {	
-		////
-		// Application version
-		//
-		// major.minor.revision
-		////
-		const app = "0.3.3 (open source)";
+	require_once(dirname(__DIR__) . "/classes/Requires.php");
+	
+	Functions::check_required_parameters(array($_GET['id'], $_GET['version']));
+	
+	if(!CSRF::is_valid(METHOD_GET)) {
+		Error::halt(400, 'bad request', 'Missing required security token.');
+	}
 		
-		////
-		// MySQL schema version
-		//
-		// major.minor.revision
-		////
-		const db = "0.1.1";
- 	}
+	MySQLQueries::edit_recipe_head($_GET['id'], $_GET['version']);
+	
+	Functions::redirect(Links::render("view-recipe", array($_GET['id'])));
 ?>

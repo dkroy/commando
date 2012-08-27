@@ -73,7 +73,7 @@
 					      			<th><input type="checkbox" id="recipe-delete-all-check" /></th>
 					      			<th>Name</th>
 					      			<th>Interpreter</th>
-					      			<th>Number Of Versions</th>
+					      			<th>Versions</th>
 					      			<th>Added</th>
 					      			<th>Modified</th>
 					      		</tr>
@@ -84,7 +84,7 @@
 					      				<td><input type="checkbox" class="recipe-delete-check" value="<?php echo $recipe->id ?>" /></td>
 					      				<td><a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>"><?php echo $recipe->name ?></a></td>
 					      				<td><?php echo ucfirst($recipe->interpreter) ?></td>
-					      				<td><span class="badge"><?php echo $recipe->number_of_versions ?></span></td>
+					      				<td><span class="badge badge-info"><?php echo $recipe->number_of_versions ?></span></td>
 					      				<td><?php echo $recipe->added ?></td>
 					      				<td><?php echo $recipe->modified ?></td>
 				      				</tr>

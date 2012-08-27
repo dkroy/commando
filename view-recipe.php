@@ -38,7 +38,14 @@
 	$recipe_versions = array();
 	$result = MySQLQueries::get_recipe_versions($_GET['param1']);
 	while($row = MySQLConnection::fetch_object($result)) {		
-		$recipe_versions[] = $row;
+		////
+		// Move head to the top of the array
+		////
+		if($row->id === $head->recipe_version) {
+			array_unshift($recipe_versions, $row);
+		} else {
+			$recipe_versions[] = $row;
+		}
 	}
 	
 	//Calculate Statistics
@@ -76,7 +83,7 @@
       		<h1 class="header" style="float: left;"><?php echo $recipe->name ?></h1> 
      	 
      	 	<div style="float: right;">
-     	 		 <a class="btn btn-large disabled"><?php echo substr($recipe->version, 0, 10) ?><?php if($recipe->recipe_version === $head->recipe_version): ?> (HEAD)<?php endif; ?></a>
+     	 		 <a class="btn btn-large disabled"><?php if($recipe->recipe_version === $head->recipe_version): ?><i class="icon-chevron-up"></i> <?php endif; ?><?php echo substr($recipe->version, 0, 10) ?></a>
      	 	</div>
      	 </div>
       </div>
@@ -119,6 +126,12 @@
 			                	</li>
 	                		</ul>
 	                		<ul class="navbar-form nav pull-right">
+	                			<?php if($recipe->recipe_version !== $head->recipe_version): ?>
+	                				<li>
+	                					<a href="/actions/edit_recipe_head.php?id=<?php echo $recipe->id ?>&version=<?php echo $recipe->recipe_version ?>&security_token=<?php echo CSRF::generate_token() ?>" rel="tooltip" class="tip" data-placement="top" data-original-title="Promote this version to head."><i class="icon-chevron-up"></i> Make Head</a>
+	                				</li>
+	                				<li class="divider-vertical"></li>
+	                			<?php endif; ?>
 	                			<li>
 	                				<select name="versions" id="recipe-versions" class="span2" data-placeholder="">
 										<?php foreach($recipe_versions as $recipe_version): ?>

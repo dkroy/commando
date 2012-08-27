@@ -250,7 +250,7 @@
 							<div class="row-fluid">
 						<?php endif; ?>
 			    		<div class="span4 server" id="<?php echo $server->id; ?>" data-address="<?php echo $server->address ?>" data-port="<?php echo $server->ssh_port ?>" data-username="<?php echo $server->ssh_username ?>">						
-							<div class="well box">
+							<div class="well well-small box">
 								<div class="ssh-progress progress progress-striped active">
 					         		<div class="bar" style="width: 100%;"></div>
 								</div>

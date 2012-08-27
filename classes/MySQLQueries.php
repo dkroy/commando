@@ -407,6 +407,30 @@
 			MySQLConnection::commit();
 		}
 		
+		public static function edit_recipe_head($recipe_id, $recipe_version_id) {
+			////
+			// Turn MySQL commiting off, run as a transaction
+			////
+			MySQLConnection::autocommit(false);
+			
+			$SQL = "UPDATE recipes
+			           SET modified = UTC_TIMESTAMP()
+			         WHERE `id` = " . MySQLConnection::smart_quote($recipe_id) . "";
+		
+			MySQLConnection::query($SQL) or Error::db_halt(500, 'internal server error', 'Unable to execute request, SQL query error.', __FUNCTION__, MySQLConnection::error(), $SQL);
+			
+			$SQL = "UPDATE recipe_heads
+			           SET recipe_version = " . MySQLConnection::smart_quote($recipe_version_id) . "
+			         WHERE recipe = " . MySQLConnection::smart_quote($recipe_id) . "";
+		
+			MySQLConnection::query($SQL) or Error::db_halt(500, 'internal server error', 'Unable to execute request, SQL query error.', __FUNCTION__, MySQLConnection::error(), $SQL);
+		
+			////
+			// Commit the MySQL transaction
+			////
+			MySQLConnection::commit();
+		}
+		
 		public static function is_recipe_name_unique($recipe_name) {
 			//Fast way to check
 			$SQL = "SELECT name

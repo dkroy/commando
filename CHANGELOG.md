@@ -1,5 +1,11 @@
 ## CHANGELOG
 
+### v0.3.3 (open source) - *08/26/2012*
+- The ability to promote older versions of recipes to head.
+- `/install.php` now generates the `CRYPTO_SEED` from a combination of 14 random characters plus `uniqid()` and then another 13 random characters. Should guarantee every `CRYPTO_SEED` is globally unique.
+- Added `/classes/Curl.php` which will be used in the near future.
+- Various CSS, HTML markup, and styling changes.
+
 ### v0.3.2 (open source) - *08/25/2012*
 - Upgraded Bootstrap to `2.1.0`.
 - A bunch of CSS cleanup and fixes in styling and HTML markup.

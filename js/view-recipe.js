@@ -20,6 +20,8 @@ $(document).ready(function() {
 	$("#recipe-versions").chosen();
 	$("#recipe_versions_chzn").css("margin-top", "7px");
 	
+	$(".tip").tooltip();
+	
 	$('#recipe-versions').change(function() {
   		window.location = $(this).val();
 	});
