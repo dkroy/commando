@@ -80,5 +80,5 @@
         </div>
       </div>
 <?php
-	Footer::render();
+	Footer::render(array("index"));
 ?>

@@ -17,13 +17,14 @@
 	
 	require_once(dirname(__DIR__) . "/classes/Requires.php");
 	
-	$data = array("default_ssh_username" => $_POST['default_ssh_username'],
+	$data = array("instance_key" => $_POST['instance_key'],
+				  "default_ssh_username" => $_POST['default_ssh_username'],
 				  "default_ssh_port" => $_POST['default_ssh_port'],
 				  "default_interpreter" => $_POST['default_interpreter'],
 				  "timezone_offset" => $_POST['timezone_offset'],
 				  "timezone_daylight_savings" => $_POST['timezone_daylight_savings']);
 				  
-	$result = MySQLQueries::edit_settings(json_encode((object)$data));
+	MySQLQueries::edit_settings(json_encode((object)$data));
 	
 	Functions::redirect(Links::render("settings", array("saved")));
 ?>

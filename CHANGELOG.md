@@ -1,5 +1,11 @@
 ## CHANGELOG
 
+### v0.3.4 (open source) - *08/27/2012*
+- Added `instance_key` which is a unique identifier *(30 characters)* generated for every open source install of Commando.io.
+- Added `/actions/metrics.php` which sends the `instance_key`, number of servers added, and clients IP address to *MixPanel*. These metrics are used to help us gauge the number of open source installations of Commando.io out in the wild.
+- Added `/js/index.js` which makes an AJAX request to `/actions/metrics.php`.
+- Replaced `gmmktime()` with `time()` in `/classes/Functions.php` when generating a MongoDB date. Prevents PHP showing a depreciated notice about using `gmmktime()`.
+
 ### v0.3.3 (open source) - *08/26/2012*
 - The ability to promote older versions of recipes to head.
 - `/install.php` now generates the `CRYPTO_SEED` from a combination of 14 random characters plus `uniqid()` and then another 13 random characters. Should guarantee every `CRYPTO_SEED` is globally unique.

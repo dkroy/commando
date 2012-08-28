@@ -151,7 +151,7 @@
 			}
 			
 			$execution = new stdClass();
-			$execution->executed = new MongoDate(gmmktime());
+			$execution->executed = new MongoDate(time());
 			$execution->notes = $execution_notes;
 			$execution->groups = $groups;
 			$execution->recipe = $recipe_object;
@@ -195,6 +195,14 @@
 			if($result !== false) {
 				$row = MySQLConnection::fetch_object($result);
 				return $row->current;
+			}
+			
+			return null;
+		}
+		
+		public static function get_remote_ip() {
+			if(isset($_SERVER['REMOTE_ADDR']) && !empty($_SERVER['REMOTE_ADDR'])) {
+				return $_SERVER['REMOTE_ADDR'];
 			}
 			
 			return null;

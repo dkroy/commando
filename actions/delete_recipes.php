@@ -28,4 +28,6 @@
 	}
 	
 	MySQLQueries::delete_recipes($ids);
+	
+	echo '{"deleted":' . count($ids) . '}';
 ?>

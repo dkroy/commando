@@ -20,4 +20,6 @@
 	Functions::check_required_parameters(array($_POST['id']));
 	
 	MySQLQueries::delete_server($_POST['id']);
+	
+	echo '{"deleted":true}';
 ?>

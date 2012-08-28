@@ -50,6 +50,7 @@
 				<?php endif; ?>
 	
 				<form id="form-settings" class="well form-horizontal" method="post" action="/actions/edit_settings.php">
+			    	 <input type="hidden" name="instance_key" id="instance_key" value="<?php echo isset($settings->data->instance_key) && !empty($settings->data->instance_key) ? $settings->data->instance_key : Functions::generate_random(9) . uniqid() . Functions::generate_random(8) ?>" />
 			    	 <?php if(isset($settings->modified)): ?>
 			    	 	<div style="float: right;">
 			    	 		<a class="btn disabled">Modified <?php echo $settings->modified ?></a>
