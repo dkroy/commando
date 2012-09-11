@@ -19,15 +19,16 @@
  		static function autoload() {
  			require_once(dirname(__DIR__) . "/classes/Prerequisites.php");
  			require_once(dirname(__DIR__) . "/timezone.php");
- 			require_once(dirname(__DIR__) . "/defines.php");
- 			require_once(dirname(__DIR__) . "/classes/Sessions.php");
  			require_once(dirname(__DIR__) . "/classes/Error.php");
  			
  			if(!file_exists(dirname(__DIR__) . "/app.config.php")) {
- 				Error::halt(404, 'not found', 'File \'/app.config.php\' does not exist. Did you execute \'/install.php\'?');
+ 				Error::halt(404, 'not found', 'File \'app.config.php\' does not exist. Did you run \'install.php\'?');
  			}
  			
  			require_once(dirname(__DIR__) . "/app.config.php");
+ 			
+ 			require_once(dirname(__DIR__) . "/defines.php");
+ 			require_once(dirname(__DIR__) . "/classes/Sessions.php");
  			
  			spl_autoload_register(function($class_name) {
  				require_once(dirname(__DIR__) . "/classes/" . $class_name . ".php");
