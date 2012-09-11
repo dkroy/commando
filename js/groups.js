@@ -151,7 +151,7 @@ $(document).ready(function() {
 					id: id
 				}, function(response) {
 					if(typeof response !== "undefined") {
-						$("#" + id).fadeOut("slow", function() {
+						$("#" + id).fadeOut(300, function() {
 							$("#" + id).remove();
 
 							if($(".group").length === 0) {

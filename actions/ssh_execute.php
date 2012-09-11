@@ -86,7 +86,7 @@
 	}
 	
 	MongoConnection::connect();
-	MongoConnection::selectCollection("executions");
+	MongoConnection::select_collection("executions");
 	MongoConnection::insert(Functions::build_execution_history_object($_POST['notes'], $_POST['groups'], $recipe, $servers, $returned_results));
 	
 	echo json_encode($returned_results);

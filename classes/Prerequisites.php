@@ -21,24 +21,25 @@
 				trigger_error("<h1>PHP 5.3 or greater is required. You are running " . PHP_VERSION . ".</h1>", E_USER_ERROR);
 			}
 		}
-			
-		public static function extension($extension) {
-			if(!extension_loaded($extension)) {
-				trigger_error("<h1>Failed to load required PHP extension " . $extension . "</h1>", E_USER_ERROR);
-			}
-		}
 		
 		public static function crypt_blowfish() {
 			if(CRYPT_BLOWFISH != 1) {
 				trigger_error("<h1>Failed to load the required cryptography library blowfish.</h1>", E_USER_ERROR);	
 			}
 		}
+			
+		public static function extension($extension) {
+			if(!extension_loaded($extension)) {
+				trigger_error("<h1>Failed to load required PHP extension " . $extension . "</h1>", E_USER_ERROR);
+			}
+		}
 	}
 	
 	Prerequisites::php_version();
-	Prerequisites::extension("mysqli");
-	Prerequisites::extension("mongo");
-	Prerequisites::extension("json");
-	Prerequisites::extension("ssh2");
 	Prerequisites::crypt_blowfish();
+	Prerequisites::extension("mysqli");
+	Prerequisites::extension("json");
+	Prerequisites::extension("curl");
+	Prerequisites::extension("mongo");
+	Prerequisites::extension("ssh2");
 ?>

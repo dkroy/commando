@@ -9,7 +9,7 @@
   border-radius: 4px;
   padding: 1px;
   margin-left: 0px;
-  
+
   /* Necessary so the scrollbar can be absolutely positioned within the wrapper on Lion. */
   position: relative;
   /* This prevents unwanted scrollbars from showing up on the body and wrapper in IE. */
@@ -17,11 +17,10 @@
 }
 
 .CodeMirror-scroll {
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto;
   height: auto;
-  min-height: 83px;
-  max-height: 550px;
+  min-height: 152px;
+  max-height: 510px;
   /* This is needed to prevent an IE[67] bug where the scrolled content
      is visible outside of the scrolling box. */
   position: relative;
@@ -30,13 +29,11 @@
 
 /* Vertical scrollbar */
 .CodeMirror-scrollbar {
-  float: right;
+  position: absolute;
+  right: 0; top: 0;
   overflow-x: hidden;
   overflow-y: scroll;
-
-  /* This corrects for the 1px gap introduced to the left of the scrollbar
-     by the rule for .CodeMirror-scrollbar-inner. */
-  margin-left: -1px;
+  z-index: 5;
 }
 .CodeMirror-scrollbar-inner {
   /* This needs to have a nonzero width in order for the scrollbar to appear

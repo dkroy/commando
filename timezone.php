@@ -15,19 +15,5 @@
 	# limitations under the License.
 	*/
 	
- 	class Version {	
-		////
-		// Application version
-		//
-		// major.minor.revision
-		////
-		const app = "0.4.0 (open source)";
-		
-		////
-		// MySQL schema version
-		//
-		// major.minor.revision
-		////
-		const db = "0.1.1";
- 	}
+	date_default_timezone_set('UTC');
 ?>

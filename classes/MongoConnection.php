@@ -21,6 +21,7 @@
  		 */
 		private static $mongo_connection;
 		private static $mongo_db;
+		private static $mongo_grid_fs;
 		private static $mongo_collection;
 		
 		public static function connect($replica_set = false) {
@@ -48,7 +49,7 @@
 			}
 		}
 		
-		public static function selectCollection($collection_name) {
+		public static function select_collection($collection_name) {
 			try {
 				$collection = MongoConnection::$mongo_db->selectCollection($collection_name);
 			} catch(Exception $mongoException) {
@@ -64,7 +65,7 @@
 			MongoConnection::$mongo_collection = $collection;
 		}
 		
-		public static function find($query = array(), Array $fields = array(), $allow_slave_query = false) {
+		public static function find($query = array(), array $fields = array(), $allow_slave_query = false) {
 			if(!is_array($query)) {
 				$query = json_decode($query);
 			}
@@ -79,15 +80,59 @@
 		////
 		// Options
 		// 		safe (int | 'majority'): Number of servers that have to successfully acknowledge the write before returning success. Majority automagically calculates the number of servers needed for a majority.
-		//		fsync (bool): Force the database to fsync all writes up to this point to disk (by default, MongoDB fsyncs writes once per minute). Don't enable this unless you have a good reason, it kills performance.
 		////
-		public static function insert(Array $data, Array $options = array("safe" => 1, "fsync" => false)) {
+		public static function insert(array $data, array $options = array("safe" => 1)) {
 			try {
 				return MongoConnection::$mongo_collection->insert($data, $options);
 			} catch(Exception $MongoCursorException) {
 				//Output error details
 				Error::halt(503, 'service unavailable', 'Temporarily unable to process request. Failed to insert into the MongoDB collection. Please retry.');	
 			}
+		}
+		
+		public static function grid_fs() {
+			MongoConnection::$mongo_grid_fs = MongoConnection::$mongo_db->getGridFS();
+		}
+		
+		public static function grid_fs_find($query = array(), array $fields = array()) {			
+			if(!is_array($query)) {
+				$query = json_decode($query);
+			}
+			
+			return MongoConnection::$mongo_grid_fs->find($query, $fields);
+		}
+		
+		////
+		// Options
+		// 		safe (int | 'majority'): Number of servers that have to successfully acknowledge the write before returning success. Majority automagically calculates the number of servers needed for a majority.
+		////
+		public static function grid_fs_store($filename, array $meta_data = array(), array $options = array("safe" => 1)) {
+			return MongoConnection::$mongo_grid_fs->storeFile($filename, $meta_data, $options);
+		}
+		
+		////
+		// Options
+		// 		safe (int | 'majority'): Number of servers that have to successfully acknowledge the delete before returning success. Majority automagically calculates the number of servers needed for a majority.
+		////
+		public static function grid_fs_delete(array $ids, array $options = array("safe" => 1)) {
+			$mongo_ids = array();
+			foreach($ids as $id) {
+				$mongo_ids[] = new MongoId($id);
+			}
+		
+			return MongoConnection::$mongo_grid_fs->remove(array("_id" => array('$in' => $mongo_ids)), $options);
+		}
+		
+		////
+		// Options
+		// 		safe (int | 'majority'): Number of servers that have to successfully acknowledge the delete before returning success. Majority automagically calculates the number of servers needed for a majority.
+		////
+		public static function grid_fs_update($query = array(), array $meta_data = array(), array $options = array("safe" => 1)) {
+			if(!is_array($query)) {
+				$query = json_decode($query);
+			}
+			
+			return MongoConnection::$mongo_grid_fs->update($query, $meta_data, $options);
 		}
 		
 		public static function close() {

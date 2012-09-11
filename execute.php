@@ -19,7 +19,7 @@
 	
 	//Make sure we can connect and select the executions collection in MongoDB
 	MongoConnection::connect();
-	MongoConnection::selectCollection("executions");
+	MongoConnection::select_collection("executions");
 	
 	//Get groups
 	$groups = array();
@@ -83,7 +83,7 @@
 	  <div class="row">
     	<div class="span12">
     		<div class="well">
-    			<form id="form-settings" class="well form-horizontal">
+    			<form class="well form-horizontal">
 			    	<?php echo CSRF::generate_hidden_field() ?>
 			    	<div class="control-group">
 			        	<label class="control-label" for="execute-groups">Groups</label>
@@ -107,7 +107,7 @@
 			          		<select class="span3" id="execute-recipe" name="recipe" data-placeholder="Select a recipe...">
 			          			<option value=""></option>
 			          			<?php foreach($recipes as $recipe): ?>
-			          				<option value="<?php echo $recipe->id ?>"><?php echo $recipe->name; ?></option>
+			          				<option value="<?php echo $recipe->id ?>"><?php echo $recipe->name; ?> (<?php echo ucfirst($recipe->interpreter) ?>)</option>
 			          			<?php endforeach; ?>	
 			          		</select>
 			          		<p class="help-block">The recipe to execute.</p>

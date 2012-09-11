@@ -6,15 +6,13 @@ GitHub fundamentally changed the way developers use revision control by creating
 
 The goal of Commando.io is to make it super simple to execute commands on groups of servers and visualize the results. Additionally Commando.io provides IT compliance and accountability, as every command executed is logged with who executed what, when, and why. Finally all commands are versioned and centrally stored.
 
-Screencast, Screenshots, And Additional Details
+Screenshots & Additional Details
 --------------------------------
-
-### Demo video and screencast: http://youtu.be/eC-8ev_ouEQ ###
 
 [ ![Web servers tagged and grouped.](http://netdna.commando.io/images/screenshots/small/servers.png) ](http://netdna.commando.io/images/screenshots/xlarge/servers.png)
 [ ![Adding a recipe.](http://netdna.commando.io/images/screenshots/small/add-recipe.png) ](http://netdna.commando.io/images/screenshots/xlarge/add-recipe.png)
 [ ![Executing a recipe on a group of servers.](http://netdna.commando.io/images/screenshots/small/execute.png) ](http://netdna.commando.io/images/screenshots/xlarge/execute.png)
-[ ![A collection of various groups.](http://netdna.commando.io/images/screenshots/small/groups.png) ](http://netdna.commando.io/images/screenshots/xlarge/groups.png)
+[ ![Upload and transfer text or binary files.](http://netdna.commando.io/images/screenshots/small/files.png) ](http://netdna.commando.io/images/screenshots/xlarge/files.png)
 
 ### See http://commando.io for additional details. ###
 
@@ -39,6 +37,7 @@ Version **5.3.0** or greater.
 #### PHP Extensions ####
 + **mysqli**
 + **json**
++ **curl**
 + **mongo** (https://github.com/mongodb/mongo-php-driver)
 + **ssh2** (http://pecl.php.net/package/ssh2)
 

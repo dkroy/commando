@@ -123,9 +123,9 @@ var ssh_connect = function(index) {
 	if($(this).find("div.ssh-progress:hidden")) {
 		if($(this).find("a.ssh-status:visible")) {
 			$(this).find("a.ssh-status").hide();
-			$(this).find("div.ssh-progress").slideDown(200);
+			$(this).find("div.ssh-progress").slideDown(300);
 		} else {
-			$(this).find("div.ssh-progress").slideDown(200);
+			$(this).find("div.ssh-progress").slideDown(300);
 		}
 	}
 	
@@ -135,7 +135,7 @@ var ssh_connect = function(index) {
 		username: $(this).attr("data-username")
 	}, function(response) {
 		if(typeof response === "undefined" || response.error) {
-			$(this.server).find("div.ssh-progress").slideUp(200, function() {
+			$(this.server).find("div.ssh-progress").slideUp(300, function() {
 				$(this.server).children(".box").addClass("box-red");
 				
 				$(this.server).find("a.ssh-status")
@@ -147,10 +147,10 @@ var ssh_connect = function(index) {
 				$(this.server).find("div.container-server-add-ssh-key-instructions")
 							  .css("display", "block");
 			
-				$(this.server).find("a.delete-server").fadeIn(200);
+				$(this.server).find("a.delete-server").fadeIn(300);
 			}.bind({ server: $(this.server) }));
 		} else {
-			$(this.server).find("div.ssh-progress").slideUp(200, function() {
+			$(this.server).find("div.ssh-progress").slideUp(300, function() {
 				$(this.server).children(".box").removeClass("box-red");
 			
 				$(this.server).find("a.ssh-status")
@@ -159,7 +159,7 @@ var ssh_connect = function(index) {
 				              .addClass("btn-success")
 				              .css("display", "inline-block");
 			
-				$(this.server).find("a.delete-server").fadeIn(200);
+				$(this.server).find("a.delete-server").fadeIn(300);
 			}.bind({ server: $(this.server) }));
 		}
 				
@@ -319,7 +319,7 @@ $(document).ready(function() {
 					id: id
 				}, function(response) {
 					if(typeof response !== "undefined") {
-						$("#" + id).fadeOut("slow", function() {
+						$("#" + id).fadeOut(300, function() {
 							$("#" + id).remove(); 
 
 							if($(".server").length === 0) {
@@ -328,9 +328,9 @@ $(document).ready(function() {
 							}
 						});
 
-						if($("#" + id).parent(".row-fluid").children(".server").length === 1) {
-							$("#" + id).parent(".row-fluid").prev(".navbar").fadeOut("slow", function() {
-								$("#" + id).parent(".row-fluid").prev(".navbar").remove();
+						if($("#" + id).parents(".group-container").find(".server").length === 1) {
+							$("#" + id).parents(".group-container").children(".navbar").fadeOut(300, function() {
+								$("#" + id).parents(".group-container").children(".navbar").remove();
 							});
 						}	
 					}

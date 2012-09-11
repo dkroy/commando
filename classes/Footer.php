@@ -24,8 +24,8 @@
         		  	    <br >All rights reserved.
         		  	</div>
         		  	<div style="float: right;">
-        		  	    <div style="margin-bottom: 2px;"><iframe src="http://ghbtns.com/github-btn.html?user=nodesocket&repo=commando&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe><iframe src="http://ghbtns.com/github-btn.html?user=nodesocket&repo=commando&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe></div>
-        		    	v' . Version::app . '
+        		  		<div style="margin-bottom: 2px;"><iframe src="http://ghbtns.com/github-btn.html?user=nodesocket&repo=commando&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe><iframe src="http://ghbtns.com/github-btn.html?user=nodesocket&repo=commando&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe></div>
+        		  		v' . Version::app . '
         		    </div>
       			  </footer>
       		     </div>';

@@ -54,7 +54,7 @@
 			<div class="well">
 				<div class="alert alert-info fade in" <?php if(count($recipes) > 0): ?>style="display: none;"<?php endif; ?>>
 		  	  		<a class="close" data-dismiss="alert">&times;</a>
-		  	  		<h4>Did You Know?</h4>
+		  	  		<h4>Did you know?</h4>
 		  	  		Recipes are containers of commands that are fully versioned. Recipes can be written in pure <i><strong>shell</strong></i>, <i><strong>bash</strong></i>, <i><strong>perl</strong></i>, <i><strong>python</strong></i>, or <i><strong>node.js</strong></i>.
 	      		  </div>
 			      <div id="no-recipes" class="alert alert-grey no-bottom-margin" <?php if(count($recipes) > 0): ?>style="display: none;"<?php endif; ?>>

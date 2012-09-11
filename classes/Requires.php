@@ -18,6 +18,7 @@
  	class Requires {
  		static function autoload() {
  			require_once(dirname(__DIR__) . "/classes/Prerequisites.php");
+ 			require_once(dirname(__DIR__) . "/timezone.php");
  			require_once(dirname(__DIR__) . "/defines.php");
  			require_once(dirname(__DIR__) . "/classes/Sessions.php");
  			require_once(dirname(__DIR__) . "/classes/Error.php");

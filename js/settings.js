@@ -40,7 +40,7 @@ $(document).ready(function() {
 			}
 			
 			prettyPrint();
-			$("#settings-public-ssh-key").children("pre").slideDown(200);
+			$("#settings-public-ssh-key").children("pre").slideDown(300);
 		}
 	});
 

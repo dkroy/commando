@@ -14,10 +14,14 @@
 # limitations under the License.
 */
 
+var notes;
+
 function validate_execute() {	
 	if($("#execute-btn").hasClass("disabled")) {
 		return;
 	}
+	
+	notes.save();
 	
 	var g = false;
 	var r = false;
@@ -50,7 +54,7 @@ function validate_execute() {
 		$("#execute-results-container").find("pre").unhighlight();
 		
 		if($("#execute-results-container").is(":visible")) {
-			$("#execute-results-container").hide(200, execute);
+			$("#execute-results-container").slideUp(300, execute);
 		} else {
 			execute();
 		}
@@ -61,7 +65,7 @@ function execute() {
 	$("#execute-results-container").html("");
 	
 	Request.ajax("/actions/ssh_execute.php", {
-		security_token: $("#security_token").val(),
+		security_token_1: $("#security_token_1").val(),
 		groups: $("#execute-groups").val(),
 		recipe: $("#execute-recipe").val(),
 		notes: $("#execute-notes").val()
@@ -100,14 +104,14 @@ function execute() {
 		
 		$("#execute-btn").removeClass("disabled");
 		
-		$("#execute-results-container").show(300, function() {
+		$("#execute-results-container").slideDown(300, function() {
 			$("#execute-results-container").scrollTo();
 		});
 	});
 }
 
 $(document).ready(function() {
-	var notes = CodeMirror.fromTextArea(document.getElementById('execute-notes'), {
+	notes = CodeMirror.fromTextArea(document.getElementById('execute-notes'), {
 		mode: 'markdown',
 		lineNumbers: false,
 		lineWrapping: false,
@@ -118,8 +122,8 @@ $(document).ready(function() {
 	$("#execute-groups").chosen();	
 	$("#execute-recipe").chosen();
 	
-	$("#execute-notes").next().find(".CodeMirror-scroll").css("min-height", "55px");
-	$("#execute-notes").next().find(".CodeMirror-scroll").css("max-height", "180px");
+	$("#execute-notes").next().find(".CodeMirror-scroll").css("min-height", "83px");
+	$("#execute-notes").next().find(".CodeMirror-scroll").css("max-height", "152px");
 	$("#execute-notes").autosize();
 	
 	$("#search-results").bind("keyup paste", function() {

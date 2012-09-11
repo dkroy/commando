@@ -50,7 +50,7 @@
 	
 	//Calculate Statistics
 	$recipe->lines = (substr_count($recipe->content, "\n") + 1);
-	$recipe->length = Functions::formatBytes(strlen($recipe->content));
+	$recipe->length = Functions::format_bytes(strlen($recipe->content));
 	
 	//Get the correct language for code-pretty
 	switch($recipe->interpreter) {
@@ -92,8 +92,8 @@
    	  	<div class="span12">
    	  		<div class="well">
 	   	  		<?php if($recipe->recipe_version === $head->recipe_version): ?>
-	      			<a href="<?php echo Links::render("edit-recipe", array($recipe->id)) ?>" class="btn btn-primary btn-large"><i class="icon-edit icon-white"></i> Edit Recipe</a>
-	      			<a id="delete-recipe" href="/actions/delete_recipe.php?id=<?php echo $recipe->id ?>&security_token=<?php echo CSRF::generate_token() ?>" class="btn btn-large"><i class="icon-remove"></i> Delete Recipe</a>
+	      			<a href="<?php echo Links::render("edit-recipe", array($recipe->id)) ?>" class="btn btn-primary btn-large"><i class="icon-pencil icon-white"></i> Edit Recipe</a>
+	      			<a id="delete-recipe" href="/actions/delete_recipe.php?id=<?php echo $recipe->id ?>&amp;<?php echo CSRF::generate_get_parameter() ?>" class="btn btn-large"><i class="icon-remove"></i> Delete Recipe</a>
 	      		<?php else: ?>
 	      			<div class="alert alert-info no-bottom-margin">
 						<h4>Notice!</h4>
@@ -107,10 +107,14 @@
 	  <div class="row">
     	<div class="span12">
     		<div class="well">
-    			<div id="recipe-notes" class="alert alert-grey fade in" <?php if(empty($recipe->notes)): ?>style="display: none;"<?php endif; ?>>
-				 	<a class="close" data-dismiss="alert">&times;</a>
-				 	<?php echo Markdown($recipe->notes) ?>
-				</div>
+    			<div class="clear"></div>
+    			<?php if(!empty($recipe->notes)): ?>
+    				<div id="recipe-notes" class="alert alert-grey fade in">
+				 		<a class="close" data-dismiss="alert">&times;</a>
+				 		<?php echo Markdown($recipe->notes) ?>
+				 		<div class="clear"></div>
+					</div>
+    			<?php endif; ?>
 				<div class="navbar">
 	            	<div class="navbar-inner">
 	              		<div class="container">
@@ -128,7 +132,7 @@
 	                		<ul class="navbar-form nav pull-right">
 	                			<?php if($recipe->recipe_version !== $head->recipe_version): ?>
 	                				<li>
-	                					<a href="/actions/edit_recipe_head.php?id=<?php echo $recipe->id ?>&version=<?php echo $recipe->recipe_version ?>&security_token=<?php echo CSRF::generate_token() ?>" rel="tooltip" class="tip" data-placement="top" data-original-title="Promote this version to head."><i class="icon-chevron-up"></i> Make Head</a>
+	                					<a href="/actions/edit_recipe_head.php?id=<?php echo $recipe->id ?>&version=<?php echo $recipe->recipe_version ?>&<?php echo CSRF::generate_get_parameter() ?>" rel="tooltip" class="tip" data-placement="top" data-original-title="Promote this version to head."><i class="icon-chevron-up"></i> Make Head</a>
 	                				</li>
 	                				<li class="divider-vertical"></li>
 	                			<?php endif; ?>
@@ -136,15 +140,13 @@
 	                				<select name="versions" id="recipe-versions" class="span2" data-placeholder="">
 										<?php foreach($recipe_versions as $recipe_version): ?>
 											<option value="
-											
 												<?php
-													if($recipe_version->id !== $head->recipe_version) {
-														echo Links::render("view-recipe", array($recipe->id, $recipe_version->id));
+													if($recipe_version->id === $head->recipe_version) {
+														echo Links::render("view-recipe", array($recipe->id));	
 													} else {
-														echo Links::render("view-recipe", array($recipe->id));
+														echo Links::render("view-recipe", array($recipe->id, $recipe_version->id));
 													}
 												?>
-	
 											" <?php if($recipe_version->id === $recipe->recipe_version) { echo 'selected="selected"'; } ?>><?php echo substr($recipe_version->version, 0, 10) ?><?php if($recipe_version->id === $head->recipe_version): ?> (HEAD)<?php endif; ?></option>
 										<?php endforeach; ?>
 									</select>
@@ -153,7 +155,22 @@
 	              		</div>
             		</div>
           		</div>
-				<pre class="prettyprint <?php echo $code_pretty_lang ?> linenums"><?php echo $recipe->content ?></pre>
+          		<div id="contents-loading" class="progress progress-striped active">
+					<div class="bar" style="width: 100%;"></div>
+				</div>
+				<div id="recipe-contents" style="display: none;">
+					<div style="float: right; position: relative; top: 0px; right: 0px;">
+						<a href="<?php
+							if($recipe->recipe_version === $head->recipe_version) {
+								echo Links::render("view-recipe-raw", array($recipe->id));
+							} else {
+								echo Links::render("view-recipe-raw", array($recipe->id, $recipe->recipe_version));
+							}
+						?>
+						" class="btn btn-medium"><i class="icon-align-left"></i> Raw</a>
+					</div>
+					<pre class="prettyprint <?php echo $code_pretty_lang ?> linenums"><?php echo htmlentities($recipe->content) ?></pre>
+    			</div>
     		</div>
 		</div>
 	  </div>   

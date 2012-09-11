@@ -140,6 +140,17 @@
 			return TIMEZONE_OFFSET;
 		}
 		
+		public static function timezone_offset_in_second() {
+			$sign = substr(Functions::get_timezone_offset(), 0, 1);
+			$hours = substr(Functions::get_timezone_offset(), 1, 2);
+			$minutes = substr(Functions::get_timezone_offset(), 4, 2);
+			
+			$hours = $hours * 60 * 60;
+			$minutes = round($minutes / 1.6666) * 60;
+		
+			return intval($sign . ($hours + $minutes));
+		}
+		
 		public static function build_execution_history_object($execution_notes, array $groups, stdClass $recipe_object, array $servers, array $results) {
 			////
 			// For security we have to unset address, ssh_username, and ssh_port from the $servers array so we don't store those sensative values unencrypted
@@ -174,19 +185,47 @@
 				if(is_object($value) || is_array($value)) {
 					Functions::format_dates($value);
 				} else{
-					if(DateTime::createFromFormat('Y-m-d G:i:s', $value) !== FALSE) {
-						$row->$property = date(DATE_FORMAT, strtotime($value));
-					}	
+					if(DateTime::createFromFormat('Y-m-d G:i:s', $value) !== false) {
+						if(is_array($row)) {
+							$row[$property] = date(DATE_FORMAT, strtotime($value));
+						} else {
+							$row->$property = date(DATE_FORMAT, strtotime($value));
+						}	
+					}
 				}
 			}
 			
 			return $row;
 		}
 		
-		public static function formatBytes($size, $precision = 2) {
-			$base = log($size) / log(1024);
-			$suffixes = array('bytes', 'kb', 'MB', 'GB', 'TB');
-    		return round(pow(1024, $base - floor($base)), $precision) . ' ' . $suffixes[floor($base)];
+		public static function format_bytes($bytes, $force_unit = NULL, $format = NULL, $si = TRUE) {
+			$format = ($format === NULL) ? '%01.1f %s' : (string) $format;
+
+			//IEC prefixes (binary)
+    		if($si == FALSE OR strpos($force_unit, 'i') !== FALSE) {
+        		$units = array('bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB');
+        		$mod   = 1024;
+    		}
+    		//SI prefixes (decimal)
+    		else {
+        		$units = array('bytes', 'kB', 'MB', 'GB', 'TB', 'PB');
+        		$mod   = 1000;
+    		}
+
+    		//Determine unit to use
+    		if (($power = array_search((string) $force_unit, $units)) === FALSE) {
+    			$power = ($bytes > 0) ? floor(log($bytes, $mod)) : 0;
+    		}
+    		
+    		if($units[$power] === "bytes") {
+    			if($bytes == 1) {
+    				return sprintf("%01.0f %s", $bytes / pow($mod, $power), 'byte');
+    			} else {
+    				return sprintf("%01.0f %s", $bytes / pow($mod, $power), 'bytes');
+    			}
+    		} else {
+    			return sprintf($format, $bytes / pow($mod, $power), $units[$power]);
+    		}
 		}
 		
 		public static function get_db_version() {

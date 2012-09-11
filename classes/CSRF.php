@@ -16,25 +16,34 @@
 	*/
 	
  	class CSRF {
- 		public static function generate_token() {
+ 		private static $count = 0;
+ 	
+ 		private static function generate_token() {
  			$token = sha1(uniqid(rand(), true));
- 			$_SESSION['security_token'] = $token;
+ 			CSRF::$count++;
+ 			$_SESSION['security_token_' . CSRF::$count] = $token;
  			return $token;
  		}
  		
  		public static function generate_hidden_field() {
- 			return '<input type="hidden" name="security_token" id="security_token" value="' . CSRF::generate_token() . '" />';
+ 			$token = CSRF::generate_token();
+ 			return '<input type="hidden" name="security_token_' . CSRF::$count . '" id="security_token_' . CSRF::$count . '" value="' . $token . '" />';
  		}
  		
- 		public static function is_valid($method_get = false) {
- 			if($method_get) {
- 				 if(isset($_SESSION['security_token']) && isset($_GET['security_token']) && $_SESSION['security_token'] === $_GET['security_token']) {
+ 		public static function generate_get_parameter() {
+ 			$token = CSRF::generate_token();
+ 			return 'security_token_' . CSRF::$count . '=' . $token;
+ 		}
+ 		
+ 		public static function is_valid($count = 1, $method_get = false) {
+		 	if($method_get) {
+ 				if(isset($_SESSION['security_token_' . $count]) && isset($_GET['security_token_' . $count]) && $_SESSION['security_token_' . $count] === $_GET['security_token_' . $count]) {
  					return true;
  				} else {
  					return false;
  				}
  			} else {
- 				if(isset($_SESSION['security_token']) && isset($_POST['security_token']) && $_SESSION['security_token'] === $_POST['security_token']) {
+ 				if(isset($_SESSION['security_token_' . $count]) && isset($_POST['security_token_' . $count]) && $_SESSION['security_token_'. $count] === $_POST['security_token_' . $count]) {
  					return true;
  				} else {
  					return false;

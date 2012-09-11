@@ -51,10 +51,10 @@
 		$servers[] = $row;
 	}
 	
-	$payload = '{"event":"' . $instance_key . '","properties":{"token":"678f0669ff58d890eeb50633c91a633d","distinct_id":"' . $instance_key . '","ip":"' . Functions::get_remote_ip() . '","servers":"' . count($servers) . '","ip-address":"' . Functions::get_remote_ip() . '","mp_name_tag":"' . $instance_key . '","time":"' . time() . '"}}';
+	$payload = '{"event":"' . $instance_key . '","properties":{"token":"678f0669ff58d890eeb50633c91a633d","distinct_id":"' . $instance_key . '","ip":"' . Functions::get_remote_ip() . '","servers":"' . count($servers) . '","version":"' . Version::app . '","ip-address":"' . Functions::get_remote_ip() . '","mp_name_tag":"' . $instance_key . '","time":"' . time() . '"}}';
 	$curl = new Curl();
 	$curl->get_request("https://api.mixpanel.com/track/?data=" . base64_encode($payload));
 	$curl->close();
 	
-	echo '{"sent":true}';
+	echo '{"instance_key":"' . $instance_key . '"}';
 ?>

@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+### v0.4.0 (open source) - *09/10/2012*
+{LOT OF CHANGES TO DOCUMENT}
+
 ### v0.3.4 (open source) - *08/27/2012*
 - Added `instance_key` which is a unique identifier *(30 characters)* generated for every open source install of Commando.io.
 - Added `/actions/metrics.php` which sends the `instance_key`, number of servers added, and clients IP address to *MixPanel*. These metrics are used to help us gauge the number of open source installations of Commando.io out in the wild.

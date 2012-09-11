@@ -15,19 +15,21 @@
 	# limitations under the License.
 	*/
 	
- 	class Version {	
-		////
-		// Application version
-		//
-		// major.minor.revision
-		////
-		const app = "0.4.0 (open source)";
-		
-		////
-		// MySQL schema version
-		//
-		// major.minor.revision
-		////
-		const db = "0.1.1";
- 	}
+	require_once(dirname(__DIR__) . "/classes/Requires.php");
+	
+	Functions::check_required_parameters(array($_POST['ids']));
+	
+	//$ids 'should' be an array
+	$ids = json_decode($_POST['ids']);
+	
+	if($ids == null) {
+		//Output error details
+		Error::halt(400, 'bad request', 'Parameter \'ids\' is invalid JSON.');
+	}
+	
+	MongoConnection::connect();
+	MongoConnection::grid_fs();
+	MongoConnection::grid_fs_delete($ids);
+	
+	echo '{"deleted":' . count($ids) . '}';
 ?>

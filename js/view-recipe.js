@@ -14,13 +14,16 @@
 # limitations under the License.
 */
 
-$(document).ready(function() {
-	prettyPrint();
-	
+$(document).ready(function() {	
 	$("#recipe-versions").chosen();
 	$("#recipe_versions_chzn").css("margin-top", "7px");
 	
 	$(".tip").tooltip();
+	
+	prettyPrint();
+	
+	$("#contents-loading").hide();
+	$("#recipe-contents").slideDown(300);
 	
 	$('#recipe-versions').change(function() {
   		window.location = $(this).val();

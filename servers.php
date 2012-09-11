@@ -28,6 +28,16 @@
 		}
 	}
 	
+	//Sorts groups by name
+	ksort($servers);
+	
+	//Force 'default' group to the bottom
+	if(isset($servers[''])) {
+		$default = $servers[''];
+   	 	unset($servers['']);
+    	$servers[''] = $default;
+	}
+	
 	//Get groups
 	$groups = array();
 	$result = MySQLQueries::get_groups();
@@ -237,53 +247,54 @@
 					No servers added. <a class="action-add-server">Add</a> a server now.
 				</div>
 				<?php foreach($servers as $group => $group_servers): ?>
-					<div class="navbar">
-		            	<div class="navbar-inner">
-		              		<a class="brand" style="cursor: default;"><?php echo empty($group) ? 'DEFAULT' : $group; ?></a>
-		                </div>
-		            </div>
-					<?php
-						$count = 0;	
-						foreach($group_servers as $server):
-					?>
-						<?php if($count % 3 === 0): ?>
-							<div class="row-fluid">
-						<?php endif; ?>
-			    		<div class="span4 server" id="<?php echo $server->id; ?>" data-address="<?php echo $server->address ?>" data-port="<?php echo $server->ssh_port ?>" data-username="<?php echo $server->ssh_username ?>">						
-							<div class="well well-small box">
-								<div class="ssh-progress progress progress-striped active">
-					         		<div class="bar" style="width: 100%;"></div>
-								</div>
-								
-								<a class="close delete-server">&times;</a>
-				         		<h2><a><?php echo strtoupper($server->label) ?></a></h2>
-								
-				         		<h4 class="grey"><?php echo $server->ssh_username ?>@<?php echo $server->address ?>:<?php echo $server->ssh_port ?></h4>
-				         		
-				         		
-				         		<?php if(!empty($server->tags)): ?>
-					         		<div class="tags">
-										<?php
-											foreach(explode(",", $server->tags) as $tag) {
-												echo '<span class="label">' . $tag . '</span> ';
-											}
-										?>
+					<div class="group-container">
+						<div class="navbar">
+			            	<div class="navbar-inner">
+			              		<a class="brand" style="cursor: default;"><?php echo empty($group) ? 'DEFAULT' : $group; ?></a><div style="margin-top: 3px;"><a class="btn btn-mini disabled"><?php echo count($group_servers) ?></a></div>
+			                </div>
+			            </div>
+						<?php
+							$count = 0;	
+							foreach($group_servers as $server):
+						?>
+							<?php if($count % 3 === 0): ?>
+								<div class="row-fluid">
+							<?php endif; ?>
+				    		<div class="span4 server" id="<?php echo $server->id; ?>" data-address="<?php echo $server->address ?>" data-port="<?php echo $server->ssh_port ?>" data-username="<?php echo $server->ssh_username ?>">						
+								<div class="well box">
+									<div class="ssh-progress progress progress-striped active">
+						         		<div class="bar" style="width: 100%;"></div>
 									</div>
-								<?php endif; ?>
-				
-								<a class="ssh-status btn btn-mini disabled"></a>
-								
-								<div class="container-server-add-ssh-key-instructions">
-									<a class="btn btn-danger btn-mini btn-server-add-ssh-key-instructions" style="float: right;">Add Public SSH Key</a>
+									
+									<a class="close delete-server">&times;</a>
+					         		<h2><a><?php echo strtoupper($server->label) ?></a></h2>
+									
+					         		<h4 class="grey"><?php echo $server->ssh_username ?>@<?php echo $server->address ?>:<?php echo $server->ssh_port ?></h4>
+					         		
+					         		<?php if(!empty($server->tags)): ?>
+						         		<div class="tags">
+											<?php
+												foreach(explode(",", $server->tags) as $tag) {
+													echo '<span class="label">' . $tag . '</span> ';
+												}
+											?>
+										</div>
+									<?php endif; ?>
+					
+									<a class="ssh-status btn btn-mini disabled"></a>
+									
+									<div class="container-server-add-ssh-key-instructions">
+										<a class="btn btn-danger btn-mini btn-server-add-ssh-key-instructions" style="float: right;">Add Public SSH Key</a>
+									</div>
+									<div class="clear"></div>
 								</div>
-								<div class="clear"></div>
-							</div>
-			       		</div>
-			       		<?php if($count % 3 === 2 || $count === (count($group_servers) - 1)): ?>
-							</div>
-						<?php endif; ?>
-			       		<?php $count++; ?>
-					<?php endforeach; ?>
+				       		</div>
+				       		<?php if($count % 3 === 2 || $count === (count($group_servers) - 1)): ?>
+								</div>
+							<?php endif; ?>
+				       		<?php $count++; ?>
+						<?php endforeach; ?>
+					</div>
 				<?php endforeach; ?>
 			</div>
 		</div>

@@ -212,7 +212,7 @@
 			               g.name,
 			               CONVERT_TZ(g.added, '+00:00', " . MySQLConnection::smart_quote(Functions::get_timezone_offset()). ") AS added,
 			               CONVERT_TZ(g.modified, '+00:00', " . MySQLConnection::smart_quote(Functions::get_timezone_offset()) . ") AS modified,
-			               GROUP_CONCAT(s.label ORDER BY s.added ASC SEPARATOR '<br />') AS servers,
+			               GROUP_CONCAT(s.label ORDER BY s.added ASC SEPARATOR ', ') AS servers,
 			               COUNT(s.label) AS servers_count
 			          FROM groups g 
 		   LEFT OUTER JOIN servers s

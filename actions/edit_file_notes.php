@@ -15,19 +15,17 @@
 	# limitations under the License.
 	*/
 	
- 	class Version {	
-		////
-		// Application version
-		//
-		// major.minor.revision
-		////
-		const app = "0.4.0 (open source)";
-		
-		////
-		// MySQL schema version
-		//
-		// major.minor.revision
-		////
-		const db = "0.1.1";
- 	}
+	require_once(dirname(__DIR__) . "/classes/Requires.php");
+	
+	Functions::check_required_parameters(array($_POST['id'], $_POST['notes']));
+	
+	if(!CSRF::is_valid(2)) {
+		Error::halt(400, 'bad request', 'Missing required security token.');
+	}
+	
+	MongoConnection::connect();
+	MongoConnection::grid_fs();
+	MongoConnection::grid_fs_update(array("_id" => new MongoId($_POST['id'])), array('$set' => array("notes" => $_POST['notes'])));
+
+	echo '{"updated":true}';
 ?>

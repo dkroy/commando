@@ -19,7 +19,7 @@
 	
 	Functions::check_required_parameters(array($_GET['id']));
 	
-	if(!CSRF::is_valid(METHOD_GET)) {
+	if(!CSRF::is_valid(1, METHOD_GET)) {
 		Error::halt(400, 'bad request', 'Missing required security token.');
 	}
 	

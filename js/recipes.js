@@ -49,7 +49,7 @@ $(document).ready(function() {
 				}, function(response) {
 					if(typeof response !== "undefined") {
 						for(var i = 0; i < recipes.length; i++) {
-							$("#" + recipes[i]).fadeOut("slow", function() {
+							$("#" + recipes[i]).fadeOut(300, function() {
 								$("#" + recipes[this.i]).remove();
 								
 								if(this.i === (recipes.length - 1)) {

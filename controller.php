@@ -55,8 +55,10 @@
 		////
 		// Include the page
 		////
-		if(!@include_once(__DIR__ . "/" . $page)) {
+		if(!file_exists(__DIR__ . "/" . $page)) {
 			Error::halt(404, 'not found', 'File \'' . $page . '\' does not exist.');
 		}
+		
+		include_once(__DIR__ . "/" . $page);
 	}
 ?>

@@ -16,6 +16,7 @@
 
 var timer;
 var editor;
+var notes;
 
 function isRecipeNameUnique(throttle, callback) {
 	clearTimeout(timer);
@@ -60,6 +61,8 @@ function validate_add_recipe() {
 	}
 	
 	editor.save();
+	notes.save();
+	
 	clear_errors();
 	
 	$("#add-recipe-submit").addClass("disabled");
@@ -69,10 +72,10 @@ function validate_add_recipe() {
 		var r = $("#recipe-editor");
 		
 		if($(r).val().length > 0) {
-			$(".CodeMirror").css("border", "1px solid #dddddd");
+			$(r).next(".CodeMirror").css("border", "1px solid #dddddd");
 			$(r).parents(".control-group").removeClass("error");
 		} else {
-			$(".CodeMirror").css("border", "1px solid #B94A48");
+			$(r).next(".CodeMirror").css("border", "1px solid #B94A48");
 			$(r).parents(".control-group").addClass("error");
 		}
 		
@@ -85,15 +88,14 @@ function validate_add_recipe() {
 }
 
 $(document).ready(function() {	
-	var notes = CodeMirror.fromTextArea(document.getElementById('recipe-notes'), {
+	notes = CodeMirror.fromTextArea(document.getElementById('recipe-notes'), {
 		mode: 'markdown',
 		lineNumbers: false,
 		lineWrapping: false,
 		matchBrackets: false,
 		undoDepth: 250
 	});
-	
-	
+
 	editor = CodeMirror.fromTextArea(document.getElementById('recipe-editor'), {
 		mode: 'shell',
 		lineNumbers: true,
@@ -107,8 +109,8 @@ $(document).ready(function() {
 	$("#recipe-interpreter").chosen();
 	$("#recipe-interpreter").trigger("liszt:updated");
 	
-	$("#recipe-notes").next().find(".CodeMirror-scroll").css("min-height", "55px");
-	$("#recipe-notes").next().find(".CodeMirror-scroll").css("max-height", "180px");
+	$("#recipe-notes").next().find(".CodeMirror-scroll").css("min-height", "83px");
+	$("#recipe-notes").next().find(".CodeMirror-scroll").css("max-height", "152px");
 	$("#recipe-notes").autosize();
 	
 	$("#recipe-name").bind("keyup paste", function() {

@@ -64,7 +64,7 @@
 										<option value="<?php echo $interpreter ?>" <?php if($interpreter === $recipe->interpreter): ?>selected="selected"<?php endif; ?>><?php echo ucfirst($interpreter) ?></option>	
 									<?php endforeach; ?>
 								</select>
-				          		<p class="help-block">The interpreter to execute the recipe with. If you wish to write scripts with control structures and functions select an interpreter other than shell.</p>
+				          		<p class="help-block">The interpreter to execute the recipe with.</p>
 				        	</div>
 				        </div>
 				        <div class="control-group">

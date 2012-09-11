@@ -114,7 +114,7 @@
 						<div class="row-fluid">
 					<?php endif; ?>
 	    				<div class="span4 group" id="<?php echo $group->id; ?>" data-content="<?php echo $group->servers; ?>" data-title="<?php if(!empty($group->servers)): ?>Servers In Group<?php endif; ?>">
-							<div class="well well-small box">
+							<div class="well box">
 								<a class="close delete-group">&times;</a>
 	         					<h3>
 	         						<?php if($group->servers_count > 0): ?>

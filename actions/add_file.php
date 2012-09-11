@@ -15,19 +15,19 @@
 	# limitations under the License.
 	*/
 	
- 	class Version {	
-		////
-		// Application version
-		//
-		// major.minor.revision
-		////
-		const app = "0.4.0 (open source)";
+	require_once(dirname(__DIR__) . "/classes/Requires.php");
+	
+	if(isset($_FILES['file'])) {
+		MongoConnection::connect();
+		MongoConnection::grid_fs();
+				
+		$id = MongoConnection::grid_fs_store($_FILES['file']['tmp_name'], array(
+			"real_filename" => $_FILES['file']['name'],
+			"type" => $_FILES['file']['type']
+		));
 		
-		////
-		// MySQL schema version
-		//
-		// major.minor.revision
-		////
-		const db = "0.1.1";
- 	}
+		echo '{"id":"' . $id . '"}';
+	} else {
+		Error::out(400, 'bad request', 'Missing required parameter.');
+	}
 ?>

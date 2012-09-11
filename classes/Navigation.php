@@ -16,11 +16,12 @@
 	*/
 	
  	class Navigation {		
-		private static $pages = array("execute",
-				                      "recipes",
-				                      "servers",
-				                       "groups",
-				                     "settings");
+		private static $pages = array("execute" => "icon-cog",
+				                      "recipes" => "icon-book",
+				                      "files" => "icon-file",
+				                      "servers" => "icon-hdd",
+				                       "groups" => "icon-th",
+				                     "settings" => "icon-check");
 		
 		private static $right = null;
 				
@@ -41,14 +42,14 @@
 			          <div class="nav-collapse">
 			            <ul class="nav">';
 			            
-			             	foreach(Navigation::$pages as $url) {
-			             		if($url === strtolower($current_page)) {
+			             	foreach(Navigation::$pages as $page => $icon) {
+			             		if($page === strtolower($current_page)) {
 			             			echo '<li class="active">';
 			             		} else {
 			             			echo '<li>';
 			             		}
 			             		
-			             		echo '<a href="' . Links::render($url) . '">' . ucfirst($url) . '</a></li>';
+			             		echo '<a href="' . Links::render($page) . '"><i class="' . $icon . '"></i> ' . ucfirst($page) . '</a></li>';
 			             	}     
 			              
 			       echo '</ul>';

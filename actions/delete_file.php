@@ -15,19 +15,17 @@
 	# limitations under the License.
 	*/
 	
- 	class Version {	
-		////
-		// Application version
-		//
-		// major.minor.revision
-		////
-		const app = "0.4.0 (open source)";
+	require_once(dirname(__DIR__) . "/classes/Requires.php");
+	
+	Functions::check_required_parameters(array($_GET['id']));
 		
-		////
-		// MySQL schema version
-		//
-		// major.minor.revision
-		////
-		const db = "0.1.1";
- 	}
+	if(!CSRF::is_valid(1, METHOD_GET)) {
+		Error::halt(400, 'bad request', 'Missing required security token.');
+	}
+
+	MongoConnection::connect();
+	MongoConnection::grid_fs();
+	MongoConnection::grid_fs_delete(array($_GET['id']));
+	
+	Functions::redirect(Links::render("files"));
 ?>

@@ -16,6 +16,7 @@
 
 var timer;
 var editor;
+var notes;
 var recipe_name_original;
 
 function isRecipeNameUnique(throttle, callback) {
@@ -71,6 +72,8 @@ function validate_edit_recipe() {
 	}
 	
 	editor.save();
+	notes.save();
+	
 	clear_errors();
 	
 	$("#edit-recipe-submit").addClass("disabled");
@@ -80,10 +83,10 @@ function validate_edit_recipe() {
 		var r = $("#recipe-editor");
 		
 		if($(r).val().length > 0) {
-			$(".CodeMirror").css("border", "1px solid #dddddd");
+			$(r).next(".CodeMirror").css("border", "1px solid #dddddd");
 			$(r).parents(".control-group").removeClass("error");
 		} else {
-			$(".CodeMirror").css("border", "1px solid #B94A48");
+			$(r).next(".CodeMirror").css("border", "1px solid #B94A48");
 			$(r).parents(".control-group").addClass("error");
 		}
 		
@@ -98,7 +101,7 @@ function validate_edit_recipe() {
 $(document).ready(function() {		
 	recipe_name_original = $("#recipe-name").val();
 	
-	var notes = CodeMirror.fromTextArea(document.getElementById('recipe-notes'), {
+	notes = CodeMirror.fromTextArea(document.getElementById('recipe-notes'), {
 		mode: 'markdown',
 		lineNumbers: false,
 		lineWrapping: false,
@@ -127,8 +130,8 @@ $(document).ready(function() {
 		editor.setOption("mode", $("#recipe-interpreter").val());
 	}
 	
-	$("#recipe-notes").next().find(".CodeMirror-scroll").css("min-height", "55px");
-	$("#recipe-notes").next().find(".CodeMirror-scroll").css("max-height", "180px");
+	$("#recipe-notes").next().find(".CodeMirror-scroll").css("min-height", "83px");
+	$("#recipe-notes").next().find(".CodeMirror-scroll").css("max-height", "152px");
 	$("#recipe-notes").autosize();
 	
 	$("#recipe-name").bind("keyup paste", function() {

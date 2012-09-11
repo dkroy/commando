@@ -201,3 +201,38 @@ img.logo {
 	-webkit-border-radius: 7px 7px 7px 7px;
 	border-radius: 7px 7px 7px 7px;
 }
+
+div#upload-box {
+	color: #A0C8DB;
+	border: 2px dashed #A0D1DB;
+	background-color: #EDF6FA;
+	padding: 20px;
+}
+
+div#upload-box.green {
+	color: #ADD48C;
+	border: 2px dashed #BEDEA2;
+	background-color: #EFFAEB;
+}
+
+div#upload-box h3 {
+	text-align: center;
+	line-height: normal;
+	margin: 0px;
+}
+
+div#upload-box h5 {
+	text-align: center;
+	line-height: normal;
+	margin: 6px 0px 0px 0px;
+}
+
+div.binary-file {
+	padding: 10px;
+	text-align: center;
+}
+
+.hero-unit {
+	background-color: #FCFCFC;
+	padding: 0px;
+}
