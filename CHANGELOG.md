@@ -1,10 +1,9 @@
 ## CHANGELOG
 
 ### v0.4.0 (open source) - *09/26/2012*
-#### MAJOR CHANGES & NEW FEATURES ####
 - **Added Files feature. Upload, view, and download files. Supports plain text and binary.**
-- **Ability to include other recipes in a recipe via rMarkup. See [README.md](https://github.com/nodesocket/commando/blob/master/README.md) for rMarkup syntax and details.**
-- **Added `raw view` and `download` for recipes. Raw view outputs the recipe in plain text.**
+- **Ability to include other recipes in a recipe via rMarkup. See [README.md](https://github.com/nodesocket/commando#recipe-markup-rmarkup) for rMarkup details, syntax and specification.**
+- **Added raw view and download for recipes. Raw view outputs the recipe in plain text.**
 - Upgraded Bootstrap to `2.1.1`.
 - Fixed a **major bug** in executions with multi-line recipes. The fix was to replace `\r\n` with `\n`.
 - Filter recipes by ID, label, or interpreter.
