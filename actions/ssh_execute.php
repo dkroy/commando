@@ -79,7 +79,7 @@
 			
 				if(isset($include_matches) && count($include_matches) > 0) {
 					//Output error details
-					Error::halt(409, 'conflict', 'Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself. Want this feature? <a href="mailto:commando@nodesocket.com">Send us</a> an e-mail.');	
+					Error::halt(409, 'conflict', 'Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself.');	
 				}
 			} else {
 				//Output error details

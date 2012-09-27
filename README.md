@@ -140,23 +140,24 @@ rMarkup is a domain specific language used in recipes. The syntax is:
   <table>
    <thead>
       <tr>
-        <th>Keyword</th>
+        <th>Keyword <i>(case insensitive)</i></th>
         <th>Value</th>
         <th>Example</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>include <i>(case insensitive)</i></td>
+        <td>include</td>
         <td>A 25 character recipe ID.</td>
         <td>{{include:rec_Xb4LI504839d1a6078eF6}}</td>
     </tbody>
   </table>
   
-#### Include #### 
-  
-*Include recipes by ID.*  
-The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. **Only** include recipes that use the **same interpreter**, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself. Want this feature? [Send us](mailto:commando@nodesocket.com) an e-mail.
+#### Include Statement ####
+
+*Include recipes by ID.* 
+   
+The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. **Only** include recipes that use the **same interpreter**, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself.
 
 Current Version
 ---------------
@@ -202,7 +203,7 @@ Sponsored By
 
 [ ![NetDNA](http://netdna.commando.io/images/netdna.png) ] (http://netdna.com)
 
-Follow [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper).
+Follow [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper) on Twitter.
 
 License & Legal
 ---------------
