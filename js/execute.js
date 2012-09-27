@@ -114,7 +114,7 @@ $(document).ready(function() {
 	notes = CodeMirror.fromTextArea(document.getElementById('execute-notes'), {
 		mode: 'markdown',
 		lineNumbers: false,
-		lineWrapping: false,
+		lineWrapping: true,
 		matchBrackets: false,
 		undoDepth: 250
 	});
@@ -126,7 +126,7 @@ $(document).ready(function() {
 	$("#execute-notes").next().find(".CodeMirror-scroll").css("max-height", "152px");
 	$("#execute-notes").autosize();
 	
-	$("#search-results").bind("keyup paste", function() {
+	$("#search-results").bind("keyup input paste", function() {
 		$("#execute-results-container").find("pre").unhighlight();
 		
 		if($(this).val().length === 0) {

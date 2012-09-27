@@ -1,7 +1,51 @@
 ## CHANGELOG
 
-### v0.4.0 (open source) - *09/10/2012*
-{LOT OF CHANGES TO DOCUMENT}
+### v0.4.0 (open source) - *09/26/2012*
+#### MAJOR CHANGES ####
+**- Added Files feature. Upload, view, and download files. Supports plain text and binary.**
+**- Ability to include other recipes in a recipe via rMarkup. See [README.md](https://github.com/nodesocket/commando/blob/master/README.md) for rMarkup syntax and details.**
+**- Added `raw view` and `download` for recipes. Raw view outputs the recipe in plain text.**
+- Upgraded Bootstrap to `2.1.1`.
+- Fixed a **major bug** in executions with multi-line recipes. The fix was to replace `\r\n` with `\n`.
+- Filter recipes by ID, label, or interpreter.
+- `/classes/Navigation.php` added icons to pages.
+- `/recipes.php` now lists the ID in the table with the option to expand.
+- `/servers.php` sorts groups alphabetically by name. The `default` group is forced to the bottom of the page.
+- `/servers.php` lists the number of servers in each group next to the group name.
+- Added interpreter type to the list of recipes in `/execute.php`.
+- Added loading progress bar when viewing a recipe (support for large recipes).
+- Copy a recipe ID to your clipboard in `/view-recipe.php`.
+- Fixed bug in `/classes/Error.php`, now escapes double quotes in returned JSON.
+- Increased the default height of all notes text-areas.
+- Updated `/index.php`, removed GitHub fork ribbon, and restyled. Added Files box. Added logo in `hero-unit.`
+- Added `/img/main-header.png`.
+- `/view-recipe.php` now checks to make sure the recipe exists. If not, returns an error.
+- Removed connecting to MongoDB and selecting the collection in `/execute.php`. This is now handled in `/actions/ssh_execute.php`.
+- Added `/timezone.php` which simply sets the timezone to UTC.
+- `/settings.php` *is daylight savings* uses a new fancy toggle button.
+- Fixed typo/bug in `generate_id()` in `/classes/Functions.php`.
+- Added GridFS functionality to `/classes/MongoConnection.php`.
+- Fixed `/classes/Functions.php` `formatBytes()` to be more accurate.
+- Added `timezone_offset_in_seconds()` and `add_ellipsis_reverse()` to `/classes/Functions.php`.
+- `get_recipes()` in `/classes/MySQLQueries.php` now optionally accepts an array of recipes.
+- `auth()` in `/classes/SSH.php` now returns `true` if successful.
+- `/classes/CSRF.php` supports multiple requests on the same page.
+- `/actions/metrics.php` now sends the running version of *Commando.io*.
+- `/controller.php` checks if the included page exists with `file_exists()`.
+- Reordered/refactored `/classes/Requires.php`.
+- `/classes/Requires.php` checks if `/app.config.php` exists with `file_exists()`.
+- Reordered/refactored `/classes/Prerequisites.php`.
+- `/css/additional-styles.css` refactored class `box-red` and added class `box-green`. Added class `expand-east` and `expand-west`.
+- Removed the class `well-small` from `/groups.php` and `/servers.php`.
+- Removed icon `chevron-up` in `/edit-recipe.php`.
+- Updated `CodeMirror` and all modes to the latest version.
+- Updated `/js/chosen.js` and `/css/chosen.css` to the latest versions.
+- Updated `/js/bootbox.js` to the latest version.
+- Updated `/js/autosize.js` to the latest version.
+- Added `/js/code-pretty/lang-yaml.js`.
+- Added `/js/code-pretty/lang-xq.js`.
+- Added `/js/code-pretty/lang-wiki.js`.
+- Added `/robots.txt` disallows all robots.
 
 ### v0.3.4 (open source) - *08/27/2012*
 - Added `instance_key` which is a unique identifier *(30 characters)* generated for every open source install of Commando.io.
@@ -18,7 +62,7 @@
 ### v0.3.2 (open source) - *08/25/2012*
 - Upgraded Bootstrap to `2.1.0`.
 - A bunch of CSS cleanup and fixes in styling and HTML markup.
-- Added `/classes/CSRF.php' which combats CSRF attacks.
+- Added `/classes/CSRF.php` which combats CSRF attacks.
 - Added `/classes/Sessions.php` which provides session support for `/classes/CSRF.php` and future login and users.
 - `/actions/ssh_execute.php` and `/actions/delete_recipe.php` implement CSRF protection.
 - `/js/common.js` changed AJAX timeout from 15 seconds to 60 seconds. Allows for longer running executions.

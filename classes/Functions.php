@@ -58,7 +58,7 @@
  				// If prefix is less than 3 characters, pad with '_' so it is exactly 3 characters
  				////
  				if(strlen($prefix) < 3) {
- 					$prefix = str_pad($prefix, 3, '__', STR_PAD_RIGHT);
+ 					$prefix = str_pad($prefix, 3, '_', STR_PAD_RIGHT);
  				}
  				
  				////
@@ -102,6 +102,14 @@
 			return $text;
 		}
 		
+		public static function add_ellipsis_reverse($text, $max_length) {
+			if(strlen($text) > $max_length) {
+				return ('…' . substr($text, -1 * $max_length));
+			}
+			
+			return $text;
+		}
+		
 		public static function get_timezone_offset() {
 			if(defined("TIMEZONE_OFFSET")) {
 				return TIMEZONE_OFFSET;
@@ -119,7 +127,7 @@
 			$settings = $row;
 			
 			if(isset($settings->data->timezone_offset)) {
-				if(isset($settings->data->timezone_daylight_savings) && $settings->data->timezone_daylight_savings) {
+				if(isset($settings->data->timezone_daylight_savings) && $settings->data->timezone_daylight_savings === "true") {
 					 $hours = substr($settings->data->timezone_offset, 0, 3);
 				     $offsetted_hours = ($hours + 1);
 				     
@@ -140,7 +148,7 @@
 			return TIMEZONE_OFFSET;
 		}
 		
-		public static function timezone_offset_in_second() {
+		public static function timezone_offset_in_seconds() {
 			$sign = substr(Functions::get_timezone_offset(), 0, 1);
 			$hours = substr(Functions::get_timezone_offset(), 1, 2);
 			$minutes = substr(Functions::get_timezone_offset(), 4, 2);

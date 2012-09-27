@@ -1,4 +1,4 @@
-// Autosize 1.11 - jQuery plugin for textareas
+// Autosize 1.13 - jQuery plugin for textareas
 // (c) 2012 Jack Moore - jacklmoore.com
 // license: www.opensource.org/licenses/mit-license.php
 
@@ -7,7 +7,7 @@
 	hidden = 'hidden',
 	borderBox = 'border-box',
 	lineHeight = 'lineHeight',
-	copy = '<textarea tabindex="-1" style="position:absolute; top:-9999px; left:-9999px; right:auto; bottom:auto; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; word-wrap:break-word; height:0 !important; min-height:0 !important; overflow:hidden;">',
+	copy = '<textarea tabindex="-1" style="position:absolute; top:-9999px; left:-9999px; right:auto; bottom:auto; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; word-wrap:break-word; height:0 !important; min-height:0 !important; overflow:hidden;"/>',
 	// line-height is omitted because IE7/IE8 doesn't return the correct value.
 	copyStyle = [
 		'fontFamily',
@@ -35,7 +35,9 @@
 			copyStyle.push(lineHeight);
 		}
 
-		$.fn.autosize = function (className) {
+		$.fn.autosize = function (options) {
+			options = options || {};
+
 			return this.each(function () {
 				var
 				ta = this,
@@ -46,7 +48,9 @@
 				active,
 				i = copyStyle.length,
 				resize,
-				boxOffset = 0;
+				boxOffset = 0,
+				value = ta.value,
+				callback = $.isFunction(options.callback);
 
 				if ($ta.css('box-sizing') === borderBox || $ta.css('-moz-box-sizing') === borderBox || $ta.css('-webkit-box-sizing') === borderBox){
 					boxOffset = $ta.outerHeight() - $ta.height();
@@ -57,7 +61,7 @@
 					// if autosize is being applied to a mirror element, exit.
 					return;
 				} else {
-					mirror = $(copy).data('ismirror', true).addClass(className || 'autosizejs')[0];
+					mirror = $(copy).data('ismirror', true).addClass(options.className || 'autosizejs')[0];
 
 					resize = $ta.css('resize') === 'none' ? 'none' : 'horizontal';
 
@@ -75,15 +79,14 @@
 				// Using mainly bare JS in this function because it is going
 				// to fire very often while typing, and needs to very efficient.
 				function adjust() {
-					var height, overflow;
+					var height, overflow, original;
 					// the active flag keeps IE from tripping all over itself.  Otherwise
 					// actions in the adjust function will cause IE to call adjust again.
 					if (!active) {
 						active = true;
-
 						mirror.value = ta.value;
-
 						mirror.style.overflowY = ta.style.overflowY;
+						original = parseInt(ta.style.height,10);
 
 						// Update the width in case the original textarea width has changed
 						mirror.style.width = $ta.css('width');
@@ -103,9 +106,15 @@
 						} else if (height < minHeight) {
 							height = minHeight;
 						}
+						height += boxOffset;
 						ta.style.overflowY = overflow;
 
-						ta.style.height = height + boxOffset + 'px';
+						if (original !== height) {
+							ta.style.height = height + 'px';
+							if (callback) {
+								options.callback.call(ta);
+							}
+						}
 						
 						// This small timeout gives IE a chance to draw it's scrollbar
 						// before adjust can be run again (prevents an infinite loop).
@@ -146,8 +155,10 @@
 				// Allow for manual triggering if needed.
 				$ta.bind('autosize', adjust);
 
-				// Hack to get Chrome to reflow it's text.
-				$ta.text($ta.text());
+				// The textarea overflow is now hidden.  But Chrome doesn't reflow the text after the scrollbars are removed.
+				// This is a hack to get Chrome to reflow it's text.
+				ta.value = '';
+				ta.value = value;
 
 				// Call adjust in case the textarea already contains text.
 				adjust();
@@ -155,7 +166,7 @@
 		};
 	} else {
 		// Makes no changes for older browsers (FireFox3- and Safari4-)
-		$.fn.autosize = function () {
+		$.fn.autosize = function (callback) {
 			return this;
 		};
 	}

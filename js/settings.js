@@ -18,6 +18,13 @@ function validate_edit_settings() {
 	clear_errors();
 	
 	$(".modal-footer .btn").addClass("disabled");
+	
+	$('<input>').attr({
+    	type: 'hidden',
+    	name: 'timezone_daylight_savings',
+    	value: $("#timezone-daylight-savings").find(".btn-primary").attr("data-value")
+	}).appendTo("#form-settings");
+	
 	$("#form-settings").submit();
 }
 
@@ -28,6 +35,8 @@ $(document).ready(function() {
 
 	$("#default-interpreter").chosen();
 	$("#default-interpreter").trigger("liszt:updated");
+	
+	$("#timezone-daylight-savings").toggleButtons();
 	
 	Request.ajax("/actions/get_public_ssh_key.php", {}, function(response) {
 		if(typeof response !== "undefined") {

@@ -91,7 +91,7 @@ $(document).ready(function() {
 	notes = CodeMirror.fromTextArea(document.getElementById('recipe-notes'), {
 		mode: 'markdown',
 		lineNumbers: false,
-		lineWrapping: false,
+		lineWrapping: true,
 		matchBrackets: false,
 		undoDepth: 250
 	});
@@ -113,7 +113,7 @@ $(document).ready(function() {
 	$("#recipe-notes").next().find(".CodeMirror-scroll").css("max-height", "152px");
 	$("#recipe-notes").autosize();
 	
-	$("#recipe-name").bind("keyup paste", function() {
+	$("#recipe-name").bind("keyup input paste", function() {
 		isRecipeNameUnique(true);
 	});
 	

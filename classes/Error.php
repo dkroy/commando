@@ -20,21 +20,21 @@
 		//	Stop execution, output error json object
 		////
 		public static function halt($status_code, $status, $message) {
-			die('{"error":{"status_code":' . $status_code . ',"status":"' . $status . '","message":"' . $message . '"}}');
+			die('{"error":{"status_code":' . $status_code . ',"status":"' . $status . '","message":"' . addcslashes($message, '"') . '"}}');
 		}
 		
 		////
 		//	Output error object
 		////
 		public static function out($status_code, $status, $message) {
-			return '{"error":{"status_code":' . $status_code . ',"status":"' . $status . '","message":"' . $message . '"}}';
+			return '{"error":{"status_code":' . $status_code . ',"status":"' . $status . '","message":"' . addcslashes($message, '"') . '"}}';
 		}
 		
 		////
 		//	Fatal database query exception occurred, stop execution, output error json object
 		////
 		public static function db_halt($status_code, $status, $message, $function_context, $sql_error_details, $sql_query) {					
-			die('{"error":{"status_code":' . $status_code . ',"status":"' . $status . '","message":"' . $message . '","sql_message":"' . $sql_error_details . '"}}');
+			die('{"error":{"status_code":' . $status_code . ',"status":"' . $status . '","message":"' . addcslashes($message, '"') . '","sql_message":"' . addcslashes($sql_error_details, '"') . '"}}');
 			
 			////
 			// Right now we, aren't doing anything with $function_context, and $sql_query.

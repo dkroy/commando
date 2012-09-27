@@ -26,6 +26,8 @@
 			"type" => $_FILES['file']['type']
 		));
 		
+		MongoConnection::close();
+		
 		echo '{"id":"' . $id . '"}';
 	} else {
 		Error::out(400, 'bad request', 'Missing required parameter.');

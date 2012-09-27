@@ -90,12 +90,14 @@ function validate_server() {
 			
 			if($(server_form).attr("id") === "form-add-server" && $(ssh_username).val().toLowerCase() === "root") {
 				$(server_modal).modal("hide");
+			
+				bootbox.backdrop("static");
 				
 				bootbox.setIcons({
 					"CONFIRM" : "icon-ok-sign icon-white"
         		});
 				
-				bootbox.confirm("It is recommended to SSH with a user other than root for security reasons. Are you sure you wish to connect with root?", function(confirmed) {
+				bootbox.confirm("Are you sure you wish to use the root user?", function(confirmed) {
 					if(confirmed) {
 						$(server_form).submit();
 					} else {
@@ -120,6 +122,10 @@ var ssh_connect = function(index) {
 		$(this).children(".box").removeClass("box-red");
 	}
 	
+	if($(this).children(".box").hasClass("box-green")) {
+		$(this).children(".box").removeClass("box-green");
+	}
+	
 	if($(this).find("div.ssh-progress:hidden")) {
 		if($(this).find("a.ssh-status:visible")) {
 			$(this).find("a.ssh-status").hide();
@@ -136,6 +142,7 @@ var ssh_connect = function(index) {
 	}, function(response) {
 		if(typeof response === "undefined" || response.error) {
 			$(this.server).find("div.ssh-progress").slideUp(300, function() {
+				$(this.server).children(".box").removeClass("box-green");
 				$(this.server).children(".box").addClass("box-red");
 				
 				$(this.server).find("a.ssh-status")
@@ -152,6 +159,7 @@ var ssh_connect = function(index) {
 		} else {
 			$(this.server).find("div.ssh-progress").slideUp(300, function() {
 				$(this.server).children(".box").removeClass("box-red");
+				$(this.server).children(".box").addClass("box-green");
 			
 				$(this.server).find("a.ssh-status")
 				              .html("SSH Connected")
@@ -233,7 +241,7 @@ $(document).ready(function() {
 	
 	$("#add-server-tags_tag, #edit-server-tags_tag").upperCase();
 	
-	$("#add-server-label, #edit-server-label").bind("keyup paste", function() {
+	$("#add-server-label, #edit-server-label").bind("keyup input paste", function() {
 		isServerLabelUnique(true);
 	});
 	
@@ -258,11 +266,11 @@ $(document).ready(function() {
 		
 		Request.ajax("/actions/get_settings.php", {}, function(response) {
 			if(typeof response !== "undefined") {
-				if(response !== null && response.data !== "undefined" && response.data.default_ssh_username.length > 0) {
+				if(response !== null && typeof response.data !== "undefined" && typeof response.data.default_ssh_username !== "undefined") {
 					$("#add-ssh-username").val(response.data.default_ssh_username);
 				}
 				
-				if(response !== null && response.data !== "undefined" && response.data.default_ssh_port.length > 0) {
+				if(response !== null && typeof response.data !== "undefined" && typeof response.data.default_ssh_port !== "undefined") {
 					$("#add-ssh-port").val(response.data.default_ssh_port);
 				}
 				

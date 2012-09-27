@@ -17,10 +17,6 @@
 	
 	($_SERVER['SCRIPT_NAME'] !== "/controller.php") ? require_once(__DIR__ . "/classes/Requires.php") : Links::$pretty = true;
 	
-	//Make sure we can connect and select the executions collection in MongoDB
-	MongoConnection::connect();
-	MongoConnection::select_collection("executions");
-	
 	//Get groups
 	$groups = array();
 	$result = MySQLQueries::get_groups();

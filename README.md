@@ -1,4 +1,7 @@
-# Commando.io - Dev-Ops Evolved. #
+Commando.io - Dev-Ops Evolved.
+------------------------------
+
+(http://netdna.commando.io/images/main-header.png)
 
 Commando.io is a web-based interface for streamlining the use of SSH for deployments and system administration tasks across groups of remote servers.
 
@@ -23,7 +26,7 @@ Important Notes
 
 * Users and log-in. **Again, please do not expose Commando.io publicly**. Run it locally, and use web-server authentication for now. A fully featured users and log-in system is coming.
 * The ability to view execution history is not implemented. Execution history is written to *MongoDB*, but there is not an interface to view it yet.
-* SSH connections and executions still happen via `PHP` using the `ssh2` extension. This is going to be replaced with a separate dedicated `node.js` SSH worker using websockets. PHP will not make SSH connections and executions in the near future.
+* SSH connections and executions still happen via `PHP` using the `ssh2` extension. This is going to be replaced with a separate dedicated `node.js` SSH worker using websockets. PHP will not make SSH connections and executions in the future.
 
 Requirements
 ------------
@@ -54,7 +57,7 @@ Right now installation is a bit involved and brutal, but once we iron out Comman
 
 **1.)** Clone the repo, `git clone git://github.com/nodesocket/commando.git`, or [download the latest release](https://github.com/nodesocket/commando/tarball/master).
 
-**2.)** Execute `$ php -f install.php`, or view `/install.php` via a browser. *The install script requires write access to the filesystem to copy and update configuration files.*
+**2.)** Execute `$ php -f install.php`, or view `/install.php` via a browser. *The installer script requires write access to the filesystem to copy and update configuration files.*
 
 **3.)** Delete the installer script `/install.php`. *It should not present a security risk, but it is still recommended to delete it.*
 
@@ -110,7 +113,7 @@ location ~ ^[^.]+$ {
     fastcgi_param SCRIPT_NAME /controller.php;
     fastcgi_param PATH_INFO $uri;
     
-    #Rest of the standard fast-cgi directives for PHP
+    # The rest of the standard fast-cgi directives for PHP
 }
 ````
 
@@ -123,16 +126,50 @@ $HTTP["host"] =~ "^(your-domain-here\.com)$" {
 }
 ````
 
+Recipe Markup (rMarkup)
+-----------------------
+
+rMarkup is a domain specific language used in recipes. The syntax is:
+
+````
+{{keyword:value}}
+````
+
+#### Complete Specification Table ####
+
+  <table>
+   <thead>
+      <tr>
+        <th>Keyword</th>
+        <th>Value</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>include <i>(case insensitive)</i></td>
+        <td>A 25 character recipe ID.</td>
+        <td>{{include:rec_Xb4LI504839d1a6078eF6}}</td>
+    </tbody>
+  </table>
+  
+#### Include Keyword ####  
+  
+*Include recipes by ID.*
+The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. **Only** include recipes that use the **same interpreter**, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself. Want this feature? [Send us](commando@nodesocket.com) an e-mail.
+
 Current Version
 ---------------
+
 https://github.com/nodesocket/commando/blob/master/VERSION
 
 Changelog
 ---------
+
 https://github.com/nodesocket/commando/blob/master/CHANGELOG.md
 
 Support, Bugs, And Feature Requests
------------------------
+-----------------------------------
 
 Create issues on GitHub (https://github.com/nodesocket/commando/issues).
 

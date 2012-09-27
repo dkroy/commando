@@ -23,10 +23,15 @@
 	MongoConnection::connect();
 	MongoConnection::grid_fs();
 	$results = MongoConnection::grid_fs_find(array("_id" => new MongoId($_GET['param1'])));
+	MongoConnection::close();
 	
 	foreach($results as $result) {
 		$file = $result->file;
 		$file['data'] = $result->getResource();
+	}
+	
+	if(empty($file)) {
+		Error::halt(404, 'not found', 'File \'' . $_GET['param1'] . '\' does not exist.');
 	}
 	
 	$content = null;
@@ -34,7 +39,10 @@
 		$content .= fread($file['data'], 8192);
 	}
 		
-	header("Content-Type: " . $file['type']);
+	if(!empty($file['type'])) {
+		header("Content-Type: " . $file['type']);
+	}
+    
     header("Content-Description: File Transfer");
     header("Content-Disposition: attachment; filename=\"" . $file['real_filename'] . "\"");
     

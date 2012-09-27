@@ -105,7 +105,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#add-group-name, #edit-group-name").bind("keyup paste", function() {
+	$("#add-group-name, #edit-group-name").bind("keyup input paste", function() {
 		isGroupNameUnique(true);
 	});
 	

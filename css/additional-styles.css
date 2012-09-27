@@ -51,27 +51,12 @@ div.box:hover {
 	border-bottom: 1px solid #d0d0d0;
 }
 
-div.box.box-red {
-	background-color: #F0DBD9;
-	background:-moz-linear-gradient(top, #F0B6B4 0%, #F0DBD9 20%);
-	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%, #F0B6B4),color-stop(20%, #F0DBD9));
-	background:-webkit-linear-gradient(top, #F0B6B4 0%, #F0DBD9 20%); 
-	background:-o-linear-gradient(top, #F0B6B4 0%, #F0DBD9 20%);
-	background:-ms-linear-gradient(top, #F0B6B4 0%, #F0DBD9 20%);
-	background:linear-gradient(top, #F0B6B4 0%, #F0DBD9 20%);
-	border-bottom: 1px solid #F0DBD9;
+div.box.box-green {
+	border-left: 10px solid #93D993;
 }
 
-div.box.box-red:hover {
-	background-color: #F0D3D5;
-	background:-moz-linear-gradient(top, #F09A9A 0%, #F0D3D5 20%);
-	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%, #F09A9A),color-stop(20%, #F0D3D5));
-	background:-webkit-linear-gradient(top, #F09A9A 0%, #F0D3D5 20%); 
-	background:-o-linear-gradient(top, #F09A9A 0%, #F0D3D5 20%);
-	background:-ms-linear-gradient(top, #F09A9A 0%, #F0D3D5 20%);
-	background:linear-gradient(top, #F09A9A 0%, #F0D3D5 20%);
-	cursor: pointer;
-	border-bottom: 1px solid #F0D3D5;
+div.box.box-red {
+	border-left: 10px solid #E3938F;
 }
 
 a.delete-server {
@@ -235,4 +220,12 @@ div.binary-file {
 .hero-unit {
 	background-color: #FCFCFC;
 	padding: 0px;
+}
+
+.expand-east {
+	cursor: e-resize !important;
+}
+
+.expand-west {
+	cursor: w-resize !important;
 }

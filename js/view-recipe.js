@@ -25,6 +25,14 @@ $(document).ready(function() {
 	$("#contents-loading").hide();
 	$("#recipe-contents").slideDown(300);
 	
+	$("#recipe-id").zclip({
+        path: "/js/zclip.swf",
+        copy: $("#recipe-id").html(),
+        afterCopy: function() {
+        	$("#recipe-id").effect("highlight", {}, 1000);
+        }
+    });
+	
 	$('#recipe-versions').change(function() {
   		window.location = $(this).val();
 	});

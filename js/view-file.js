@@ -17,15 +17,25 @@
 var notes;
 
 $(document).ready(function() {
+	$(".tip").tooltip();
+	
 	prettyPrint();
 	
 	$("#contents-loading").hide();
 	$("#file-contents").slideDown(300);
 	
+	$("#file-id").zclip({
+        path: "/js/zclip.swf",
+        copy: $("#file-id").html(),
+        afterCopy: function() {
+        	$("#file-id").effect("highlight", {}, 1000);
+        }
+    });
+	
 	notes = CodeMirror.fromTextArea(document.getElementById('file-notes'), {
 		mode: 'markdown',
 		lineNumbers: false,
-		lineWrapping: false,
+		lineWrapping: true,
 		matchBrackets: false,
 		undoDepth: 250
 	});

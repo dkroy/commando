@@ -38,7 +38,7 @@
       		<h1 class="header" style="float: left;"><?php echo $recipe->name ?></h1> 
      	 
      		<div style="float: right;">
-     	 		<a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>" class="btn btn-large"><i class="icon-chevron-up"></i> <?php echo substr($recipe->version, 0, 10) ?></a>
+     	 		<a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>" class="btn btn-large"><?php echo $recipe->id ?></a>
      	 	</div>
       	</div>
       </div>

@@ -15,6 +15,15 @@
 */
 
 $(document).ready(function() {
+	$(".tip").tooltip({
+		delay: { show: 600, hide: 0 }
+	});
+	
+	$(".expand-recipe-id").on("click", function() {
+		$(this).html($(this).parents("tr").attr("id"));
+		$(this).removeClass("expand-east");
+	});
+	
 	check_uncheck($("#recipe-delete-all-check"), $(".recipe-delete-check"), function() {
 		if($(".recipe-delete-check:checked").length > 0) {
 			$("#delete-recipes").removeClass("disabled");
@@ -22,6 +31,32 @@ $(document).ready(function() {
 			$("#delete-recipes").addClass("disabled");
 		}
 	});
+	
+    $("#search-recipes").bind("keyup input paste", function() {
+	    var search_value = $(this).val().toUpperCase();
+	    var $recipes = $("table tr");
+	
+	    if(search_value === '') {
+	        $recipes.show();
+	        return;
+	    }
+	
+	    $recipes.each(function(index) {
+	        if(index !== 0) {
+	            $row = $(this);
+	            
+	            var id = $row.find("td").eq(2).parents("tr").attr("id").toUpperCase();
+	            var name = $row.find("td").eq(3).children("a").html().toUpperCase();
+	            var interpreter = $row.find("td").eq(4).text().toUpperCase();
+	
+	            if ((id.indexOf(search_value) > -1) || (name.indexOf(search_value) > -1) || (interpreter.indexOf(search_value) > -1)) {
+	                $row.show();
+	            } else {
+	                $row.hide();
+	            }
+	        }
+	    });
+    });
 	
 	$(".recipe-delete-check").click(function() {
 		if($(".recipe-delete-check:checked").length > 0) {

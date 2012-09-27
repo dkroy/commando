@@ -275,7 +275,7 @@
 						         		<div class="tags">
 											<?php
 												foreach(explode(",", $server->tags) as $tag) {
-													echo '<span class="label">' . $tag . '</span> ';
+													echo '<span class="label label-info">' . $tag . '</span> ';
 												}
 											?>
 										</div>

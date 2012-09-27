@@ -62,6 +62,10 @@ function get_checked_values(p_elements) {
 	return checked;
 }
 
+function escapeRegex(value) {
+	return value.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+}
+
 /***********************************************/
 /*              AJAX Request Object            */
 /***********************************************/
@@ -278,6 +282,19 @@ if(jQuery) (function() {
 			$("html, body").animate({
 				scrollTop: ($(this).offset().top - 60)
 			}, 200);
+		},
+		toggleButtons: function() {
+			$(this).find(".btn").on("click", function() {
+				var element = $(this);
+				
+				if($(element).hasClass("btn-primary")) {
+					$(element).removeClass("btn-primary");
+					$(element).siblings().addClass("btn-primary");
+				} else {
+					$(element).addClass("btn-primary");
+					$(element).siblings().removeClass("btn-primary");
+				}
+			});
 		}
 	});
 })(jQuery);

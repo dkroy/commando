@@ -30,6 +30,7 @@
 	MongoConnection::connect();
 	MongoConnection::grid_fs();
 	MongoConnection::grid_fs_delete($ids);
+	MongoConnection::close();
 	
 	echo '{"deleted":' . count($ids) . '}';
 ?>

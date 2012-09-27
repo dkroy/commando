@@ -142,7 +142,17 @@
 				        <div class="control-group">
 				        	<label class="control-label" for="timezone-daylight-savings">Is Daylight Savings</label>
 				        	<div class="controls">			        		
-				        		<input type="checkbox" id="timezone-daylight-savings" name="timezone_daylight_savings" value="true" <?php echo isset($settings->data->timezone_daylight_savings) ? 'checked="checked"' : null ?> />
+				        		<div class="btn-group" id="timezone-daylight-savings">
+				        			<?php
+				        				if(isset($settings->data->timezone_daylight_savings) && $settings->data->timezone_daylight_savings === "true") {
+				        					echo '<a class="btn btn-primary" data-value="true">Yes</a>
+												  <a class="btn" data-value="false">No</a>';
+				        				} else {
+				        					echo '<a class="btn" data-value="true">Yes</a>
+												  <a class="btn btn-primary" data-value="false">No</a>';
+				        				}
+				        			?>
+								</div>
 				        		<p class="help-block">Add one hour to the timezone offset in observance of daylight savings.</p>
 				        	</div>
 				        </div>

@@ -448,10 +448,11 @@
 		}
 		
 		////
-		// Select the latest (head) version of all recipes
+		// Select the latest (head) version of recipes
 		////
-		public static function get_recipes() {
-			$SQL = "SELECT r.`id`,
+		public static function get_recipes(array $recipe_ids = array()) {
+			if(empty($recipe_ids)) {
+				$SQL = "SELECT r.`id`,
 						   r.name,
 						   rv.version,
 						   rv.interpreter,
@@ -466,9 +467,32 @@
 			           AND rh.recipe_version = rv.`id`
 			           AND r.`id` = rv.recipe
 			      ORDER BY r.added ASC";
+			} else {
+				//Smart quote each recipe id
+				$recipe_ids = array_map(function($element) {
+					return MySQLConnection::smart_quote($element);
+				}, $recipe_ids);
+				
+				$SQL = "SELECT r.`id`,
+						   	   r.name,
+						   	   rv.version,
+						   	   rv.interpreter,
+						   	   rv.notes,
+						   	   rv.content,
+			               	   CONVERT_TZ(r.added, '+00:00', " . MySQLConnection::smart_quote(Functions::get_timezone_offset()). ") AS added,
+			               	   CONVERT_TZ(r.modified, '+00:00', " . MySQLConnection::smart_quote(Functions::get_timezone_offset()). ") AS modified
+			          	  FROM recipe_heads rh,
+			          	       recipes r,
+			               	   recipe_versions rv
+			         	 WHERE rh.recipe = r.`id`
+			           	   AND rh.recipe_version = rv.`id`
+			               AND r.`id` = rv.recipe
+			               AND r.`id` IN (" . implode(',', $recipe_ids) . ")
+			          ORDER BY r.added ASC";
+			}
 			
 			$result = MySQLConnection::query($SQL) or Error::db_halt(500, 'internal server error', 'Unable to execute request, SQL query error.', __FUNCTION__, MySQLConnection::error(), $SQL);
-			return $result;	 
+			return $result; 
 		}
 		
 		////

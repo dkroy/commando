@@ -39,8 +39,6 @@
 			$this->hostname = $hostname;
 			$this->port = $port;
 			$this->fingerprint = ssh2_fingerprint($this->ssh_connection, SSH2_FINGERPRINT_SHA1 | SSH2_FINGERPRINT_HEX);
-			
-			return true;
  		}
  		
  		public function auth($username, $public_key_path, $private_key_path, $throw_error = false) {

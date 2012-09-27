@@ -39,15 +39,15 @@
 		 	if($method_get) {
  				if(isset($_SESSION['security_token_' . $count]) && isset($_GET['security_token_' . $count]) && $_SESSION['security_token_' . $count] === $_GET['security_token_' . $count]) {
  					return true;
- 				} else {
- 					return false;
  				}
+ 				
+ 				return false;
  			} else {
  				if(isset($_SESSION['security_token_' . $count]) && isset($_POST['security_token_' . $count]) && $_SESSION['security_token_'. $count] === $_POST['security_token_' . $count]) {
  					return true;
- 				} else {
- 					return false;
  				}
+ 				
+ 				return false;
  			}
  		}
 	}

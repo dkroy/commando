@@ -49,7 +49,7 @@
 					for($i = 0; $i < count($query_params); $i++) {
 						$params['param' . ($i + 1)] = $query_params[$i];
 					}
-				
+
 					return $page . ".php?" . http_build_query($params);
 				}
 				

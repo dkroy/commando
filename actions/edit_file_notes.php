@@ -26,6 +26,7 @@
 	MongoConnection::connect();
 	MongoConnection::grid_fs();
 	MongoConnection::grid_fs_update(array("_id" => new MongoId($_POST['id'])), array('$set' => array("notes" => $_POST['notes'])));
+	MongoConnection::close();
 
 	echo '{"updated":true}';
 ?>

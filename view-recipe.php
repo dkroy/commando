@@ -23,6 +23,10 @@
 	
 	$result = MySQLQueries::get_recipe_head_version($_GET['param1']);
 	$head = MySQLConnection::fetch_object($result);
+	
+	if(empty($head)) {
+		Error::halt(404, 'not found', 'Recipe \'' . $_GET['param1'] . '\' does not exist.');
+	}
 
 	if(isset($_GET['param2']) && !empty($_GET['param2'])) {
 		$recipe_version = $_GET['param2'];
@@ -32,6 +36,11 @@
 	
 	$result = MySQLQueries::get_recipe_by_version($_GET['param1'], $recipe_version);
 	$recipe = MySQLConnection::fetch_object($result);
+	
+	if(empty($recipe)) {
+		Error::halt(404, 'not found', 'Recipe version \'' . $recipe_version . '\' does not exist.');
+	}
+	
 	$recipe = Functions::format_dates($recipe);
 	
 	//Get recipe versions
@@ -83,7 +92,7 @@
       		<h1 class="header" style="float: left;"><?php echo $recipe->name ?></h1> 
      	 
      	 	<div style="float: right;">
-     	 		 <a class="btn btn-large disabled"><?php if($recipe->recipe_version === $head->recipe_version): ?><i class="icon-chevron-up"></i> <?php endif; ?><?php echo substr($recipe->version, 0, 10) ?></a>
+     	 		 <a id="recipe-id" class="btn btn-large disabled tip" rel="tooltip" data-placement="top" data-original-title="Copy to clipboard."><?php echo $recipe->id ?></a>
      	 	</div>
      	 </div>
       </div>
@@ -108,6 +117,35 @@
     	<div class="span12">
     		<div class="well">
     			<div class="clear"></div>
+    			<?php
+		  			preg_match_all('/\{\{include:([a-zA-Z0-9_]{25})\}\}/i', $recipe->content, $include_matches, PREG_PATTERN_ORDER);
+					preg_match_all('/\{\{file:([a-zA-Z0-9]{24})\}\}/i', $recipe->content, $files_matches, PREG_PATTERN_ORDER);
+					
+					if(isset($include_matches[1])) {
+						$include_matches = array_unique($include_matches[1]);
+					}
+					
+					if(isset($files_matches[1])) {
+						$files_matches = array_unique($files_matches[1]);
+					}
+					
+		  			if(count($include_matches) > 0 && count($files_matches) > 0):
+		  		?>
+		  			<div class="alert alert-info">
+						<h4>Notice!</h4>
+						This recipe version <strong>includes</strong> <?php echo (count($include_matches) === 1) ? 'a recipe' : 'recipes' ?> and <strong>transfers</strong> <?php echo (count($files_matches) === 1) ? 'a file.' : 'files.' ?>
+		  			</div>
+		  		<?php elseif (count($include_matches) > 0): ?>
+		  			<div class="alert alert-info">
+						<h4>Notice!</h4>
+						This recipe version <strong>includes</strong> <?php echo (count($include_matches) === 1) ? 'a recipe.' : 'recipes.' ?>
+		  			</div>
+		  		<?php elseif (count($files_matches)): ?>
+		  			<div class="alert alert-info">
+						<h4>Notice!</h4>
+						This recipe version <strong>transfers</strong> <?php echo (count($files_matches) === 1) ? 'a file.' : 'files.' ?>
+		  			</div>
+		  		<?php endif; ?>
     			<?php if(!empty($recipe->notes)): ?>
     				<div id="recipe-notes" class="alert alert-grey fade in">
 				 		<a class="close" data-dismiss="alert">&times;</a>
@@ -132,7 +170,7 @@
 	                		<ul class="navbar-form nav pull-right">
 	                			<?php if($recipe->recipe_version !== $head->recipe_version): ?>
 	                				<li>
-	                					<a href="/actions/edit_recipe_head.php?id=<?php echo $recipe->id ?>&version=<?php echo $recipe->recipe_version ?>&<?php echo CSRF::generate_get_parameter() ?>" rel="tooltip" class="tip" data-placement="top" data-original-title="Promote this version to head."><i class="icon-chevron-up"></i> Make Head</a>
+	                					<a href="/actions/edit_recipe_head.php?id=<?php echo $recipe->id ?>&amp;version=<?php echo $recipe->recipe_version ?>&amp;<?php echo CSRF::generate_get_parameter() ?>" rel="tooltip" class="tip" data-placement="top" data-original-title="Promote this version to head."><i class="icon-chevron-up"></i> Make Head</a>
 	                				</li>
 	                				<li class="divider-vertical"></li>
 	                			<?php endif; ?>
@@ -162,6 +200,15 @@
 					<div style="float: right; position: relative; top: 0px; right: 0px;">
 						<a href="<?php
 							if($recipe->recipe_version === $head->recipe_version) {
+								echo Links::render("download-recipe", array($recipe->id));
+							} else {
+								echo Links::render("download-recipe", array($recipe->id, $recipe->recipe_version));
+							}
+						?>
+						" class="btn btn-medium"><i class="icon-download-alt"></i> Download</a>
+						
+						<a href="<?php
+							if($recipe->recipe_version === $head->recipe_version) {
 								echo Links::render("view-recipe-raw", array($recipe->id));
 							} else {
 								echo Links::render("view-recipe-raw", array($recipe->id, $recipe->recipe_version));
@@ -173,7 +220,7 @@
     			</div>
     		</div>
 		</div>
-	  </div>   
+	  </div>
 <?php
-	Footer::render(array("chosen", "code-pretty", "bootbox", "view-recipe"));
+	Footer::render(array("chosen", "code-pretty", "zclip", "bootbox", "view-recipe"));
 ?>

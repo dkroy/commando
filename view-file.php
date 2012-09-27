@@ -25,11 +25,16 @@
 	MongoConnection::connect();
 	MongoConnection::grid_fs();
 	$results = MongoConnection::grid_fs_find(array("_id" => new MongoId($_GET['param1'])));
+	MongoConnection::close();
 	
 	foreach($results as $result) {
-		$result->file['uploadDate'] = date(DATE_FORMAT, ($result->file['uploadDate']->sec + Functions::timezone_offset_in_second()));
+		$result->file['uploadDate'] = date(DATE_FORMAT, ($result->file['uploadDate']->sec + Functions::timezone_offset_in_seconds()));
 		$file = $result->file;
 		$file['data'] = $result->getResource();
+	}
+	
+	if(empty($file)) {
+		Error::halt(404, 'not found', 'File \'' . $_GET['param1'] . '\' does not exist.');
 	}
 	
 	$data = null;
@@ -57,7 +62,7 @@
       		<h1 class="header" style="float: left;"><?php echo $file['real_filename'] ?></h1> 
      	 
      	 	<div style="float: right;">
-     	 		 <a class="btn btn-large disabled"><?php echo $file['_id'] ?></a>
+     	 		 <a id="file-id" class="btn btn-large disabled tip" rel="tooltip" data-placement="top" data-original-title="Copy to clipboard."><?php echo $file['_id'] ?></a>
      	 	</div>
      	 </div>
       </div>
@@ -128,14 +133,14 @@
 					</div>
 					<div id="file-contents" style="display: none;">
 						<div style="float: right; position: relative; top: 0px; right: 0px;">
-							<a href="<?php echo Links::render("download-file", array($file['_id'])) ?>" class="btn btn-medium"><i class="icon-download-alt"></i> Download</a> <a href="<?php echo Links::render("view-file-raw", array($file['_id'])) ?>" class="btn btn-medium"><i class="icon-align-left"></i> Raw</a>
+							<a href="<?php echo Links::render("download-file", array($file['_id']->__toString())) ?>" class="btn btn-medium"><i class="icon-download-alt"></i> Download</a> <a href="<?php echo Links::render("view-file-raw", array($file['_id']->__toString())) ?>" class="btn btn-medium"><i class="icon-align-left"></i> Raw</a>
 						</div>
 						<pre class="prettyprint linenums"><?php echo htmlentities($file['data']) ?></pre>
 					</div>
 				<?php else: ?>
 					<div class="alert alert-grey binary-file">
 						<div style="float: right; position: relative; top: -11px; right: -11px;">
-							<a href="<?php echo Links::render("download-file", array($file['_id'])) ?>" class="btn btn-medium"><i class="icon-download-alt"></i> Download</a>
+							<a href="<?php echo Links::render("download-file", array($file['_id']->__toString())) ?>" class="btn btn-medium"><i class="icon-download-alt"></i> Download</a>
 						</div>
 						<h3 style="margin-left: 112px; color: #cacaca;">Binary file.</h3>
 					</div>
@@ -144,5 +149,5 @@
 		</div>
 	  </div>
 <?php
-	Footer::render(array("code-pretty", "codemirror", "autosize", "bootbox", "view-file"));
+	Footer::render(array("code-pretty", "codemirror", "autosize", "zclip", "bootbox", "view-file"));
 ?>

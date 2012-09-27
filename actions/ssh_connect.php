@@ -20,7 +20,7 @@
 	Functions::check_required_parameters(array($_POST['address'], $_POST['port'], $_POST['username']));
 	
 	$ssh = new SSH($_POST['address'], $_POST['port']);
-	$ssh_auth = $ssh->auth($_POST['username'], SSH_PUBLIC_KEY_PATH, SSH_PRIVATE_KEY_PATH);
+	$ssh->auth($_POST['username'], SSH_PUBLIC_KEY_PATH, SSH_PRIVATE_KEY_PATH);
 
 	echo '{"ssh_connected":true}';
 ?>

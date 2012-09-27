@@ -25,6 +25,11 @@ $(document).ready(function() {
 		$("#table-container").slideDown(300);
 	});
 	
+	$(document).on("click", ".expand-file-id", function() {
+		$(this).html($(this).parents("tr").attr("id"));
+		$(this).removeClass("expand-west");
+	});
+	
 	$("#upload-box").filedrop({
 		url: '/actions/add_file.php',
 	    paramname: 'file',

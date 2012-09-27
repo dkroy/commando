@@ -26,6 +26,7 @@
 	MongoConnection::connect();
 	MongoConnection::grid_fs();
 	MongoConnection::grid_fs_delete(array($_GET['id']));
+	MongoConnection::close();
 	
 	Functions::redirect(Links::render("files"));
 ?>

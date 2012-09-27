@@ -45,7 +45,29 @@
 		Error::halt(404, 'not found', 'Recipe version \'' . $_GET['param1'] . '\' does not exist.');
 	}
 	
-	header("Content-Type: text/plain; charset=utf-8");
+	$file_extension = null;
+	switch($recipe->interpreter) {
+		case 'shell':
+			$file_extension = ".sh";
+			break;
+		case 'bash';
+			$file_extension = ".sh";
+			break;
+		case 'perl';
+			$file_extension = ".pl";
+			break;
+		case 'python';
+			$file_extension = ".py";
+			break;
+		case 'node.js';
+			$file_extension = ".js";
+			break;
+	}
+		
+    header("Content-Description: File Transfer");
+    header("Content-Disposition: attachment; filename=\"" . $recipe->name . $file_extension . "\"");
+    header("Content-Transfer-Encoding: quoted-printable");
+    header("Content-Length: " . strlen($recipe->content));
 	
 	echo $recipe->content;
 ?> 
