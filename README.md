@@ -155,11 +155,9 @@ rMarkup is a domain specific language used in recipes. The syntax is:
   
 #### Include Keyword ####
 
-````
-Include recipes by ID. 
-   
-The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. **Only** include recipes that use the **same interpreter**, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself.
-````
+> Include recipes by ID.
+>  
+> The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. Only include recipes that use the same interpreter, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself.
 
 Current Version
 ---------------
