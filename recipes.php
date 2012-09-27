@@ -53,7 +53,7 @@
 					<div class="input-prepend" style="float: right">
 						<span class="add-on">
 							<i class="icon-search"></i>
-						</span><input id="search-recipes" type="text" class="span3 tip" rel="tooltip" data-placement="top" data-original-title="Filter by ID, name or interpreter." maxlength="100" placeholder="Filter Recipes…" value=""<?php echo (count($recipes) === 0) ? ' disabled="disabled"' : null ?> />
+						</span><input id="search-recipes" type="text" class="span3 tip" rel="tooltip" data-placement="top" data-original-title="Filter by id, name or interpreter." maxlength="100" placeholder="Filter Recipes…" value=""<?php echo (count($recipes) === 0) ? ' disabled="disabled"' : null ?> />
 					</div>
 				</div>
 				<div class="clear"></div>

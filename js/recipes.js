@@ -16,7 +16,7 @@
 
 $(document).ready(function() {
 	$(".tip-delay").tooltip({
-		delay: { show: 700, hide: 0 }
+		delay: { show: 600, hide: 0 }
 	});
 	
 	$(".tip").tooltip();
