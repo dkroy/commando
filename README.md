@@ -129,10 +129,10 @@ $HTTP["host"] =~ "^(your-domain-here\.com)$" {
 Recipe Markup (rMarkup)
 -----------------------
 
-rMarkup is a domain specific language used in recipes. The syntax is:
+rMarkup is a form of procedural markup written inside recipes. The syntax is:
 
 ````
-{{keyword:value}}
+{{method:value}}
 ````
 
 ### Specification ###
@@ -140,7 +140,7 @@ rMarkup is a domain specific language used in recipes. The syntax is:
   <table>
    <thead>
       <tr>
-        <th>Keyword <i>(case insensitive)</i></th>
+        <th>Method <i>(case insensitive)</i></th>
         <th>Value</th>
         <th>Example</th>
       </tr>
@@ -153,21 +153,21 @@ rMarkup is a domain specific language used in recipes. The syntax is:
     </tbody>
   </table>
   
-### Include Keyword ###
+### Include Method ###
 
 > Include a recipe by ID.
 >  
-> The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. Only include recipes that use the same interpreter, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself.
+> The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. Only include recipes that use the same interpreter, this restraint is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe may not include other recipes itself.
 >
 > ````
-> # [bash] include recipe example
+> # bash - include recipe example
 > echo "hello"
 > {{include:rec_Xb4LI504839d1a6078eF6}}
 > echo "world"
 ````
 >
 >````
-># [bash] rec_Xb4LI504839d1a6078eF6
+># bash - rec_Xb4LI504839d1a6078eF6
 >free -m
 >````
 
