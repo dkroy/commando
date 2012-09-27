@@ -158,18 +158,18 @@ rMarkup is a domain specific language used in recipes. The syntax is:
 > Include a recipe by ID.
 >  
 > The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. Only include recipes that use the same interpreter, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself.
-
+>
+> ````
+> # [bash] include recipe example
+> echo "hello"
+> {{include:rec_Xb4LI504839d1a6078eF6}}
+> echo "world"
 ````
-# [bash] include recipe example
-echo "hello"
-{{include:rec_Xb4LI504839d1a6078eF6}}
-echo "world"
-````
-
-````
-# [bash] rec_Xb4LI504839d1a6078eF6
-free -m
-````
+>
+>````
+># [bash] rec_Xb4LI504839d1a6078eF6
+>free -m
+>````
 
 Current Version
 ---------------
