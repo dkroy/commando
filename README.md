@@ -17,7 +17,7 @@ Screenshots & Additional Details
 [ ![Executing a recipe on a group of servers.](http://netdna.commando.io/images/screenshots/small/execute.png) ](http://netdna.commando.io/images/screenshots/xlarge/execute.png)
 [ ![Upload and transfer text or binary files.](http://netdna.commando.io/images/screenshots/small/files.png) ](http://netdna.commando.io/images/screenshots/xlarge/files.png)
 
-### See http://commando.io for additional details. ###
+#### See http://commando.io for additional details. ####
 
 Important Notes
 ---------------
@@ -142,7 +142,7 @@ rMarkup is a domain specific language used in recipes. The syntax is:
       <tr>
         <th>Keyword <i>(case insensitive)</i></th>
         <th>Value</th>
-        <th>Example</th>
+        <th>Full Example</th>
       </tr>
     </thead>
     <tbody>
@@ -153,11 +153,13 @@ rMarkup is a domain specific language used in recipes. The syntax is:
     </tbody>
   </table>
   
-#### Include Statement ####
+#### Include Keyword ####
 
-*Include recipes by ID.* 
+````
+Include recipes by ID. 
    
 The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. **Only** include recipes that use the **same interpreter**, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself.
+````
 
 Current Version
 ---------------
