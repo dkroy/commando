@@ -53,7 +53,7 @@
 					<div class="input-prepend" style="float: right">
 						<span class="add-on">
 							<i class="icon-search"></i>
-						</span><input id="search-recipes" type="text" class="span3" maxlength="100" placeholder="Filter Recipes…" value=""<?php echo (count($recipes) === 0) ? ' disabled="disabled"' : null ?> />
+						</span><input id="search-recipes" type="text" class="span3 tip" rel="tooltip" data-placement="top" data-original-title="Filter by ID, name or interpreter." maxlength="100" placeholder="Filter Recipes…" value=""<?php echo (count($recipes) === 0) ? ' disabled="disabled"' : null ?> />
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -98,7 +98,7 @@
 					      				<td><input type="checkbox" class="recipe-delete-check" value="<?php echo $recipe->id ?>" /></td>
 					      				<td><a href="<?php echo Links::render("download-recipe", array($recipe->id)) ?>" class="btn btn-mini"><i class="icon-download-alt"></i></a> <a href="<?php echo Links::render("view-recipe-raw", array($recipe->id)) ?>" class="btn btn-mini"><i class="icon-align-left"></i></a></td>
 					      				<td><a class="btn btn-mini disabled expand-east expand-recipe-id"><?php echo Functions::add_ellipsis($recipe->id, 7) ?></a></td>
-					      				<td><a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>" rel="tooltip" class="tip" data-placement="top" data-original-title="<?php echo ($recipe->lines == 1 ? $recipe->lines . ' line' : $recipe->lines . ' lines') . " / " . $recipe->length ?>"><?php echo $recipe->name ?></a></td>
+					      				<td><a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>" rel="tooltip" class="tip-delay" data-placement="top" data-original-title="<?php echo ($recipe->lines == 1 ? $recipe->lines . ' line' : $recipe->lines . ' lines') . " / " . $recipe->length ?>"><?php echo $recipe->name ?></a></td>
 					      				<td><?php echo ucfirst($recipe->interpreter) ?></td>
 					      				<td><span class="badge badge-info"><?php echo $recipe->number_of_versions ?></span></td>
 					      				<td><?php echo $recipe->added ?></td>

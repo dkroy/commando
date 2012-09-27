@@ -15,9 +15,11 @@
 */
 
 $(document).ready(function() {
-	$(".tip").tooltip({
-		delay: { show: 600, hide: 0 }
+	$(".tip-delay").tooltip({
+		delay: { show: 700, hide: 0 }
 	});
+	
+	$(".tip").tooltip();
 	
 	$(".expand-recipe-id").on("click", function() {
 		$(this).html($(this).parents("tr").attr("id"));
