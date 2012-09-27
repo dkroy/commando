@@ -1,7 +1,7 @@
 Commando.io - Dev-Ops Evolved.
 ------------------------------
 
-(http://netdna.commando.io/images/main-header.png)
+![main-header-image](http://netdna.commando.io/images/main-header.png)
 
 Commando.io is a web-based interface for streamlining the use of SSH for deployments and system administration tasks across groups of remote servers.
 
@@ -47,7 +47,7 @@ Version **5.3.0** or greater.
 #### MySQL####
 Version **5.0** or greater running the **InnoDB** storage engine. *MyISAM is NOT supported.*
 
-#### MongoDB ####
+#### MongoDB + GridFS ####
 Version **2.0** or greater is highly recommended. Older versions of MongoDB may work.
 
 Installation
@@ -135,7 +135,7 @@ rMarkup is a domain specific language used in recipes. The syntax is:
 {{keyword:value}}
 ````
 
-#### Complete Specification Table ####
+#### Specification ####
 
   <table>
    <thead>
@@ -153,10 +153,10 @@ rMarkup is a domain specific language used in recipes. The syntax is:
     </tbody>
   </table>
   
-#### Include Keyword ####  
+#### Include #### 
   
-*Include recipes by ID.*
-The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. **Only** include recipes that use the **same interpreter**, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself. Want this feature? [Send us](commando@nodesocket.com) an e-mail.
+*Include recipes by ID.*  
+The contents of the included recipes are injected at execution. You may include multiple recipes, or even include the same recipe multiple times. **Only** include recipes that use the **same interpreter**, this is checked and enforced at execution. Multi-level includes are not currently supported, i.e. an included recipe cannot include other recipes itself. Want this feature? [Send us](mailto:commando@nodesocket.com) an e-mail.
 
 Current Version
 ---------------
@@ -202,7 +202,7 @@ Sponsored By
 
 [ ![NetDNA](http://netdna.commando.io/images/netdna.png) ] (http://netdna.com)
 
-+ [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper)
+Follow [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper).
 
 License & Legal
 ---------------
