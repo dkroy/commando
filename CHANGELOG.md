@@ -2,7 +2,7 @@
 
 ### v0.4.1 (open source) - *09/26/2012*
 - Bug in `/js/filedrop.js` which prevents file uploads. Rolled-back to old working version.
-- `/recipes.php` added tooltip to filter recipes field.
+- `/recipes.php` added a tooltip to the filter recipes field.
 
 ### v0.4.0 (open source) - *09/26/2012*
 - **Added Files feature. Upload, view, and download files. Supports plain text and binary.**
