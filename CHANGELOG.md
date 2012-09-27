@@ -7,7 +7,7 @@
 - Upgraded Bootstrap to `2.1.1`.
 - Fixed a **major bug** in executions with multi-line recipes. The fix was to replace `\r\n` with `\n`.
 - Filter recipes by ID, label, or interpreter.
-- `/classes/Navigation.php` added icons to pages.
+- `/classes/Navigation.php` added icons to pages in header navigation.
 - `/recipes.php` now lists the ID in the table with the option to expand.
 - `/servers.php` sorts groups alphabetically by name. The `default` group is forced to the bottom of the page.
 - `/servers.php` lists the number of servers in each group next to the group name.
