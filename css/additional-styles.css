@@ -129,16 +129,15 @@ a.ssh-status {
 }
 
 #execute-working {
-	display: none;
+	z-index: 9999;
 	position: fixed;
+	display: none;
 	top: 0px;
 	height: 40px;
 }
 
 #execute-working .bar {
-	z-index: 9999;
 	position: fixed;
-	top: 0px;
 	height: 40px;
 }
 

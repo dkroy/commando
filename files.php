@@ -41,6 +41,19 @@
       </div>
       
       <div class="row">
+   	 	<div class="span12">
+      		<div class="well">
+      			<div class="input-prepend" style="float: right">
+					<span class="add-on">
+						<i class="icon-search"></i>
+					</span><input id="filter-files" type="text" class="span3 tip" rel="tooltip" data-placement="top" data-original-title="By id, name or type." maxlength="100" placeholder="Filter Files…" value="" disabled />
+				</div>
+				<div class="clear"></div>
+      		</div>
+      	</div>
+      </div>
+      
+      <div class="row">
 		<div class="span12">
 			<div class="well">
 				<div id="files-did-you-know" class="alert alert-info fade in" style="display: none;">

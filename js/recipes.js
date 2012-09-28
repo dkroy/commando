@@ -34,7 +34,7 @@ $(document).ready(function() {
 		}
 	});
 	
-    $("#search-recipes").bind("keyup input paste", function() {
+    $("#filter-recipes").bind("keyup input paste", function() {
 	    var search_value = $(this).val().toUpperCase();
 	    var $recipes = $("table tr");
 	
@@ -97,6 +97,7 @@ $(document).ready(function() {
 									}
 									
 									if($(".recipe").length === 0) {
+										$("#filter-recipes").attr("disabled", "disabled");
 										$("#table-container").hide();
 										$("#no-recipes").show();
 									}

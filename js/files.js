@@ -15,15 +15,45 @@
 */
 
 $(document).ready(function() {
+	$(".tip").tooltip();
+	
 	Request.ajax("/actions/get_files.php", {}, function(response) {
 		if(response.count == 0) {
 			$("#files-did-you-know").slideDown(300);
+		} else {
+			$("#filter-files").removeAttr("disabled");
 		}
 		
 		$("#table-container").html(response.html);
 		$("#progress-container").hide();
 		$("#table-container").slideDown(300);
 	});
+	
+	$("#filter-files").bind("keyup input paste", function() {
+	    var search_value = $(this).val().toUpperCase();
+	    var $files = $("table tr");
+	
+	    if(search_value === '') {
+	        $files.show();
+	        return;
+	    }
+	
+	    $files.each(function(index) {
+	        if(index !== 0) {
+	            $row = $(this);
+	            
+	            var id = $row.find("td").eq(2).parents("tr").attr("id").toUpperCase();
+	            var name = $row.find("td").eq(3).children("a").html().toUpperCase();
+	            var type = $row.find("td").eq(4).children("span").html().toUpperCase();
+	
+	            if ((id.indexOf(search_value) > -1) || (name.indexOf(search_value) > -1) || (type.indexOf(search_value) > -1)) {
+	                $row.show();
+	            } else {
+	                $row.hide();
+	            }
+	        }
+	    });
+    });
 	
 	$(document).on("click", ".expand-file-id", function() {
 		$(this).html($(this).parents("tr").attr("id"));
@@ -103,8 +133,10 @@ $(document).ready(function() {
 	        	       	
 	        Request.ajax("/actions/get_files.php", {}, function(response) {	        	
 	        	if(response.count == 0) {
+	        		$("#filter-files").attr("disabled", "disabled");
 					$("#files-did-you-know").show();
 				} else {
+					$("#filter-files").removeAttr("disabled");
 					$("#files-did-you-know").hide();
 				}
 	        	
@@ -194,6 +226,7 @@ $(document).ready(function() {
 										
 										Request.ajax("/actions/get_files.php", {}, function(response) {
 											if(response.count == 0) {
+												$("#filter-files").attr("disabled", "disabled");
 												$("#files-did-you-know").slideDown(300);
 											}
 											
