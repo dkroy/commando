@@ -80,7 +80,7 @@
         <div class="span3">
         	<div class="well">
         		<h1 style="margin-bottom: 10px;"><a href="<?php echo Links::render("files") ?>">Files</a></h1>
-         		<p>Files is a place to store either text or binary files and then transfer them to servers via recipes.</p>
+         		<p>Files is a centralized place to store text or binary files and then SCP transfer them to groups of servers via recipes.</p>
           		<p><a class="btn btn-primary btn-large" href="<?php echo Links::render("files") ?>">Files &raquo;</a></p>
         	</div>
         </div>

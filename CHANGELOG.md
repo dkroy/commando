@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+### v0.4.2a (open source) - *09/28/2012*
+- Cosmetic css/text changes in `/index.php`.
+
 ### v0.4.2 (open source) - *09/28/2012*
 - Fix style bug in `/css/additional-styles.css` which prevented the loading animation from appearing on execution.
 - Filter files by ID, label, or type.
