@@ -22,7 +22,7 @@
 	
 	Navigation::render();
 ?>
- 	
+
  	<?php if(Functions::get_db_version() !== Version::db): ?>
 		<div class="alert alert-error fade in" style="position: fixed; top: 0px; right: 0px; left: 0px; z-index: 99999;">
 			<a class="close" data-dismiss="alert">&times;</a>

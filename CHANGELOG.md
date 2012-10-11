@@ -1,5 +1,16 @@
 ## CHANGELOG
 
+### v0.4.3 (open source) - *10/11/2012*
+- **Added Execution History. You may now view and download execution history stored in MongoDB**
+- `/classes/MySQLQueries.php` `get_number_of_recipe_versions()` and `get_recipes()` now return results sorted **descending** instead of ascending. 
+- Files listing now sorts by upload date **descending** instead of ascending.
+- Uploaded files that have a mime-type of `application/json` are now treated as plain text *(preview available)* instead of binary.
+- Updated `/js/filedrop.js` to the latest version.
+- Added checking the response in various javascript AJAX callbacks for `undefined`.
+- `/css/code-pretty.css` minor changes to styles.
+- `/README.md` updated nginx configuration example for using pretty links and added a notice about PHP version 5.4.0 or greater required to utilize json pretty print when viewing execution history.
+- `/classes/Header.php` very minor changes to copy text.
+
 ### v0.4.2a (open source) - *09/28/2012*
 - Cosmetic css/text changes in `/index.php`.
 

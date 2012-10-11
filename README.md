@@ -35,7 +35,7 @@ Requirements
 **Nginx**, **Lighttpd**, or **Apache**
 
 #### PHP ####
-Version **5.3.0** or greater.
+Version **5.3.0** or greater. *(Version 5.4.0 or greater for json pretty print when viewing execution history.)*
 
 #### PHP Extensions ####
 + **mysqli**
@@ -108,21 +108,23 @@ Pretty links disabled: /view-recipe.php?param1=rec_c4Bb4E01Q0d8a37N4bU37
 
 ##### Nginx #####
 ```` nginx
-location ~ ^[^.]+$ {
-    fastcgi_param SCRIPT_FILENAME $document_root/controller.php;
-    fastcgi_param SCRIPT_NAME /controller.php;
-    fastcgi_param PATH_INFO $uri;
-    
-    # The rest of the standard fast-cgi directives for PHP
+location ~ ^[^\.]+$ {
+	fastcgi_index index.php;
+	fastcgi_intercept_errors on;
+	fastcgi_pass unix:/var/run/php-fpm/php.sock;
+	include /etc/nginx/fastcgi_params;
+	fastcgi_param SCRIPT_FILENAME $document_root/controller.php;
+	fastcgi_param SCRIPT_NAME /controller.php;
+	fastcgi_param PATH_INFO $uri;
 }
 ````
 
 ##### Lighttpd #####
 ```` lighttpd
 $HTTP["host"] =~ "^(your-domain-here\.com)$" {
-        url.rewrite-once = (
-                "^[^.]*$" => "controller.php/$1"
-        )
+	url.rewrite-once = (
+		"^[^.]*$" => "controller.php/$1"
+	)
 }
 ````
 

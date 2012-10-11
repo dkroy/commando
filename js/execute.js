@@ -79,6 +79,9 @@ function execute() {
 			
 			$("#execute-results-container").append('<div class="span12"><div class="well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">ERROR</a><span class="label label-important" style="position: relative; top: 6px; float: right;">error</span></div><pre class="alert alert-error red-back no-bottom-margin">' + error_message + '</pre></div></div>');
 		}
+		else if(typeof response === "undefined") {
+			$("#execute-results-container").append('<div class="span12"><div class="well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">ERROR</a><span class="label label-important" style="position: relative; top: 6px; float: right;">error</span></div><pre class="alert alert-error red-back no-bottom-margin">Request response is undefined.</pre></div></div>');
+		}
 		else if(typeof response.error !== "undefined") {
 			$("#execute-results-container").append('<div class="span12"><div class="well"><div style="margin-bottom: 10px;"><a class="btn btn-large btn-danger disabled">ERROR</a><span class="label label-important" style="position: relative; top: 6px; float: right;">error</span></div><pre class="alert alert-error red-back no-bottom-margin">' + response.error.message + '</pre></div></div>');
 		} else {

@@ -38,7 +38,7 @@
 	}
 	
 	$data = null;
-	if(strpos($file['type'], 'text') !== false) {
+	if(strpos($file['type'], 'text') !== false || $file['type'] === "application/json") {
 		while (!feof($file['data'])) {
 			$data .= fread($file['data'], 8192);
 		}

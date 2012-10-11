@@ -21,7 +21,7 @@
 		//
 		// major.minor.revision
 		////
-		const app = "0.4.2a (open source)";
+		const app = "0.4.3 (open source)";
 		
 		////
 		// MySQL schema version

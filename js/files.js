@@ -18,15 +18,17 @@ $(document).ready(function() {
 	$(".tip").tooltip();
 	
 	Request.ajax("/actions/get_files.php", {}, function(response) {
-		if(response.count == 0) {
-			$("#files-did-you-know").slideDown(300);
-		} else {
-			$("#filter-files").removeAttr("disabled");
+		if(typeof response !== "undefined") {
+			if(response.count == 0) {
+				$("#files-did-you-know").slideDown(300);
+			} else {
+				$("#filter-files").removeAttr("disabled");
+			}
+			
+			$("#table-container").html(response.html);
+			$("#progress-container").hide();
+			$("#table-container").slideDown(300);
 		}
-		
-		$("#table-container").html(response.html);
-		$("#progress-container").hide();
-		$("#table-container").slideDown(300);
 	});
 	
 	$("#filter-files").bind("keyup input paste", function() {
@@ -132,17 +134,19 @@ $(document).ready(function() {
 	        $("#progress-container").show();
 	        	       	
 	        Request.ajax("/actions/get_files.php", {}, function(response) {	        	
-	        	if(response.count == 0) {
-	        		$("#filter-files").attr("disabled", "disabled");
-					$("#files-did-you-know").show();
-				} else {
-					$("#filter-files").removeAttr("disabled");
-					$("#files-did-you-know").hide();
-				}
-	        	
-	        	$("#table-container").html(response.html);
-	        	$("#progress-container").hide();
-	        	$("#table-container").slideDown(300);
+	        	if(typeof response !== "undefined") {
+		        	if(response.count == 0) {
+		        		$("#filter-files").attr("disabled", "disabled");
+						$("#files-did-you-know").show();
+					} else {
+						$("#filter-files").removeAttr("disabled");
+						$("#files-did-you-know").hide();
+					}
+		        	
+		        	$("#table-container").html(response.html);
+		        	$("#progress-container").hide();
+		        	$("#table-container").slideDown(300);
+		        }
 	        });
 	    },
 	    progressUpdated: function(i, file, progress) {
@@ -225,14 +229,16 @@ $(document).ready(function() {
 										$("#progress-container").show();
 										
 										Request.ajax("/actions/get_files.php", {}, function(response) {
-											if(response.count == 0) {
-												$("#filter-files").attr("disabled", "disabled");
-												$("#files-did-you-know").slideDown(300);
+											if(typeof response !== "undefined") {
+												if(response.count == 0) {
+													$("#filter-files").attr("disabled", "disabled");
+													$("#files-did-you-know").slideDown(300);
+												}
+												
+												$("#table-container").html(response.html);
+												$("#progress-container").hide();
+												$("#table-container").slideDown(300);
 											}
-											
-											$("#table-container").html(response.html);
-											$("#progress-container").hide();
-											$("#table-container").slideDown(300);
 										});	
 									}
 								}

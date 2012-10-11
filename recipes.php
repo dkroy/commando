@@ -70,7 +70,7 @@
 		  	  		Recipes are containers of commands that are fully versioned. Recipes can be written in pure <i><strong>shell</strong></i>, <i><strong>bash</strong></i>, <i><strong>perl</strong></i>, <i><strong>python</strong></i>, or <i><strong>node.js</strong></i>.
 	      		  </div>
 			      <div id="no-recipes" class="alert alert-grey no-bottom-margin" <?php if(count($recipes) > 0): ?>style="display: none;"<?php endif; ?>>
-			      	No recipes added. <a href="<?php echo Links::render("add-recipe") ?>">Add</a> a recipe now.
+			      	No recipes added. <a href="<?php echo Links::render("add-recipe") ?>">Add</a> a recipe.
 				  </div>
 		      	  <?php if(count($recipes) > 0): ?>
 			      	  <div id="table-container">
@@ -97,7 +97,7 @@
 				      				<tr id="<?php echo $recipe->id ?>" class="recipe">
 					      				<td><input type="checkbox" class="recipe-delete-check" value="<?php echo $recipe->id ?>" /></td>
 					      				<td><a href="<?php echo Links::render("download-recipe", array($recipe->id)) ?>" class="btn btn-mini"><i class="icon-download-alt"></i></a> <a href="<?php echo Links::render("view-recipe-raw", array($recipe->id)) ?>" class="btn btn-mini"><i class="icon-align-left"></i></a></td>
-					      				<td><a class="btn btn-mini disabled expand-east expand-recipe-id"><?php echo Functions::add_ellipsis($recipe->id, 7) ?></a></td>
+					      				<td><a class="btn btn-mini disabled expand-east expand-recipe-id"><?php echo Functions::add_ellipsis($recipe->id, 8) ?></a></td>
 					      				<td><a href="<?php echo Links::render("view-recipe", array($recipe->id)) ?>" rel="tooltip" class="tip-delay" data-placement="top" data-original-title="<?php echo ($recipe->lines == 1 ? $recipe->lines . ' line' : $recipe->lines . ' lines') . " / " . $recipe->length ?>"><?php echo $recipe->name ?></a></td>
 					      				<td><?php echo ucfirst($recipe->interpreter) ?></td>
 					      				<td><span class="badge badge-info"><?php echo $recipe->number_of_versions ?></span></td>

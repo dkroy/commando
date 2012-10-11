@@ -466,7 +466,7 @@
 			         WHERE rh.recipe = r.`id`
 			           AND rh.recipe_version = rv.`id`
 			           AND r.`id` = rv.recipe
-			      ORDER BY r.added ASC";
+			      ORDER BY r.added DESC";
 			} else {
 				//Smart quote each recipe id
 				$recipe_ids = array_map(function($element) {
@@ -488,7 +488,7 @@
 			           	   AND rh.recipe_version = rv.`id`
 			               AND r.`id` = rv.recipe
 			               AND r.`id` IN (" . implode(',', $recipe_ids) . ")
-			          ORDER BY r.added ASC";
+			          ORDER BY r.added DESC";
 			}
 			
 			$result = MySQLConnection::query($SQL) or Error::db_halt(500, 'internal server error', 'Unable to execute request, SQL query error.', __FUNCTION__, MySQLConnection::error(), $SQL);
@@ -568,7 +568,7 @@
 					       recipe_versions rv
                      WHERE r.`id` = rv.recipe
                   GROUP BY rv.recipe
-                  ORDER BY r.added ASC";
+                  ORDER BY r.added DESC";
           	        
         	$result = MySQLConnection::query($SQL) or Error::db_halt(500, 'internal server error', 'Unable to execute request, SQL query error.', __FUNCTION__, MySQLConnection::error(), $SQL);
 			return $result;    

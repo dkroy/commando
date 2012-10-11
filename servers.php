@@ -244,7 +244,7 @@
 		<div class="span12">
 			<div class="well">
 				<div id="no-servers" class="alert alert-grey no-bottom-margin" <?php if(count($servers) > 0): ?>style="display: none;"<?php endif; ?>>
-					No servers added. <a class="action-add-server">Add</a> a server now.
+					No servers added. <a class="action-add-server">Add</a> a server.
 				</div>
 				<?php foreach($servers as $group => $group_servers): ?>
 					<div class="group-container">

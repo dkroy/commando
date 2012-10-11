@@ -340,14 +340,15 @@
         opts.uploadStarted(index, file, files_count);
 
         xhr.onload = function() {
-          if (xhr.responseText) {
-            var serverResponse;
+            var serverResponse = null;
 
-            try {
-              serverResponse = jQuery.parseJSON(xhr.responseText);
-            }
-            catch (e) {
-              serverResponse = xhr.responseText;
+            if (xhr.responseText) {
+              try {
+                serverResponse = jQuery.parseJSON(xhr.responseText);
+              }
+              catch (e) {
+                serverResponse = xhr.responseText;
+              }
             }
 
             var now = new Date().getTime(),
@@ -375,10 +376,10 @@
             if (result === false) {
               stop_loop = true;
             }
-          }
+          
 
           // Pass any errors to the error option
-          if (xhr.status != 200) {
+          if (xhr.status < 200 && xhr.status > 299) {
             opts.error(xhr.statusText);
           }
         };

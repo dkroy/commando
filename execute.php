@@ -62,8 +62,7 @@
       <div class="row">
    	  	<div class="span12">
    	  		<div class="well">
-   	  			<!-- Not implemented yet -->
-   	 			<!-- <a href="/execution-history" class="btn btn-primary btn-large"><i class="icon-time icon-white"></i> Execution History</a> -->
+   	 			<a href="<?php echo Links::render("execution-history") ?>" class="btn btn-primary btn-large"><i class="icon-time icon-white"></i> Execution History</a>
 				<div style="float: right">	
 					<div class="input-prepend" style="float: right">
 						<span class="add-on">

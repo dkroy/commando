@@ -14,6 +14,21 @@
 # limitations under the License.
 */
 
+var notes;
+
 $(document).ready(function() {
-	Request.ajax("/actions/metrics.php", {});
+	prettyPrint();
+	
+	$("#contents-loading").hide();
+	$("#execution-history-contents").slideDown(300);
+	
+	$(".servers-popover").each(function() {
+		if($(this).attr("data-content").length > 0) {
+			$(this).popover({
+				placement: 'top',
+				trigger: 'hover',
+				delay: { show: 0, hide: 0 }
+			});
+		}
+	});
 });

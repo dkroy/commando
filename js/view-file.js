@@ -68,8 +68,10 @@ $(document).ready(function() {
 			id: $(".main-container").attr("data-id"),
 			notes: $("#file-notes").val()
 		}, function(response) {
-			if(response.updated === true) {
-				location.reload(true);
+			if(typeof response !== "undefined") {
+				if(response.updated === true) {
+					location.reload(true);
+				}
 			}
 		});
 	});

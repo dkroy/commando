@@ -18,29 +18,24 @@
 	($_SERVER['SCRIPT_NAME'] !== "/controller.php") ? require_once(__DIR__ . "/classes/Requires.php") : Links::$pretty = true;
 	
 	Functions::check_required_parameters(array($_GET['param1']));
-	
-	$file = null;
+
+	//Get execution history record
+	$execution_history = null;
 	MongoConnection::connect();
-	MongoConnection::grid_fs();
-	$results = MongoConnection::grid_fs_find(array("_id" => new MongoId($_GET['param1'])));
+	MongoConnection::select_collection("executions");
+	$results = MongoConnection::find(array("_id" => new MongoId($_GET['param1'])));
 	MongoConnection::close();
-	
+		
 	foreach($results as $result) {
-		$file = $result->file;
-		$file['data'] = $result->getResource();
+		$result['executed'] = date(DATE_FORMAT, ($result['executed']->sec + Functions::timezone_offset_in_seconds()));
+		$execution_history = $result;
 	}
 	
-	if(empty($file)) {
-		Error::halt(404, 'not found', 'File \'' . $_GET['param1'] . '\' does not exist.');
-	}
-	
-	$content = null;
-	if(strpos($file['type'], 'text') !== false || $file['type'] === "application/json") {
-		while (!feof($file['data'])) {
-			$content .= fread($file['data'], 8192);
-		}
+	if(empty($execution_history)) {
+		Error::halt(404, 'not found', 'Execution history ID \'' . $_GET['param1'] . '\' does not exist.');
 	}
 	
 	header("Content-Type: text/plain; charset=utf-8");
-	echo $content;
+	
+	echo @json_encode($execution_history, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 ?> 

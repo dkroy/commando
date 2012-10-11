@@ -104,7 +104,7 @@
     	<div class="span12">
     		<div class="well">
     			<div id="no-groups" class="alert alert-grey no-bottom-margin" <?php if(count($groups) > 0): ?>style="display: none;"<?php endif; ?>>
-				 	No groups added. <a class="action-add-group">Add</a> a group now.
+				 	No groups added. <a class="action-add-group">Add</a> a group.
 				</div>
 				<?php
 					$count = 0;
