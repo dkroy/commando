@@ -36,7 +36,7 @@ Requirements
 
 #### PHP ####
 Version **5.3.0** or greater.  
-*(Version 5.4.0 or greater for json pretty print support when viewing execution history)*
+*(Version 5.4.0 or greater for json pretty print support when viewing execution history).*
 
 #### PHP Extensions ####
 + **mysqli**
