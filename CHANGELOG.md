@@ -9,7 +9,7 @@
 - Added checking the response in various javascript AJAX callbacks for `undefined`.
 - `/css/code-pretty.css` minor changes to styles.
 - `/README.md` updated nginx configuration example for using pretty links and added a notice about PHP version 5.4.0 or greater required to utilize json pretty print when viewing execution history.
-- `/classes/Header.php` very minor changes to copy text.
+- `/classes/Header.php` very minor changes to text.
 
 ### v0.4.2a (open source) - *09/28/2012*
 - Cosmetic css/text changes in `/index.php`.
