@@ -1,7 +1,7 @@
 ## CHANGELOG
 
 ### v0.4.3 (open source) - *10/11/2012*
-- **Added Execution History. You may now view and download execution history stored in MongoDB**
+- **Added Execution History. You may now view and download execution history stored in MongoDB.**
 - `/classes/MySQLQueries.php` `get_number_of_recipe_versions()` and `get_recipes()` now return results sorted **descending** instead of ascending. 
 - Files listing now sorts by upload date **descending** instead of ascending.
 - Uploaded files that have a mime-type of `application/json` are now treated as plain text *(preview available)* instead of binary.
