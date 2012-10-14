@@ -25,7 +25,6 @@ Important Notes
 #### This is a very early alpha build of Commando.io. For security, do not expose Commando.io publicly! The following important features of the software have not been implemented: ####
 
 * Users and log-in. **Again, please do not expose Commando.io publicly**. Run it locally, and use web-server authentication for now. A fully featured users and log-in system is coming.
-* The ability to view execution history is not implemented. Execution history is written to *MongoDB*, but there is not an interface to view it yet.
 * SSH connections and executions still happen via `PHP` using the `ssh2` extension. This is going to be replaced with a separate dedicated `node.js` SSH worker using websockets. PHP will not make SSH connections and executions in the future.
 
 Requirements
@@ -97,7 +96,7 @@ Right now installation is a bit involved and brutal, but once we iron out Comman
 
 **13.)** Edit `/classes/MongoConfiguration.php` and provide the connection details to MongoDB.
 
-**14.)** *(OPTIONAL)* This step is not required, but if you want to enable *pretty links* you must setup rewrite rules on the web-server:
+**14.)** *(OPTIONAL)* This step is not required, but if you want to enable *pretty links* you must setup some rules on the web-server:
 
 ````
 Pretty links enabled: /view-recipe/rec_c4Bb4E01Q0d8a37N4bU37
