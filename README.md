@@ -65,8 +65,8 @@ Right now installation is a bit involved and brutal, but once we iron out Comman
 
 **5.)** Edit `/app.config.php` and provide the correct paths for:
 
-     SSH_PUBLIC_KEY_PATH
-     SSH_PRIVATE_KEY_PATH
+SSH_PUBLIC_KEY_PATH
+SSH_PRIVATE_KEY_PATH
 
 **6.)** Create a user in MySQL to connect with.
 
@@ -75,7 +75,7 @@ Right now installation is a bit involved and brutal, but once we iron out Comman
 **8.)** Import the MySQL schema located in `/schema/latest.sql` into MySQL.
 
 ```` bash
-	$ mysql --user=USERNAME --pass=PASSWORD --host=SERVERHOST < /schema/latest.sql
+$ mysql --user=USERNAME --pass=PASSWORD --host=SERVERHOST < /schema/latest.sql
 ````
 
 **9.)**	Assign the MySQL user created above to the newly imported database `commando`.    
@@ -85,18 +85,18 @@ Right now installation is a bit involved and brutal, but once we iron out Comman
 **11.)** Create the following standard indexes on the `executions` collection in MongoDB:   
 
 ```` json
-    { "executed" : 1 }
-    { "groups" : 1 }
-    { "recipes.id" : 1 }
-    { "servers.id" : 1 }
-    { "recipes.interpreter" : 1 }
+{ "executed" : 1 }
+{ "groups" : 1 }
+{ "recipes.id" : 1 }
+{ "servers.id" : 1 }
+{ "recipes.interpreter" : 1 }
 ````
 
 **12.)** Create a user in MongoDB to connect with.
 
 **13.)** Edit `/classes/MongoConfiguration.php` and provide the connection details to MongoDB.
 
-**14.)** *(OPTIONAL)* This step is not required, but if you want to enable *pretty links* you must setup some rules on the web-server:
+**14.)** *(OPTIONAL)* This step is not required, but if you want to enable *pretty links* you must setup some rules on your web-server:
 
 ````
 Pretty links enabled: /view-recipe/rec_c4Bb4E01Q0d8a37N4bU37
@@ -123,7 +123,7 @@ location ~ ^[^\.]+$ {
 ```` lighttpd
 $HTTP["host"] =~ "^(your-domain-here\.com)$" {
 	url.rewrite-once = (
-		"^[^.]*$" => "controller.php/$1"
+		"^[^\.]+$" => "controller.php/$1"
 	)
 }
 ````
