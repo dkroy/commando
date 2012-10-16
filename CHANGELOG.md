@@ -18,9 +18,10 @@
 - Cosmetic css/text changes in `/index.php`.
 
 ### v0.4.2 (open source) - *09/28/2012*
-- Fix style bug in `/css/additional-styles.css` which prevented the loading animation frophp_check_syntax()ppearing on executionphp_check_syntax() Filter files by ID, label, or type.
+-- Fix style bug in `/css/additional-styles.css` which prevented the loading animation from appearing on execution.
+-- Filter files by ID, label, or type.
 
-php_check_syntax() v0.4.1 (open source) - *09/26/2012*
+### v0.4.1 (open source) - *09/26/2012*
 - Bug in `/js/filedrop.js` which prevents file uploads. Rolled-back to old working version.
 - `/recipes.php` added a tooltip to the filter recipes field.
 
