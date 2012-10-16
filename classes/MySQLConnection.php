@@ -19,7 +19,7 @@
 		private static $db_connection;
 		private static $numb_queries = 0;
 		
-		public static function connect() {
+		public static function connect() {			
 			MySQLConnection::$db_connection = mysqli_init();
 			
 			$connected = @mysqli_real_connect(MySQLConnection::$db_connection, MySQLConfiguration::host, MySQLConfiguration::username, MySQLConfiguration::password, MySQLConfiguration::database, MySQLConfiguration::port, MySQLConfiguration::socket, MYSQLI_CLIENT_COMPRESS);	

@@ -27,6 +27,14 @@
  			
  			require_once(dirname(__DIR__) . "/app.config.php");
  			
+ 			if(!file_exists(dirname(__DIR__) . "/classes/MySQLConfiguration.php")) {
+				Error::halt(404, 'not found', 'File \'/classes/MySQLConfiguration.php\' does not exist.');	
+			}
+ 			
+ 			 if(!file_exists(dirname(__DIR__) . "/classes/MongoConfiguration.php")) {
+				Error::halt(404, 'not found', 'File \'/classes/MongoConfiguration.php\' does not exist.');	
+			}
+ 			
  			require_once(dirname(__DIR__) . "/defines.php");
  			require_once(dirname(__DIR__) . "/classes/Sessions.php");
  			
