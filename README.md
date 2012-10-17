@@ -152,6 +152,7 @@ rMarkup is a form of procedural markup written inside recipes. The syntax is:
         <td>include</td>
         <td>A 25 character recipe ID.</td>
         <td>{{include:rec_Xb4LI504839d1a6078eF6}}</td>
+      </tr>
     </tbody>
   </table>
   
