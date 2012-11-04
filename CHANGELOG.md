@@ -1,5 +1,13 @@
 ## CHANGELOG
 
+### v0.4.5 (open source) - *11/04/2012*
+- `/view-recipe.php` now lists the date created for recipe versions in the select element.
+- Updated jQuery to `1.8.2` and jQuery UI to `1.9.1`.
+- Refactored `/index.php` to call `Functions::get_db_version()` sooner.
+- Fixed typo/bug in `/js/common.js` in `Request.ajax()` from `p_options.dataType` to `p_options.data_type`.
+- Updated `/js/filedrop.js` to the latest version.
+- Better error handling in `/js/files.js`.
+
 ### v0.4.4 (open source) - *10/16/2012*
 - `/classes/Requires.php` now checks to make sure `/classes/MySQLConfiguration.php` and `/classes/MongoConfiguration.php` exist.
 

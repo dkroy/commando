@@ -79,7 +79,7 @@ $(document).ready(function() {
 	                alert("Your browser does not support html5 drag and drop. Recommend using Google Chrome.");
 	                break;
 	            case 'TooManyFiles':
-	                return;
+	                alert("You are trying to upload too many files.");
 	                break;
 	            case 'FileTooLarge':
 	                alert("File '" + file.name + "' exceeds the maximum file size of 20MB.");
@@ -87,6 +87,18 @@ $(document).ready(function() {
 	            case 'FileTypeNotAllowed':
 	                alert("File type is not allowed.");
 	                break;
+	            case 'NotFound':
+	           	    return;
+	                break;
+                case 'NotReadable':
+                	return;
+	                break;
+                case 'AbortError':
+                	return;
+	                break;
+                case 'ReadError': 
+                	return;
+	                break;   
 	            default:
 	            	return;
 	                break;

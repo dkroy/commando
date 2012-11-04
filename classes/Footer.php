@@ -33,8 +33,8 @@
         	////
         	// JavaScript files that are always loaded
         	////
-        	echo '<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        	      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+        	echo '<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        	      <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
         		  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
         		  <script type="text/javascript" src="/js/common.js"></script>';
         	

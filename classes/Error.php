@@ -37,7 +37,7 @@
 			die('{"error":{"status_code":' . $status_code . ',"status":"' . $status . '","message":"' . addcslashes($message, '"') . '","sql_message":"' . addcslashes($sql_error_details, '"') . '"}}');
 			
 			////
-			// Right now we, aren't doing anything with $function_context, and $sql_query.
+			// Right now we aren't doing anything with $function_context, and $sql_query.
 			////
 		}
 	}

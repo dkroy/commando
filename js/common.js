@@ -76,7 +76,7 @@ var Request = {
 	//   p_parameters: Arguments to pass to the server side page
 	//   p_callback: Handler to call on success
 	//   p_options (Optional): Additional configuration options 
-	//     -- dataType: {"xml","html","script","json","jsonp","text"} Data type of return object
+	//     -- data_type: {"xml","html","script","json","jsonp","text"} Data type of return object
 	//     -- type: {"POST","GET"} Request type
 	//     -- timeout: {int} Timeout in milliseconds before fail
 	//     -- cache: {true|false} Whether to allow caching or not
@@ -92,8 +92,8 @@ var Request = {
 
 		//Check option parameters
 		if (typeof p_options !== "undefined") {
-			if(typeof (p_options.dataType) !== "undefined") {
-				data_type = p_options.dataType;
+			if(typeof (p_options.data_type) !== "undefined") {
+				data_type = p_options.data_type;
 			}
 
 			if(typeof (p_options.type) !== "undefined") {

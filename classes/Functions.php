@@ -184,20 +184,20 @@
 			return ($public_ssh_key) ? $public_ssh_key : null;
 		}
 		
-		public static function format_dates($row) {
+		public static function format_dates($row, $format = DATE_FORMAT) {
 			if(!isset($row) || empty($row)) {
 				return;
 			}
 			
 			foreach($row as $property => $value) {
 				if(is_object($value) || is_array($value)) {
-					Functions::format_dates($value);
+					Functions::format_dates($value, $format);
 				} else{
 					if(DateTime::createFromFormat('Y-m-d G:i:s', $value) !== false) {
 						if(is_array($row)) {
-							$row[$property] = date(DATE_FORMAT, strtotime($value));
+							$row[$property] = date($format, strtotime($value));
 						} else {
-							$row->$property = date(DATE_FORMAT, strtotime($value));
+							$row->$property = date($format, strtotime($value));
 						}	
 					}
 				}

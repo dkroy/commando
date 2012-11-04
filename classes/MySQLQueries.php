@@ -549,7 +549,8 @@
 		
 		public static function get_recipe_versions($recipe_id) {
 			$SQL = "SELECT `id`,
-						   version
+						   version,
+						   added
 			          FROM recipe_versions
 			         WHERE recipe = " . MySQLConnection::smart_quote($recipe_id) . "
 			      ORDER BY added DESC";

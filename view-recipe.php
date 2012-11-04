@@ -57,6 +57,8 @@
 		}
 	}
 	
+	$recipe_versions = Functions::format_dates($recipe_versions, "l, F j, Y");
+	
 	//Calculate Statistics
 	$recipe->lines = (substr_count($recipe->content, "\n") + 1);
 	$recipe->length = Functions::format_bytes(strlen($recipe->content));
@@ -175,17 +177,25 @@
 	                				<li class="divider-vertical"></li>
 	                			<?php endif; ?>
 	                			<li>
-	                				<select name="versions" id="recipe-versions" class="span2" data-placeholder="">
+	                				<select name="versions" id="recipe-versions" class="span3" data-placeholder="">
+										<?php $prev_added = ""; ?>
 										<?php foreach($recipe_versions as $recipe_version): ?>
-											<option value="
-												<?php
-													if($recipe_version->id === $head->recipe_version) {
-														echo Links::render("view-recipe", array($recipe->id));	
-													} else {
-														echo Links::render("view-recipe", array($recipe->id, $recipe_version->id));
-													}
-												?>
-											" <?php if($recipe_version->id === $recipe->recipe_version) { echo 'selected="selected"'; } ?>><?php echo substr($recipe_version->version, 0, 10) ?><?php if($recipe_version->id === $head->recipe_version): ?> (HEAD)<?php endif; ?></option>
+											<?php if(empty($prev_added) || $recipe_version->added != $prev_added): ?>
+												<optgroup label="<?php echo $recipe_version->added ?>">
+											<?php endif; ?>
+													<option value="
+														<?php
+															if($recipe_version->id === $head->recipe_version) {
+																echo Links::render("view-recipe", array($recipe->id));	
+															} else {
+																echo Links::render("view-recipe", array($recipe->id, $recipe_version->id));
+															}
+														?>
+													" <?php if($recipe_version->id === $recipe->recipe_version) { echo 'selected="selected"'; } ?>><?php echo substr($recipe_version->version, 0, 10) ?><?php if($recipe_version->id === $head->recipe_version): ?> (HEAD)<?php endif; ?></option>
+											<?php $prev_added = $recipe_version->added; ?>
+											<?php if(empty($prev_added) || $recipe_version->added != $prev_added): ?>	
+												</optgroup>
+											<?php endif; ?>
 										<?php endforeach; ?>
 									</select>
 	                			</li>
