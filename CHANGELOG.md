@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+### v0.4.7 (open source) - *11/05/2012*
+- Refactored the order of requires in `/classes/Requires.php`.
+
 ### v0.4.6 (open source) - *11/05/2012*
 - Upgraded Bootstrap to `2.2.1`. 
 - `/actions/ssh_execute.php` prevents recursive includes, now returns a 409 *(conflict)* error.
