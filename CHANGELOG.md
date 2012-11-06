@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### v0.4.6 (open source) - *11/05/2012*
+- Upgraded Bootstrap to `2.2.1`. 
+- `/actions/ssh_execute.php` prevents recursive includes, now returns a 409 *(conflict)* error.
+
 ### v0.4.5 (open source) - *11/04/2012*
 - `/view-recipe.php` now lists the date created for recipe versions in the select element.
 - Updated jQuery to `1.8.2` and jQuery UI to `1.9.1`.

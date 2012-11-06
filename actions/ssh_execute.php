@@ -44,6 +44,14 @@
 	// There are includes
 	////
 	if(isset($include_matches) && count($include_matches) > 0) {
+		////
+		// Recursive includes are not permitted
+		////
+		if(in_array($_POST['recipe'], $include_matches)) {
+			//Output error details
+			Error::halt(409, 'conflict', 'Recursive includes are not permitted, i.e. a recipe may not include itself.');
+		}
+		
 		$result = MySQLQueries::get_recipes($include_matches);
 		
 		$recipes = array();
