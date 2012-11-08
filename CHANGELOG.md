@@ -1,5 +1,13 @@
 ## CHANGELOG
 
+### v0.4.8 (open source) - *11/07/2012*
+- Updated `/classes/Bcrypt.php`.
+- Added missing closing `a` tag in `/execution-history.php`.
+- Updated link in `/index.php` for db-migrate to use the Links class.
+- `/js/view-file.js` now slides down the comments section on toggle of adding notes.
+- Removed `for` attribute in `/settings.php` for daylight savings toggle form control.
+- Fixed typo in the comments for `grid_fs_update()` in `/classes/MongoConnection.php`.
+
 ### v0.4.7 (open source) - *11/05/2012*
 - Refactored the order of requires in `/classes/Requires.php`.
 

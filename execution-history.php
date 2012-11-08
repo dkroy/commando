@@ -85,7 +85,7 @@
 			      							
 			      							echo rtrim($out, ', ');
 			      					 	?>
-			      					 " data-title="<?php if(!empty($history['servers'])): ?>Servers<?php endif; ?>"><span class="icon-search"></span> <?php echo count($history['servers']) ?></td>
+			      					 " data-title="<?php if(!empty($history['servers'])): ?>Servers<?php endif; ?>"><span class="icon-search"></span> <?php echo count($history['servers']) ?></a></td>
 			      					<td><?php echo $history['recipe']['name'] ?></td>
 			      					<td><?php echo ucfirst($history['recipe']['interpreter']) ?></td>
 			      				</tr>

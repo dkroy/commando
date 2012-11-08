@@ -140,7 +140,7 @@
 				        	</div>
 				        </div>
 				        <div class="control-group">
-				        	<label class="control-label" for="timezone-daylight-savings">Is Daylight Savings</label>
+				        	<label class="control-label">Is Daylight Savings</label>
 				        	<div class="controls">			        		
 				        		<div class="btn-group" id="timezone-daylight-savings">
 				        			<?php

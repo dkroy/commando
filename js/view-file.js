@@ -51,7 +51,7 @@ $(document).ready(function() {
 	
 		$("#file-notes-container").slideToggle(300, function() {
 			if(!$("#file-notes-container").is(":visible") && !$("#file-notes-markdown").is(":visible")) {
-				$("#file-notes-markdown").show();
+				$("#file-notes-markdown").slideDown(300);
 			}
 		});
 		

@@ -125,7 +125,7 @@
 		
 		////
 		// Options
-		// 		safe (int | 'majority'): Number of servers that have to successfully acknowledge the delete before returning success. Majority automagically calculates the number of servers needed for a majority.
+		// 		safe (int | 'majority'): Number of servers that have to successfully acknowledge the update before returning success. Majority automagically calculates the number of servers needed for a majority.
 		////
 		public static function grid_fs_update($query = array(), array $meta_data = array(), array $options = array("safe" => 1)) {
 			if(!is_array($query)) {
