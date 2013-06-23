@@ -7,7 +7,7 @@ No Longer Maintained
 
 If you'd like to try Commando.io hosted; request access to our private beta on our website https://commando.io.
 
-If you are interested in Commando.io enterprise *(self hosted)*, please send an e-mail to commando@nodesocket.com.
+If you are interested in Commando.io Enterprise *(self hosted)*, please send an e-mail to commando@nodesocket.com.
 
 Overview
 --------
