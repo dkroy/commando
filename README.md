@@ -1,5 +1,17 @@
 ![main-header-image](http://netdna.commando.io/images/commando.png)
 
+No Longer Maintained
+---------------------------------------------
+
+**This open source version of Commando.io is not actively being maintained, as we are focusing all of our efforts on our hosted and enterprise solution.**
+
+If you'd like to try Commando.io hosted; request access to our private beta on our website https://commando.io.
+
+If you are interested in Commando.io enterprise *(self hosted)*, please send an e-mail to commando@nodesocket.com.
+
+Overview
+--------
+
 Commando.io is a web-based interface for streamlining the use of SSH for deployments and system administration tasks across groups of remote servers.
 
 GitHub fundamentally changed the way developers use revision control by creating a beautiful user interface and social platform. Commando.io does the same for managing servers & dev-op tasks.
@@ -14,7 +26,7 @@ Screenshots & Additional Details
 [ ![Executing a recipe on a group of servers.](http://netdna.commando.io/images/screenshots/small/execute.png) ](http://netdna.commando.io/images/screenshots/xlarge/execute.png)
 [ ![Upload and transfer text or binary files.](http://netdna.commando.io/images/screenshots/small/files.png) ](http://netdna.commando.io/images/screenshots/xlarge/files.png)
 
-#### See http://commando.io for additional details. ####
+#### See https://commando.io for additional details. ####
 
 Important Notes
 ---------------
@@ -206,7 +218,7 @@ For more information on semantic versioning, visit http://semver.org/.
 Contact
 -------
 
-+ http://commando.io
++ https://commando.io
 + commando@nodesocket.com
 + http://twitter.com/commando_io
 
