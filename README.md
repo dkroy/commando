@@ -1,7 +1,7 @@
 Commando.io - Dev-Ops Evolved.
 ------------------------------
 
-![main-header-image](http://netdna.commando.io/images/logo.png)
+![main-header-image](http://netdna.commando.io/images/commando-logo-new.png)
 
 Commando.io is a web-based interface for streamlining the use of SSH for deployments and system administration tasks across groups of remote servers.
 
