@@ -3,11 +3,11 @@
 No Longer Maintained
 ---------------------------------------------
 
-**The open source version of Commando.io is no longer being maintained, as we are focusing all of our efforts on our hosted and enterprise solution.**
+**The open source version of Commando.io is no longer being maintained as we are focusing all of our efforts on our hosted and enterprise solution.**
 
-If you'd like to try Commando.io hosted; request access to our private beta on our website https://commando.io.
+If you'd like to try Commando.io hosted; signup for the free beta at https://commando.io.
 
-If you are interested in Commando.io Enterprise *(self hosted)*, please send us an e-mail commando@nodesocket.com.
+If you're interested in Commando.io Enterprise *(self hosted)*, please send us an e-mail commando@nodesocket.com.
 
 Overview
 --------
