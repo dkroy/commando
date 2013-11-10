@@ -3,7 +3,7 @@
 No Longer Maintained
 ---------------------------------------------
 
-**The open source version of Commando.io is not actively being maintained, as we are focusing all of our efforts on our hosted and enterprise solution.**
+**The open source version of Commando.io is no longer being maintained, as we are focusing all of our efforts on our hosted and enterprise solution.**
 
 If you'd like to try Commando.io hosted; request access to our private beta on our website https://commando.io.
 
@@ -25,8 +25,6 @@ Screenshots & Additional Details
 [ ![Adding a recipe.](http://netdna.commando.io/images/screenshots/small/add-recipe.png) ](http://netdna.commando.io/images/screenshots/xlarge/add-recipe.png)
 [ ![Executing a recipe on a group of servers.](http://netdna.commando.io/images/screenshots/small/execute.png) ](http://netdna.commando.io/images/screenshots/xlarge/execute.png)
 [ ![Upload and transfer text or binary files.](http://netdna.commando.io/images/screenshots/small/files.png) ](http://netdna.commando.io/images/screenshots/xlarge/files.png)
-
-#### See https://commando.io for additional details. ####
 
 Important Notes
 ---------------
