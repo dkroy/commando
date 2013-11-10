@@ -220,14 +220,7 @@ Contact
 
 + https://commando.io
 + commando@nodesocket.com
-+ http://twitter.com/commando_io
-
-Sponsored By
-------------
-
-[ ![NetDNA](http://netdna.commando.io/images/netdna.png) ] (http://netdna.com)
-
-Follow [@NetDNADeveloper](http://www.twitter.com/netdnadeveloper) on Twitter.
++ https://twitter.com/commando_io
 
 License & Legal
 ---------------
