@@ -87,7 +87,7 @@ $ mysql --user=USERNAME --pass=PASSWORD --host=SERVERHOST < /schema/latest.sql
 
 **9.)**	Assign the MySQL user created above to the newly imported database `commando`.    
 
-**10.)** Create a database `commando` and a collection `executions` in MongoDB. *If you need MongoDB hosting check out https://mongohq.com or https://mongolab.com.*
+**10.)** Create a database `commando` and a collection `executions` in MongoDB. *If you need MongoDB hosting check out https://www.mongohq.com or https://mongolab.com.*
 
 **11.)** Create the following standard indexes on the `executions` collection in MongoDB:   
 
