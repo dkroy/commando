@@ -1,4 +1,4 @@
-![Commando.io](http://netdna.commando.io/images/commando.png)
+![Commando.io](https://static.commando.io/img/commando.png)
 
 No Longer Maintained
 ---------------------------------------------
@@ -21,10 +21,10 @@ The goal of Commando.io is to make it super simple to execute commands on groups
 Screenshots & Additional Details
 --------------------------------
 
-[ ![Servers tagged and grouped.](http://netdna.commando.io/images/screenshots/small/servers.png) ](http://netdna.commando.io/images/screenshots/xlarge/servers.png)
-[ ![Adding a node.js hello world recipe.](http://netdna.commando.io/images/screenshots/small/add-recipe.png) ](http://netdna.commando.io/images/screenshots/xlarge/add-recipe.png)
-[ ![Executing a recipe on a group of servers.](http://netdna.commando.io/images/screenshots/small/execute.png) ](http://netdna.commando.io/images/screenshots/xlarge/execute.png)
-[ ![Upload and transfer text or binary files.](http://netdna.commando.io/images/screenshots/small/files.png) ](http://netdna.commando.io/images/screenshots/xlarge/files.png)
+[ ![Servers tagged and grouped.](https://static.commando.io/img/screenshots/small/servers.png) ](https://static.commando.io/img/screenshots/xlarge/servers.png)
+[ ![Adding a node.js hello world recipe.](https://static.commando.io/img/screenshots/small/add-recipe.png) ](https://static.commando.io/img/screenshots/xlarge/add-recipe.png)
+[ ![Executing a recipe on a group of servers.](https://static.commando.io/img/screenshots/small/execute.png) ](https://static.commando.io/img/screenshots/xlarge/execute.png)
+[ ![Upload and transfer text or binary files.](https://static.commando.io/img/screenshots/small/files.png) ](https://static.commando.io/img/screenshots/xlarge/files.png)
 
 Important Notes
 ---------------
