@@ -7,7 +7,7 @@ No Longer Maintained
 
 If you'd like to try Commando.io hosted; signup for the free beta at https://commando.io.
 
-If you're interested in Commando.io Enterprise *(self hosted)*, please send us an e-mail commando@nodesocket.com.
+If you're interested in Commando.io Enterprise *(self hosted)*, please send us an e-mail enterprise@commando.io.
 
 Overview
 --------
@@ -223,7 +223,7 @@ Contact
 License & Legal
 ---------------
 
-Copyright 2013 NodeSocket, LLC
+Copyright 2014 NodeSocket, LLC
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
 
