@@ -194,7 +194,7 @@ https://github.com/nodesocket/commando/blob/master/CHANGELOG.md
 Support, Bugs, And Feature Requests
 -----------------------------------
 
-Create issues on GitHub (https://github.com/nodesocket/commando/issues).
+Create issues here on GitHub (https://github.com/nodesocket/commando/issues).
 
 Versioning
 ----------
