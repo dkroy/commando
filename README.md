@@ -217,7 +217,6 @@ Contact
 -------
 
 + https://commando.io
-+ commando@nodesocket.com
 + https://twitter.com/commando_io
 
 License & Legal
