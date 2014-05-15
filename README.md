@@ -3,7 +3,7 @@
 No Longer Maintained
 ---------------------------------------------
 
-**The open source version of Commando.io is no longer being maintained as we are focusing all of our efforts on our hosted and enterprise solution.**
+#### The open source version of Commando.io is no longer being maintained as we are focusing all of our efforts on our hosted and enterprise solution.**
 
 #### If you'd like to try the latest version of Commando.io signup for our hosted beta at https://commando.io.
 
